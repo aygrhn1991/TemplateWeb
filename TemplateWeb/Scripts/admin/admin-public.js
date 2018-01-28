@@ -15,17 +15,19 @@ window.DrawTable = function (id) {
 };
 window.EditorImageUpload = function (files) {
     var formData = new FormData();
-    formData.append("file", file);
-    console.log(data);
+    for (var i = 0; i < files.length; i++) {
+        formData.append("file[]", files[i]);
+    }
     $.ajax({
-        data: data,
+        data: formData,
         type: "POST",
-        url: "{:U('Test/upload')}",
+        url: "/Plugin/summernote/handler/UploadHandler.ashx",
         cache: false,
         contentType: false,
         processData: false,
         success: function (url) {
-            $("#summernote").summernote('insertImage', url, 'image name'); // the insertImage API  
+            console.log(url);
+            //$("#summernote").summernote('insertImage', url, 'image name'); // the insertImage API  
         }
     });
 };

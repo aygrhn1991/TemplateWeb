@@ -317,6 +317,7 @@
     <Content Include="Plugin\summernote\font\summernote.ttf" />
     <Content Include="Plugin\summernote\font\summernote.woff" />
     <Content Include="Plugin\datatables\js\chinese.json" />
+    <Content Include="Plugin\summernote\handler\UploadHandler.ashx" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -342,6 +343,9 @@
     <Compile Include="Models\DB\nav_nav.cs" />
     <Compile Include="Models\DB\nva_subnav.cs" />
     <Compile Include="Models\DB\page.cs" />
+    <Compile Include="Plugin\summernote\handler\UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -372,6 +376,7 @@
     <Folder Include="Plugin\slimscroll\css\" />
     <Folder Include="Plugin\slimscroll\images\" />
     <Folder Include="Plugin\summernote\images\" />
+    <Folder Include="Upload\editor\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
