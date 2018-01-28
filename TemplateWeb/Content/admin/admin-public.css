@@ -1,0 +1,13 @@
+﻿* {
+    outline: none !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.no-padding {
+    padding: 0;
+}

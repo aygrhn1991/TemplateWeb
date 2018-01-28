@@ -44,10 +44,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -89,19 +100,256 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\TemplateDB.mdf" />
+    <Content Include="App_Data\TemplateDB_log.ldf">
+      <DependentUpon>TemplateDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\admin\admin-content.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\admin\admin-layout.css" />
+    <Content Include="Content\admin\admin-public.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Plugin\datatables\css\dataTables.bootstrap.css" />
+    <Content Include="Plugin\datatables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Plugin\datatables\css\jquery.dataTables.css" />
+    <Content Include="Plugin\datatables\css\jquery.dataTables.min.css" />
+    <Content Include="Plugin\datatables\images\sort_asc.png" />
+    <Content Include="Plugin\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Plugin\datatables\images\sort_both.png" />
+    <Content Include="Plugin\datatables\images\sort_desc.png" />
+    <Content Include="Plugin\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Plugin\datatables\js\dataTables.bootstrap.js" />
+    <Content Include="Plugin\datatables\js\dataTables.bootstrap.min.js" />
+    <Content Include="Plugin\datatables\js\jquery.dataTables.js" />
+    <Content Include="Plugin\datatables\js\jquery.dataTables.min.js" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\black\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\blue\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\green\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\orange\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\pink\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\purple\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\red\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\silver\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\white\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-barber-shop.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-big-counter.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-bounce.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-center-atom.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-center-circle.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-center-radar.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-center-simple.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-corner-indicator.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-fill-left.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-flash.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-flat-top.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-loading-bar.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-mac-osx.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-material.css" />
+    <Content Include="Plugin\pace\css\themes\yellow\pace-theme-minimal.css" />
+    <Content Include="Plugin\pace\js\pace.js" />
+    <Content Include="Plugin\pace\js\pace.min.js" />
+    <Content Include="Plugin\slimscroll\js\jquery.slimscroll.js" />
+    <Content Include="Plugin\slimscroll\js\jquery.slimscroll.min.js" />
+    <Content Include="Plugin\metismenu\css\style.css" />
+    <Content Include="Plugin\metismenu\css\metisMenu.css" />
+    <Content Include="Plugin\metismenu\css\metisMenu.min.css" />
+    <Content Include="Plugin\metismenu\js\metisMenu.js" />
+    <Content Include="Plugin\metismenu\js\metisMenu.min.js" />
+    <Content Include="Plugin\summernote\css\summernote.css" />
+    <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.js" />
+    <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
+    <Content Include="Plugin\summernote\js\summernote.js" />
+    <Content Include="Plugin\summernote\js\summernote.min.js" />
+    <Content Include="Scripts\admin\admin-layout.js" />
+    <Content Include="Scripts\admin\admin-page.js" />
+    <Content Include="Scripts\admin\admin-public.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Plugin\summernote\font\summernote.eot" />
+    <Content Include="Plugin\summernote\font\summernote.ttf" />
+    <Content Include="Plugin\summernote\font\summernote.woff" />
+    <Content Include="Plugin\datatables\js\chinese.json" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Web.config" />
+    <Content Include="Views\Shared\_Partial_Admin_Sidebar.cshtml" />
+    <Content Include="Views\Admin\PageList.cshtml" />
+    <Content Include="Views\Admin\PageAdd.cshtml" />
+    <Content Include="Views\Admin\NavList.cshtml" />
+    <Content Include="Views\Admin\NavAdd.cshtml" />
+    <Content Include="Views\Admin\BannerList.cshtml" />
+    <Content Include="Views\Admin\BannerAdd.cshtml" />
+    <Content Include="Views\Admin\Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB\EntityDB.cs" />
+    <Compile Include="Models\DB\nav_nav.cs" />
+    <Compile Include="Models\DB\nva_subnav.cs" />
+    <Compile Include="Models\DB\page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_Layout_Admin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,9 +358,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Plugin\metismenu - 复制%285%29\css\" />
+    <Folder Include="Plugin\metismenu - 复制%285%29\images\" />
+    <Folder Include="Plugin\metismenu - 复制%285%29\js\" />
+    <Folder Include="Plugin\metismenu - 复制%286%29\css\" />
+    <Folder Include="Plugin\metismenu - 复制%286%29\images\" />
+    <Folder Include="Plugin\metismenu - 复制%286%29\js\" />
+    <Folder Include="Plugin\metismenu - 复制%287%29\css\" />
+    <Folder Include="Plugin\metismenu - 复制%287%29\images\" />
+    <Folder Include="Plugin\metismenu - 复制%287%29\js\" />
+    <Folder Include="Plugin\metismenu\images\" />
+    <Folder Include="Plugin\pace\images\" />
+    <Folder Include="Plugin\slimscroll\css\" />
+    <Folder Include="Plugin\slimscroll\images\" />
+    <Folder Include="Plugin\summernote\images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
