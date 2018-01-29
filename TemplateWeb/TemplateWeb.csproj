@@ -319,8 +319,10 @@
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
     <Content Include="Scripts\admin\admin-layout.js" />
+    <Content Include="Scripts\admin\admin-nav.js" />
     <Content Include="Scripts\admin\admin-page.js" />
     <Content Include="Scripts\admin\admin-public.js" />
+    <Content Include="Scripts\admin\admin-test.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -372,6 +374,7 @@
     <Content Include="Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
+    <Content Include="Views\Admin\Test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

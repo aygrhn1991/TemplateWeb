@@ -30,7 +30,7 @@ app.controller('pageList', function ($scope, $http) {
             console.log('http错误');
         });
     };
-    $scope.delete = function (d) {
+    $scope.Delete = function (d) {
         if (confirm('是否删除：' + d.title)) {
             window.LayerOpen();
             $http.post('/Admin/Page_Delete', {
@@ -54,20 +54,16 @@ app.controller('pageAdd', function ($scope, $http) {
         $scope.id = parseInt(window.GetUrlParam('id'));
         if ($scope.id == 0) {
             $scope.pageModel = {
-                id: $scope.id,
+                id: 0,
                 title: '',
-                content: ''
+                content: '',
             };
         } else {
             window.LayerOpen();
             $http.post('/Admin/Page_Get', {
                 id: $scope.id
             }).success(function (d) {
-                $scope.pageModel = {
-                    id: d.id,
-                    title: d.title,
-                    content: d.content
-                };
+                $scope.pageModel = d;
                 $('#summernote').summernote('code', d.content);
                 window.LayerClose();
             }).error(function (e) {
@@ -77,11 +73,7 @@ app.controller('pageAdd', function ($scope, $http) {
     };
     $scope.Save = function () {
         $scope.pageModel.content = $('#summernote').summernote('code');
-        $http.post('/Admin/Page_Add_Edit', {
-            id: $scope.pageModel.id,
-            title: $scope.pageModel.title,
-            content: $scope.pageModel.content
-        }).success(function (d) {
+        $http.post('/Admin/Page_Add_Edit', $scope.pageModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
                 self.location.href = '/Admin/PageList';
