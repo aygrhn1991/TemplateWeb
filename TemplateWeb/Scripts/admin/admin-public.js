@@ -16,7 +16,7 @@ window.DrawTable = function (id) {
 window.EditorImageUpload = function (files) {
     var formData = new FormData();
     for (var i = 0; i < files.length; i++) {
-        formData.append("file[]", files[i]);
+        formData.append("files", files[i]);
     }
     $.ajax({
         data: formData,
@@ -25,9 +25,10 @@ window.EditorImageUpload = function (files) {
         cache: false,
         contentType: false,
         processData: false,
-        success: function (url) {
-            console.log(url);
-            //$("#summernote").summernote('insertImage', url, 'image name'); // the insertImage API  
+        success: function (d) {
+            d.forEach(function (e) {
+                $("#summernote").summernote('insertImage', e, e);
+            });
         }
     });
 };
