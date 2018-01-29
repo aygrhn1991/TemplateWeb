@@ -8,6 +8,14 @@ html, body {
     padding: 0;
 }
 
+a {
+    cursor: pointer;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
 .no-padding {
     padding: 0;
 }

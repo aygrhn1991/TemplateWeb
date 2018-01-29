@@ -22,21 +22,38 @@
         <button class="btn btn-success" data-toggle="modal" data-target="#nav-add">新增</button>
     </div>
     <hr />
-    <table id="dt" class="table table-bordered">
+    <table id="dt" class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th>序号</th>
                 <th>标题</th>
+                <th>状态</th>
+                <th>排序</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="d in data" on-render-finished>
                 <td>{{$index+1}}</td>
-                <td>{{d.title}}</td>
                 <td>
-                    <a class="btn btn-sm btn-primary" href="/Admin/PageAdd?id={{d.id}}">编辑</a>
-                    <button class="btn btn-sm btn-danger" ng-click="delete(d)">删除</button>
+                    <span hidden>{{d.title}}</span>
+                    <input type="text" ng-model="d.title" />
+                    <a class="tp-table-a" ng-click="Save(d)">修改</a>
+                </td>
+                <td>
+                    <label class="label label-success" ng-if="d.enable">已启用</label>
+                    <label class="label label-danger" ng-if="!d.enable">已停用</label>
+                    <a class="tp-table-a" ng-if="d.enable" ng-click="SetEnable(d)">点击停用</a>
+                    <a class="tp-table-a" ng-if="!d.enable" ng-click="SetEnable(d)">点击启用</a>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-info">&nbsp;<i class="glyphicon glyphicon-arrow-up"></i>&nbsp;</button>
+                    <button class="btn btn-sm btn-warning">&nbsp;<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;</button>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary">内容管理</button>
+                    <button class="btn btn-sm btn-primary">子导航管理</button>
+                    <button class="btn btn-sm btn-danger" ng-click="Delete(d)">删除</button>
                 </td>
             </tr>
         </tbody>
@@ -53,7 +70,7 @@
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">标题：</label>
-                            <input type="text" class="form-control"  placeholder="请输入导航标题..." ng-model="navModel.title">
+                            <input type="text" class="form-control" placeholder="请输入导航标题..." ng-model="navModel.title">
                         </div>
                     </form>
                 </div>

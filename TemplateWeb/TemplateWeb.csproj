@@ -383,6 +383,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Plugin\metismenu - 复制%285%29\css\" />
+    <Folder Include="Plugin\metismenu - 复制%285%29\images\" />
+    <Folder Include="Plugin\metismenu - 复制%285%29\js\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\css\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\images\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\js\" />
@@ -395,6 +398,7 @@
     <Folder Include="Plugin\slimscroll\images\" />
     <Folder Include="Plugin\summernote\images\" />
     <Folder Include="Upload\editor\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

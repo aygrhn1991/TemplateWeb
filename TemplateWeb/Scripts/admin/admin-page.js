@@ -26,15 +26,15 @@ app.controller('pageList', function ($scope, $http) {
                     window.DrawTable('#dt');
                 });
             }
-        }).error(function (e) {
+        }).error(function () {
             console.log('http错误');
         });
     };
-    $scope.Delete = function (d) {
-        if (confirm('是否删除：' + d.title)) {
+    $scope.Delete = function (e) {
+        if (confirm('是否删除：' + e.title)) {
             window.LayerOpen();
             $http.post('/Admin/Page_Delete', {
-                id: d.id
+                id: e.id
             }).success(function (d) {
                 if (d == true) {
                     alert('删除成功');
@@ -42,7 +42,7 @@ app.controller('pageList', function ($scope, $http) {
                 } else {
                     alert('删除失败');
                 }
-            }).error(function (e) {
+            }).error(function () {
                 console.log('http错误');
             });
         }
@@ -66,7 +66,7 @@ app.controller('pageAdd', function ($scope, $http) {
                 $scope.pageModel = d;
                 $('#summernote').summernote('code', d.content);
                 window.LayerClose();
-            }).error(function (e) {
+            }).error(function () {
                 console.log('http错误');
             });
         }
@@ -80,7 +80,7 @@ app.controller('pageAdd', function ($scope, $http) {
             } else {
                 alert('保存失败');
             }
-        }).error(function (e) {
+        }).error(function () {
             console.log('http错误');
         });
     };

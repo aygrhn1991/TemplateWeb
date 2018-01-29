@@ -84,7 +84,7 @@ namespace TemplateWeb.Controllers
             if (id == 0)
             {
                 var query = entity.nav_nav;
-                int maxSort = query.Count() <= 0 ? 1 : query.Max(p => p.sort.Value);
+                int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
                 nav_nav nav = new nav_nav()
                 {
                     title = title,
@@ -100,8 +100,19 @@ namespace TemplateWeb.Controllers
             else
             {
                 var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
-
+                query.title = title;
+                query.enable = enable;
+                query.has_sub_nav = has_sub_nav;
+                query.url = url;
+                query.pageid = pageid;
+                query.sort = sort;
             }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Nav_Delete(int id)
+        {
+            var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
+            entity.nav_nav.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
