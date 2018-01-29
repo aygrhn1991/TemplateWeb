@@ -10,7 +10,7 @@ window.DrawTable = function (id) {
         language: { url: '/Plugin/datatables/js/chinese.json' },
         destroy: true
     }).on('draw.dt', function () {
-        console.log('ok');
+        window.LayerClose()
     });
 };
 window.EditorImageUpload = function (files) {
@@ -31,4 +31,11 @@ window.EditorImageUpload = function (files) {
             });
         }
     });
+};
+layerIndex = null;
+window.LayerOpen = function () {
+    layerIndex = layer.load(1, { shade: [0.3, '#000'] });
+};
+window.LayerClose = function () {
+    layer.close(layerIndex);
 };

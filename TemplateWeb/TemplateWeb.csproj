@@ -137,6 +137,13 @@
     <Content Include="Plugin\datatables\js\dataTables.bootstrap.min.js" />
     <Content Include="Plugin\datatables\js\jquery.dataTables.js" />
     <Content Include="Plugin\datatables\js\jquery.dataTables.min.js" />
+    <Content Include="Plugin\layer\theme\default\icon-ext.png" />
+    <Content Include="Plugin\layer\theme\default\icon.png" />
+    <Content Include="Plugin\layer\theme\default\layer.css" />
+    <Content Include="Plugin\layer\theme\default\loading-0.gif" />
+    <Content Include="Plugin\layer\theme\default\loading-1.gif" />
+    <Content Include="Plugin\layer\theme\default\loading-2.gif" />
+    <Content Include="Plugin\layer\layer.js" />
     <Content Include="Plugin\pace\css\themes\black\pace-theme-barber-shop.css" />
     <Content Include="Plugin\pace\css\themes\black\pace-theme-big-counter.css" />
     <Content Include="Plugin\pace\css\themes\black\pace-theme-bounce.css" />
@@ -362,9 +369,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Plugin\metismenu - 复制%285%29\css\" />
-    <Folder Include="Plugin\metismenu - 复制%285%29\images\" />
-    <Folder Include="Plugin\metismenu - 复制%285%29\js\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\css\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\images\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\js\" />

@@ -16,6 +16,7 @@ app.controller('pageList', function ($scope, $http) {
         $scope.LoadData();
     };
     $scope.LoadData = function () {
+        window.LayerOpen();
         $http.post('/Admin/PageList_Get').success(function (d) {
             $scope.data = d;
             if (d.length == 0) {
@@ -31,6 +32,7 @@ app.controller('pageList', function ($scope, $http) {
     };
     $scope.delete = function (d) {
         if (confirm('是否删除：' + d.title)) {
+            window.LayerOpen();
             $http.post('/Admin/Page_Delete', {
                 id: d.id
             }).success(function (d) {
@@ -57,6 +59,7 @@ app.controller('pageAdd', function ($scope, $http) {
                 content: ''
             };
         } else {
+            window.LayerOpen();
             $http.post('/Admin/Page_Get', {
                 id: $scope.id
             }).success(function (d) {
@@ -66,6 +69,7 @@ app.controller('pageAdd', function ($scope, $http) {
                     content: d.content
                 };
                 $('#summernote').summernote('code', d.content);
+                window.LayerClose();
             }).error(function (e) {
                 console.log('http错误');
             });
