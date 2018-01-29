@@ -4,15 +4,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>模板 - 后台</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-2.2.4.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/angular.js"></script>
+    @Styles.Render("~/bundles/css-lib")
+    @Scripts.Render("~/bundles/script-lib")
 
     <script src="~/Plugin/layer/layer.js"></script>
 
-    <link href="~/Plugin/pace/css/themes/black/pace-theme-flash.css" rel="stylesheet" />
+    <link href="~/Plugin/pace/css/themes/black/pace-theme-minimal.css" rel="stylesheet" />
     <script src="~/Plugin/pace/js/pace.js"></script>
 
     <link href="~/Plugin/metismenu/css/metisMenu.css" rel="stylesheet" />
