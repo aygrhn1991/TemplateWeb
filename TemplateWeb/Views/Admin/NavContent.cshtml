@@ -63,14 +63,14 @@
                 <th>序号</th>
                 <th>标题</th>
                 <th>
-                    <button class="btn btn-success" data-toggle="modal" data-target="#subnav-add">新增</button>
+                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#subnav-add">新增</button>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>123123</td>
-                <td>123123</td>
+            <tr ng-repeat="s in subnavList">
+                <td>{{$index+1}}</td>
+                <td>{{s.title}}</td>
                 <td>123123</td>
             </tr>
         </tbody>

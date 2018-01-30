@@ -153,6 +153,7 @@ app.controller('navContent', function ($scope, $http) {
         }).success(function (d) {
             $scope.navModel = d;
             $scope.PageLoad();
+            $scope.SubnavLoad();
         }).error(function () {
             console.log('http错误');
         });
@@ -179,6 +180,15 @@ app.controller('navContent', function ($scope, $http) {
         $scope.navModel.page_id = e.id;
         $scope.navModelPageTitle = e.title;
     };
+    $scope.SubnavLoad = function () {
+        window.LayerOpen();
+        $http.post('/Admin/SubNavList_Get').success(function (d) {
+            $scope.subnavList = d;
+            window.LayerClose();
+        }).error(function () {
+            console.log('http错误');
+        });
+    };
     $scope.Save = function (e) {
         $http.post('/Admin/Nav_Add_Edit', $scope.navModel).success(function (d) {
             if (d == true) {
@@ -198,19 +208,22 @@ app.controller('subnavAdd', function ($scope, $http) {
     $scope.Init = function () {
         $scope.subnavModel = {
             id: 0,
+            nav_id: parseInt(window.GetUrlParam('id')),
             title: '',
             enable: false,
             mode: 0,
-            url: null,
-            page_id: null,
             sort: null,
+            page_id: null,
+            url: null,
         };
     };
     $scope.Save = function () {
-        $http.post('/Admin/Nav_Add_Edit', $scope.navModel).success(function (d) {
+        window.LayerOpen();
+        $http.post('/Admin/Subnav_Add_Edit', $scope.subnavModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
-                self.location.reload();
+                $('#subnav-add').modal('hide');
+                $scope.SubnavLoad();
             } else {
                 alert('保存失败');
                 window.LayerClose();

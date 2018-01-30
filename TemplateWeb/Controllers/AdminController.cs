@@ -165,6 +165,44 @@ namespace TemplateWeb.Controllers
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
+        #region 子导航管理
+        public ActionResult SubnavList_Get()
+        {
+            var query = entity.nva_subnav.OrderBy(p => p.sort);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Subnav_Add_Edit(int id, int nav_id, string title, bool? enable, int? mode, string url, int? page_id, int? sort)
+        {
+            if (id == 0)
+            {
+                var query = entity.nva_subnav;
+                int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
+                nva_subnav subnav = new nva_subnav()
+                {
+                    nav_id = nav_id,
+                    title = title,
+                    enable = enable,
+                    mode = mode,
+                    url = url,
+                    page_id = page_id,
+                    sort = ++maxSort,
+                    sys_datetime = DateTime.Now
+                };
+                entity.nva_subnav.Add(subnav);
+            }
+            else
+            {
+                var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
+                query.title = title;
+                query.enable = enable;
+                query.mode = mode;
+                query.url = url;
+                query.page_id = page_id;
+                query.sort = sort;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
         #endregion
         public ActionResult BannerList()
         {
