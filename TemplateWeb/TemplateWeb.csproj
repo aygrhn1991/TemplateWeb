@@ -347,7 +347,6 @@
     <Content Include="Views\Admin\PageList.cshtml" />
     <Content Include="Views\Admin\PageAdd.cshtml" />
     <Content Include="Views\Admin\NavList.cshtml" />
-    <Content Include="Views\Admin\NavAdd.cshtml" />
     <Content Include="Views\Admin\BannerList.cshtml" />
     <Content Include="Views\Admin\BannerAdd.cshtml" />
     <Content Include="Views\Admin\Welcome.cshtml" />
@@ -375,6 +374,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
     <Content Include="Views\Admin\Test.cshtml" />
+    <Content Include="Views\Admin\NavContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

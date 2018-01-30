@@ -5,8 +5,7 @@
 
 @Styles.Render("~/bundles/css-lib")
 @Scripts.Render("~/bundles/script-lib")
-
-<script src="~/Plugin/layer/layer.js"></script>
+@Scripts.Render("~/bundles/script-public")
 
 <link href="~/Plugin/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
 <script src="~/Plugin/datatables/js/jquery.dataTables.js"></script>
@@ -18,10 +17,6 @@
 <script src="~/Scripts/admin/admin-nav.js"></script>
 
 <div class="tp-content" ng-app="app" ng-controller="navList">
-    <div class="btn-group">
-        <button class="btn btn-success" data-toggle="modal" data-target="#nav-add">新增</button>
-    </div>
-    <hr />
     <table id="dt" class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -29,7 +24,9 @@
                 <th>标题</th>
                 <th>状态</th>
                 <th>排序</th>
-                <th>操作</th>
+                <th>
+                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#nav-add">新增</button>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -47,12 +44,11 @@
                     <a class="tp-table-a" ng-if="!d.enable" ng-click="SetEnable(d)">点击启用</a>
                 </td>
                 <td>
-                    <button class="btn btn-sm btn-info">&nbsp;<i class="glyphicon glyphicon-arrow-up"></i>&nbsp;</button>
-                    <button class="btn btn-sm btn-warning">&nbsp;<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;</button>
+                    <button class="btn btn-sm btn-info" ng-click="SetSort(d,sortType.up)">&nbsp;<i class="glyphicon glyphicon-arrow-up"></i>&nbsp;</button>
+                    <button class="btn btn-sm btn-warning" ng-click="SetSort(d,sortType.down)">&nbsp;<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;</button>
                 </td>
                 <td>
-                    <button class="btn btn-sm btn-primary">内容管理</button>
-                    <button class="btn btn-sm btn-primary">子导航管理</button>
+                    <a class="btn btn-sm btn-primary" href="/Admin/NavContent?id={{d.id}}">内容管理</a>
                     <button class="btn btn-sm btn-danger" ng-click="Delete(d)">删除</button>
                 </td>
             </tr>

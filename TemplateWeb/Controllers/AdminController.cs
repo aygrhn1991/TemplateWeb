@@ -70,16 +70,17 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #region 导航管理
+        #region 导航管理
         public ActionResult NavList()
         {
             return View();
         }
         public ActionResult NavList_Get()
         {
-            var query = entity.nav_nav.OrderByDescending(p => p.id);
+            var query = entity.nav_nav.OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Nav_Add_Edit(int id, string title, bool? enable, bool? has_sub_nav, string url, int? pageid, int? sort)
+        public ActionResult Nav_Add_Edit(int id, string title, bool? enable, int? mode, string url, int? page_id, int? sort)
         {
             if (id == 0)
             {
@@ -89,9 +90,9 @@ namespace TemplateWeb.Controllers
                 {
                     title = title,
                     enable = enable,
-                    has_sub_nav = has_sub_nav,
+                    mode = mode,
                     url = url,
-                    pageid = pageid,
+                    page_id = page_id,
                     sort = ++maxSort,
                     sys_datetime = DateTime.Now
                 };
@@ -102,9 +103,9 @@ namespace TemplateWeb.Controllers
                 var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
                 query.title = title;
                 query.enable = enable;
-                query.has_sub_nav = has_sub_nav;
+                query.mode = mode;
                 query.url = url;
-                query.pageid = pageid;
+                query.page_id = page_id;
                 query.sort = sort;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
@@ -115,11 +116,61 @@ namespace TemplateWeb.Controllers
             entity.nav_nav.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Nav_Sort(int id, string sortType)
+        {
+            var query = entity.nav_nav.OrderBy(p => p.sort).ToArray();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (query[i].id == id)
+                {
+                    if (sortType == "up")
+                    {
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i - 1].sort;
+                            query[i - 1].sort = tempSort;
+                        }
+                    }
+                    else
+                    {
+                        if (i == query.Count() - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i + 1].sort;
+                            query[i + 1].sort = tempSort;
+                        }
+                    }
+                }
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 导航内容管理
+        public ActionResult NavContent(int id)
+        {
+            return View();
+        }
+        public ActionResult Nav_Get(int id)
+        {
+            var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
         #endregion
         public ActionResult BannerList()
         {
             return View();
         }
+
         public ActionResult BannerAdd()
         {
             return View();

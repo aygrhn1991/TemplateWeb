@@ -34,7 +34,7 @@ window.EditorImageUpload = function (files) {
 };
 layerIndex = null;
 window.LayerOpen = function () {
-    layerIndex = layer.load(1, { shade: [0.3, '#000'] });
+    layerIndex = layer.load(1, { shade: [0.1, '#000'] });
 };
 window.LayerClose = function () {
     layer.close(layerIndex);

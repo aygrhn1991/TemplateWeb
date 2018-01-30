@@ -41,6 +41,7 @@ app.controller('pageList', function ($scope, $http) {
                     self.location.reload();
                 } else {
                     alert('删除失败');
+                    window.LayerClose();
                 }
             }).error(function () {
                 console.log('http错误');
@@ -79,6 +80,7 @@ app.controller('pageAdd', function ($scope, $http) {
                 self.location.href = '/Admin/PageList';
             } else {
                 alert('保存失败');
+                window.LayerClose();
             }
         }).error(function () {
             console.log('http错误');

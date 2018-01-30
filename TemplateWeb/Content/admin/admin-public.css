@@ -8,6 +8,11 @@ html, body {
     padding: 0;
 }
 
+td {
+    font-size: 14px;
+    vertical-align: middle !important;
+}
+
 a {
     cursor: pointer;
 }

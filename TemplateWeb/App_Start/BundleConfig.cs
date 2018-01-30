@@ -15,6 +15,9 @@ namespace TemplateWeb
                       "~/Scripts/jquery-2.2.4.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/angular.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/script-public").Include(
+                      "~/Plugin/layer/layer.js"));
         }
     }
 }
