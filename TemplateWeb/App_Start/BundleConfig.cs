@@ -16,7 +16,11 @@ namespace TemplateWeb
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/angular.js"));
 
+            bundles.Add(new StyleBundle("~/bundles/css-public").Include(
+                      "~/Plugin/ngtable/css/ng-table.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/script-public").Include(
+                      "~/Plugin/ngtable/js/ng-table.js",
                       "~/Plugin/layer/layer.js"));
         }
     }

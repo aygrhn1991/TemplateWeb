@@ -1,16 +1,11 @@
-﻿* {
-    outline: none !important;
-}
-
-html, body {
+﻿html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-td {
-    font-size: 14px;
-    vertical-align: middle !important;
+* {
+    outline: none !important;
 }
 
 a {
@@ -20,6 +15,11 @@ a {
     a:hover {
         text-decoration: none;
     }
+
+th, td {
+    vertical-align: middle !important;
+    font-size: 14px;
+}
 
 .no-padding {
     padding: 0;

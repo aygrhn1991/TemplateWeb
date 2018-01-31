@@ -5,14 +5,6 @@
         return unescape(r[2]);
     return null;
 }
-window.DrawTable = function (id) {
-    $(id).DataTable({
-        language: { url: '/Plugin/datatables/js/chinese.json' },
-        destroy: true
-    }).on('draw.dt', function () {
-        window.LayerClose()
-    });
-};
 window.EditorImageUpload = function (files) {
     var formData = new FormData();
     for (var i = 0; i < files.length; i++) {

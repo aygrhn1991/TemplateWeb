@@ -42,23 +42,23 @@ namespace TemplateWeb.Controllers
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         [ValidateInput(false)]
-        public ActionResult Page_Add_Edit(int id, string title, string content)
+        public ActionResult Page_Add_Edit(page pageModel)
         {
-            if (id == 0)
+            if (pageModel.id == 0)
             {
                 page page = new page()
                 {
-                    title = title,
-                    content = content,
+                    title = pageModel.title,
+                    content = pageModel.content,
                     sys_datetime = DateTime.Now
                 };
                 entity.page.Add(page);
             }
             else
             {
-                var query = entity.page.FirstOrDefault(p => p.id == id);
-                query.title = title;
-                query.content = content;
+                var query = entity.page.FirstOrDefault(p => p.id == pageModel.id);
+                query.title = pageModel.title;
+                query.content = pageModel.content;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
@@ -80,33 +80,33 @@ namespace TemplateWeb.Controllers
             var query = entity.nav_nav.OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Nav_Add_Edit(int id, string title, bool? enable, int? mode, string url, int? page_id, int? sort)
+        public ActionResult Nav_Add_Edit(nav_nav navModel)
         {
-            if (id == 0)
+            if (navModel.id == 0)
             {
                 var query = entity.nav_nav;
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
                 nav_nav nav = new nav_nav()
                 {
-                    title = title,
-                    enable = enable,
-                    mode = mode,
-                    url = url,
-                    page_id = page_id,
+                    title = navModel.title,
+                    enable = navModel.enable,
+                    mode = navModel.mode,
                     sort = ++maxSort,
+                    page_id = navModel.page_id,
+                    url = navModel.url,
                     sys_datetime = DateTime.Now
                 };
                 entity.nav_nav.Add(nav);
             }
             else
             {
-                var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
-                query.title = title;
-                query.enable = enable;
-                query.mode = mode;
-                query.url = url;
-                query.page_id = page_id;
-                query.sort = sort;
+                var query = entity.nav_nav.FirstOrDefault(p => p.id == navModel.id);
+                query.title = navModel.title;
+                query.enable = navModel.enable;
+                query.mode = navModel.mode;
+                query.sort = navModel.sort;
+                query.page_id = navModel.page_id;
+                query.url = navModel.url;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
@@ -166,41 +166,96 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #region 子导航管理
-        public ActionResult SubnavList_Get()
+        public ActionResult SubnavList_Get(int id)
         {
-            var query = entity.nva_subnav.OrderBy(p => p.sort);
+            var query = entity.nav_subnav.Where(p => p.nav_id == id).OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Subnav_Add_Edit(int id, int nav_id, string title, bool? enable, int? mode, string url, int? page_id, int? sort)
+        public ActionResult Subnav_Add_Edit(nav_subnav subnavModel)
         {
-            if (id == 0)
+            if (subnavModel.id == 0)
             {
-                var query = entity.nva_subnav;
+                var query = entity.nav_subnav.Where(p => p.nav_id == subnavModel.nav_id);
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
-                nva_subnav subnav = new nva_subnav()
+                nav_subnav subnav = new nav_subnav()
                 {
-                    nav_id = nav_id,
-                    title = title,
-                    enable = enable,
-                    mode = mode,
-                    url = url,
-                    page_id = page_id,
+                    nav_id = subnavModel.nav_id,
+                    title = subnavModel.title,
+                    enable = subnavModel.enable,
+                    mode = subnavModel.mode,
                     sort = ++maxSort,
+                    page_id = subnavModel.page_id,
+                    url = subnavModel.url,
                     sys_datetime = DateTime.Now
                 };
-                entity.nva_subnav.Add(subnav);
+                entity.nav_subnav.Add(subnav);
             }
             else
             {
-                var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
-                query.title = title;
-                query.enable = enable;
-                query.mode = mode;
-                query.url = url;
-                query.page_id = page_id;
-                query.sort = sort;
+                var query = entity.nav_subnav.FirstOrDefault(p => p.id == subnavModel.id);
+                query.nav_id = subnavModel.nav_id;
+                query.title = subnavModel.title;
+                query.enable = subnavModel.enable;
+                query.mode = subnavModel.mode;
+                query.sort = subnavModel.sort;
+                query.page_id = subnavModel.page_id;
+                query.url = subnavModel.url;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Subnav_Delete(int id)
+        {
+            var query = entity.nav_subnav.FirstOrDefault(p => p.id == id);
+            entity.nav_subnav.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Subnav_Sort(int id, string sortType)
+        {
+            var query = entity.nav_subnav.OrderBy(p => p.sort).ToArray();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (query[i].id == id)
+                {
+                    if (sortType == "up")
+                    {
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i - 1].sort;
+                            query[i - 1].sort = tempSort;
+                        }
+                    }
+                    else
+                    {
+                        if (i == query.Count() - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i + 1].sort;
+                            query[i + 1].sort = tempSort;
+                        }
+                    }
+                }
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 子导航内容管理
+        public ActionResult NavsubContent(int id)
+        {
+            return View();
+        }
+        public ActionResult Subnav_Get(int id)
+        {
+            var query = entity.nav_subnav.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #endregion

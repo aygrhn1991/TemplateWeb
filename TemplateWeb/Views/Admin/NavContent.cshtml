@@ -4,10 +4,9 @@
 }
 
 @Styles.Render("~/bundles/css-lib")
+@Styles.Render("~/bundles/css-public")
 @Scripts.Render("~/bundles/script-lib")
 @Scripts.Render("~/bundles/script-public")
-
-
 
 <link href="~/Content/admin/admin-public.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-public.js"></script>
@@ -57,24 +56,45 @@
             </div>
         </div>
     </form>
-    <table class="table table-bordered table-striped table-hover" ng-show="navModel.mode==2">
+    <table class="table table-condensed table-bordered table-striped table-hover" ng-controller="subnavList" ng-show="navModel.mode==2">
         <thead>
             <tr>
                 <th>序号</th>
                 <th>标题</th>
+                <th>状态</th>
+                <th>排序</th>
                 <th>
-                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#subnav-add">新增</button>
+                    <label class="label label-success" data-toggle="modal" data-target="#subnav-add">
+                        <i class="glyphicon glyphicon-plus"></i>新增
+                    </label>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="s in subnavList">
                 <td>{{$index+1}}</td>
-                <td>{{s.title}}</td>
-                <td>123123</td>
+                <td>
+                    <input type="text" ng-model="s.title" />
+                    <a class="tp-table-a" ng-click="Save(s)">修改</a>
+                </td>
+                <td>
+                    <label class="label label-success" ng-if="s.enable">已启用</label>
+                    <label class="label label-danger" ng-if="!s.enable">已停用</label>
+                    <a class="tp-table-a" ng-if="s.enable" ng-click="SetEnable(s)">点击停用</a>
+                    <a class="tp-table-a" ng-if="!s.enable" ng-click="SetEnable(s)">点击启用</a>
+                </td>
+                <td>
+                    <label class="label label-info" ng-click="SetSort(s,sortType.up)"><i class="glyphicon glyphicon-arrow-up tp-lable-glyphicon"></i></label>
+                    <label class="label label-warning" ng-click="SetSort(s,sortType.down)"><i class="glyphicon glyphicon-arrow-down tp-lable-glyphicon"></i></label>
+                </td>
+                <td>
+                    <a class="label label-primary" href="/Admin/NavsubContent?id={{s.id}}">内容管理</a>
+                    <label class="label label-danger" ng-click="Delete(s)">删除</label>
+                </td>
             </tr>
         </tbody>
     </table>
+    <!--Modal-->
     <div class="modal fade" id="subnav-add" tabindex="-1" ng-controller="subnavAdd">
         <div class="modal-dialog">
             <div class="modal-content">

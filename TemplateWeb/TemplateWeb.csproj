@@ -326,7 +326,6 @@
     <Content Include="Scripts\admin\admin-nav.js" />
     <Content Include="Scripts\admin\admin-page.js" />
     <Content Include="Scripts\admin\admin-public.js" />
-    <Content Include="Scripts\admin\admin-test.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -364,7 +363,7 @@
     </Compile>
     <Compile Include="Models\DB\EntityDB.cs" />
     <Compile Include="Models\DB\nav_nav.cs" />
-    <Compile Include="Models\DB\nva_subnav.cs" />
+    <Compile Include="Models\DB\nav_subnav.cs" />
     <Compile Include="Models\DB\page.cs" />
     <Compile Include="Plugin\summernote\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
@@ -379,6 +378,7 @@
     <Content Include="Scripts\jquery-2.2.4.min.map" />
     <Content Include="Views\Admin\Test.cshtml" />
     <Content Include="Views\Admin\NavContent.cshtml" />
+    <Content Include="Views\Admin\NavsubContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

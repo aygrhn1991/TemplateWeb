@@ -1,17 +1,5 @@
-﻿var app = angular.module('app', []);
-app.directive('onRenderFinished', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attr, controller) {
-            if (scope.$last === true) {
-                $timeout(function () {
-                    scope.$emit('ngRepeatFinished');
-                });
-            }
-        }
-    };
-});
-app.controller('pageList', function ($scope, $http) {
+﻿var app = angular.module('app', ['ngTable']);
+app.controller('pageList', function ($scope, $http, NgTableParams) {
     $scope.Init = function () {
         $scope.LoadData();
     };
@@ -19,15 +7,16 @@ app.controller('pageList', function ($scope, $http) {
         window.LayerOpen();
         $http.post('/Admin/PageList_Get').success(function (d) {
             $scope.data = d;
-            if (d.length == 0) {
-                window.DrawTable('#dt');
-            } else {
-                $scope.$on('ngRepeatFinished', function (event) {
-                    window.DrawTable('#dt');
+            $scope.dt = new NgTableParams({
+                count: 10,
+            }, {
+                    counts: [10, 20, 50],
+                    dataset: d,
                 });
-            }
+            window.LayerClose();
         }).error(function () {
             console.log('http错误');
+            window.LayerClose();
         });
     };
     $scope.Delete = function (e) {
@@ -38,13 +27,14 @@ app.controller('pageList', function ($scope, $http) {
             }).success(function (d) {
                 if (d == true) {
                     alert('删除成功');
-                    self.location.reload();
+                    $scope.LoadData();
                 } else {
                     alert('删除失败');
                     window.LayerClose();
                 }
             }).error(function () {
                 console.log('http错误');
+                window.LayerClose();
             });
         }
     };
@@ -69,10 +59,12 @@ app.controller('pageAdd', function ($scope, $http) {
                 window.LayerClose();
             }).error(function () {
                 console.log('http错误');
+                window.LayerClose();
             });
         }
     };
     $scope.Save = function () {
+        window.LayerOpen();
         $scope.pageModel.content = $('#summernote').summernote('code');
         $http.post('/Admin/Page_Add_Edit', $scope.pageModel).success(function (d) {
             if (d == true) {
@@ -84,6 +76,7 @@ app.controller('pageAdd', function ($scope, $http) {
             }
         }).error(function () {
             console.log('http错误');
+            window.LayerClose();
         });
     };
     $('#summernote').summernote({

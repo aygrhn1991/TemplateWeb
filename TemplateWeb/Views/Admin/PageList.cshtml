@@ -4,12 +4,9 @@
 }
 
 @Styles.Render("~/bundles/css-lib")
+@Styles.Render("~/bundles/css-public")
 @Scripts.Render("~/bundles/script-lib")
 @Scripts.Render("~/bundles/script-public")
-
-<link href="~/Plugin/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
-<script src="~/Plugin/datatables/js/jquery.dataTables.js"></script>
-<script src="~/Plugin/datatables/js/dataTables.bootstrap.js"></script>
 
 <link href="~/Content/admin/admin-public.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-public.js"></script>
@@ -17,21 +14,14 @@
 <script src="~/Scripts/admin/admin-page.js"></script>
 
 <div class="tp-content" ng-app="app" ng-controller="pageList">
-    <table id="dt" class="table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-                <th>序号</th>
-                <th>标题</th>
-                <th>操作</th>
-            </tr>
-        </thead>
+    <table ng-table="dt" class="table table-condensed table-bordered table-striped table-hover">
         <tbody>
-            <tr ng-repeat="d in data" on-render-finished>
-                <td>{{$index+1}}</td>
-                <td>{{d.title}}</td>
-                <td>
-                    <a class="btn btn-sm btn-primary" href="/Admin/PageAdd?id={{d.id}}">编辑</a>
-                    <button class="btn btn-sm btn-danger" ng-click="Delete(d)">删除</button>
+            <tr ng-repeat="d in $data">
+                <td title="'ID'" sortable="'id'" filter="{id:'number'}">{{d.id}}</td>
+                <td title="'标题'" sortable="'title'" filter="{title:'text'}">{{d.title}}</td>
+                <td title="'操作'">
+                    <a class="label label-primary" href="/Admin/PageAdd?id={{d.id}}">编辑</a>
+                    <label class="label label-danger" ng-click="Delete(d)">删除</label>
                 </td>
             </tr>
         </tbody>

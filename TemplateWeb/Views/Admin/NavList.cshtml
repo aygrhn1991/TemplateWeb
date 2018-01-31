@@ -4,12 +4,9 @@
 }
 
 @Styles.Render("~/bundles/css-lib")
+@Styles.Render("~/bundles/css-public")
 @Scripts.Render("~/bundles/script-lib")
 @Scripts.Render("~/bundles/script-public")
-
-<link href="~/Plugin/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
-<script src="~/Plugin/datatables/js/jquery.dataTables.js"></script>
-<script src="~/Plugin/datatables/js/dataTables.bootstrap.js"></script>
 
 <link href="~/Content/admin/admin-public.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-public.js"></script>
@@ -17,7 +14,7 @@
 <script src="~/Scripts/admin/admin-nav.js"></script>
 
 <div class="tp-content" ng-app="app" ng-controller="navList">
-    <table id="dt" class="table table-bordered table-striped table-hover">
+    <table class="table table-condensed table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th>序号</th>
@@ -25,15 +22,16 @@
                 <th>状态</th>
                 <th>排序</th>
                 <th>
-                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#nav-add">新增</button>
+                    <label class="label label-success" data-toggle="modal" data-target="#nav-add">
+                        <i class="glyphicon glyphicon-plus"></i>新增
+                    </label>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="d in data" on-render-finished>
+            <tr ng-repeat="d in data">
                 <td>{{$index+1}}</td>
                 <td>
-                    <span hidden>{{d.title}}</span>
                     <input type="text" ng-model="d.title" />
                     <a class="tp-table-a" ng-click="Save(d)">修改</a>
                 </td>
@@ -44,17 +42,17 @@
                     <a class="tp-table-a" ng-if="!d.enable" ng-click="SetEnable(d)">点击启用</a>
                 </td>
                 <td>
-                    <button class="btn btn-sm btn-info" ng-click="SetSort(d,sortType.up)">&nbsp;<i class="glyphicon glyphicon-arrow-up"></i>&nbsp;</button>
-                    <button class="btn btn-sm btn-warning" ng-click="SetSort(d,sortType.down)">&nbsp;<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;</button>
+                    <label class="label label-info" ng-click="SetSort(d,sortType.up)"><i class="glyphicon glyphicon-arrow-up tp-lable-glyphicon"></i></label>
+                    <label class="label label-warning" ng-click="SetSort(d,sortType.down)"><i class="glyphicon glyphicon-arrow-down tp-lable-glyphicon"></i></label>
                 </td>
                 <td>
-                    <a class="btn btn-sm btn-primary" href="/Admin/NavContent?id={{d.id}}">内容管理</a>
-                    <button class="btn btn-sm btn-danger" ng-click="Delete(d)">删除</button>
+                    <a class="label label-primary" href="/Admin/NavContent?id={{d.id}}">内容管理</a>
+                    <label class="label label-danger" ng-click="Delete(d)">删除</label>
                 </td>
             </tr>
         </tbody>
     </table>
-
+    <!--Modal-->
     <div class="modal fade" id="nav-add" tabindex="-1" ng-controller="navAdd">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -65,7 +63,7 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">标题：</label>
+                            <label>标题：</label>
                             <input type="text" class="form-control" placeholder="请输入导航标题..." ng-model="navModel.title">
                         </div>
                     </form>
