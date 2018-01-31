@@ -154,6 +154,10 @@
     <Content Include="Plugin\layer\theme\default\loading-1.gif" />
     <Content Include="Plugin\layer\theme\default\loading-2.gif" />
     <Content Include="Plugin\layer\layer.js" />
+    <Content Include="Plugin\ngtable\css\ng-table.css" />
+    <Content Include="Plugin\ngtable\css\ng-table.min.css" />
+    <Content Include="Plugin\ngtable\js\ng-table.js" />
+    <Content Include="Plugin\ngtable\js\ng-table.min.js" />
     <Content Include="Plugin\pace\css\themes\black\pace-theme-barber-shop.css" />
     <Content Include="Plugin\pace\css\themes\black\pace-theme-big-counter.css" />
     <Content Include="Plugin\pace\css\themes\black\pace-theme-bounce.css" />
@@ -383,9 +387,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Plugin\metismenu - 复制%285%29\css\" />
-    <Folder Include="Plugin\metismenu - 复制%285%29\images\" />
-    <Folder Include="Plugin\metismenu - 复制%285%29\js\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\css\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\images\" />
     <Folder Include="Plugin\metismenu - 复制%286%29\js\" />
@@ -393,6 +394,7 @@
     <Folder Include="Plugin\metismenu - 复制%287%29\images\" />
     <Folder Include="Plugin\metismenu - 复制%287%29\js\" />
     <Folder Include="Plugin\metismenu\images\" />
+    <Folder Include="Plugin\ngtable\images\" />
     <Folder Include="Plugin\pace\images\" />
     <Folder Include="Plugin\slimscroll\css\" />
     <Folder Include="Plugin\slimscroll\images\" />
