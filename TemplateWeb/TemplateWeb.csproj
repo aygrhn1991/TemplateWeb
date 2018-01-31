@@ -322,6 +322,26 @@
     <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
+    <Content Include="Plugin\webuploader\css\webuploader-demo.css" />
+    <Content Include="Plugin\webuploader\css\webuploader.css" />
+    <Content Include="Plugin\webuploader\js\Uploader.swf" />
+    <Content Include="Plugin\webuploader\js\webuploader-demo.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.css" />
+    <Content Include="Plugin\webuploader\js\webuploader.custom.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.custom.min.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.fis.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.flashonly.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.flashonly.min.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.html5only.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.html5only.min.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.min.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.noimage.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.noimage.min.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.nolog.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.nolog.min.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.withoutimage.js" />
+    <Content Include="Plugin\webuploader\js\webuploader.withoutimage.min.js" />
     <Content Include="Scripts\admin\admin-layout.js" />
     <Content Include="Scripts\admin\admin-nav.js" />
     <Content Include="Scripts\admin\admin-page.js" />
@@ -387,9 +407,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Plugin\metismenu - 复制%286%29\css\" />
-    <Folder Include="Plugin\metismenu - 复制%286%29\images\" />
-    <Folder Include="Plugin\metismenu - 复制%286%29\js\" />
     <Folder Include="Plugin\metismenu - 复制%287%29\css\" />
     <Folder Include="Plugin\metismenu - 复制%287%29\images\" />
     <Folder Include="Plugin\metismenu - 复制%287%29\js\" />
@@ -399,6 +416,7 @@
     <Folder Include="Plugin\slimscroll\css\" />
     <Folder Include="Plugin\slimscroll\images\" />
     <Folder Include="Plugin\summernote\images\" />
+    <Folder Include="Plugin\webuploader\images\" />
     <Folder Include="Upload\editor\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>

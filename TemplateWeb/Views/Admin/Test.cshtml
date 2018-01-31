@@ -10,73 +10,86 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/jquery-2.2.4.js"></script>
-    <script src="~/Plugin/ngtable/js/ng-table.js"></script>
-    <link href="~/Plugin/ngtable/css/ng-table.css" rel="stylesheet" />
-    <script>
-        var app = angular.module('myTable', ['ngTable']);
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Plugin/webuploader/css/webuploader.css" rel="stylesheet" />
+    <link href="~/Plugin/webuploader/css/webuploader-demo.css" rel="stylesheet" />
+    <script src="~/Plugin/webuploader/js/webuploader.js"></script>
+    <script src="~/Plugin/webuploader/js/webuploader-demo.js"></script>
 
-        //app.factory('UsersFactory', function ($http, $rootScope) {
-        //    return {
-        //        getUsers: function () {
-        //            var users = $http.get("http://localhost:7366/api/User/GetUser");
-        //            return [
-        //                {Id:1,Name:'aa',Age:223,Email:'eee@www.com'},
-        //            ];//正常
-        //        }
-        //    };
-        //});
-
-        app.controller("table1Ctrl", function ($scope, NgTableParams) {
-            $scope.data = [
-                { Id: 1, Name: 'aa1', Age: 223, Email: 'eee@www.com' },
-                { Id: 2, Name: 'aa2', Age: 223, Email: 'eee@www.com' },
-                { Id: 3, Name: 'aa3', Age: 223, Email: 'eee@www.com' },
-            ];
-            $scope.GetUsers = function () {
-                $scope.tableParams = new NgTableParams({ count: 4 }, {
-                    counts: [5,10,20],
-                    dataset: $scope.data,
-                });
-            }
-
-            $scope.GetUsers();
-
-            $scope.add = function () {
-                console.log(123);
-                $scope.data.push({ Id: 4, Name: 'aa3', Age: 223, Email: 'eee@www.com' });
-                console.log(123);
-            }
-            $scope.reload = function () {
-                $scope.tableParams.reload();
-            }
-        });
-    </script>
-    @*<link href="Content/bootstrap/bootstrap.css" rel="stylesheet" />
-        <script src="Scripts/anjularJS/angular.min.js"></script>
-        <script src="Scripts/jquery-1.9.0.js"></script>
-        <script src="Scripts/ng-table/ng-table.js"></script>
-        <link href="Scripts/ng-table/ng-table.css" rel="stylesheet" />
-        <script src="Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
-        <script src="Scripts/angular-ui/ui-bootstrap.js"></script>
-        <script src="myTable.js"></script>*@
 </head>
 <body>
-    <div ng-app="myTable" ng-controller="table1Ctrl">
-        <h3>AnjularJS ngTable插件使用</h3>
-        <table ng-table="tableParams" class="table table-condensed table-bordered table-striped" style="text-align:center">
-            <tr ng-repeat="user in $data">
-                <td title="'ID'" sortable="'Id'" filter="{Id: 'number'}">{{user.Id}}</td>
-                <td title="'Name'" sortable="'Name'">{{user.Name}}</td>
-                <td title="'Age'" sortable="'Age'">{{user.Age}}</td>
-                <td title="'Email'" sortable="'Email'">{{user.Email}}</td>
-            </tr>
-        </table>
-
-
-        <button ng-click="add()">add</button>
-        <button ng-click="reload()">reload</button>
+    <div class="wrapper wrapper-content animated fadeIn">
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>百度Web Uploader</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_file_upload.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="form_file_upload.html#">选项1</a>
+                                </li>
+                                <li>
+                                    <a href="form_file_upload.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="page-container">
+                            <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮，来体验此demo.</p>
+                            <div id="uploader" class="wu-example">
+                                <div class="queueList">
+                                    <div id="dndArea" class="placeholder">
+                                        <div id="filePicker"></div>
+                                        <p>或将照片拖到这里，单次最多可选300张</p>
+                                    </div>
+                                </div>
+                                <div class="statusBar" style="display:none;">
+                                    <div class="progress">
+                                        <span class="text">0%</span>
+                                        <span class="percentage"></span>
+                                    </div>
+                                    <div class="info"></div>
+                                    <div class="btns">
+                                        <div id="filePicker2"></div>
+                                        <div class="uploadBtn">开始上传</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+
+    <!-- Web Uploader -->
+    <script type="text/javascript">
+        // 添加全局站点信息
+        var BASE_URL = 'js/plugins/webuploader';
+    </script>
+    <script src="js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="js/demo/webuploader-demo.js"></script>
+    <!--统计代码，可删除-->
+
+
+
 </body>
 </html>
