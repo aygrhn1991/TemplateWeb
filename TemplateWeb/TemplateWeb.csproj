@@ -344,6 +344,7 @@
     <Content Include="Plugin\webuploader\js\webuploader.withoutimage.min.js" />
     <Content Include="Scripts\admin\admin-layout.js" />
     <Content Include="Scripts\admin\admin-nav.js" />
+    <Content Include="Scripts\admin\admin-banner.js" />
     <Content Include="Scripts\admin\admin-page.js" />
     <Content Include="Scripts\admin\admin-public.js" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -360,6 +361,7 @@
     <Content Include="Plugin\summernote\font\summernote.woff" />
     <Content Include="Plugin\datatables\js\chinese.json" />
     <Content Include="Plugin\summernote\handler\UploadHandler.ashx" />
+    <Content Include="Plugin\webuploader\handler\UploadHandler.ashx" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -386,6 +388,9 @@
     <Compile Include="Models\DB\nav_subnav.cs" />
     <Compile Include="Models\DB\page.cs" />
     <Compile Include="Plugin\summernote\handler\UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Plugin\webuploader\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
