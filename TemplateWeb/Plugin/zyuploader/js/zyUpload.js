@@ -80,7 +80,7 @@
 					html += '	</div>';
 					html += '</form>';
 				}else{
-					var imgWidth = parseInt(para.itemWidth.replace("px", ""))-15;
+					var imgWidth = parseInt(para.itemWidth.replace("px", ""));
 					
 					// 创建不带有拖动的html
 					html += '<form id="uploadForm" action="'+para.url+'" method="post" enctype="multipart/form-data">';
@@ -167,7 +167,7 @@
 			 */
 			this.funDisposePreviewHtml = function(file, e){
 				var html = "";
-				var imgWidth = parseInt(para.itemWidth.replace("px", ""))-15;
+				var imgWidth = parseInt(para.itemWidth.replace("px", ""));
 				
 				// 处理配置参数删除按钮
 				var delHtml = "";
