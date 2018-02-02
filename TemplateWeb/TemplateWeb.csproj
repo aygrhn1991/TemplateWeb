@@ -134,6 +134,10 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Plugin\easyupload\css\easy-upload.css" />
+    <Content Include="Plugin\easyupload\font\iconfont.svg" />
+    <Content Include="Plugin\easyupload\images\loading.gif" />
+    <Content Include="Plugin\easyupload\js\easyUpload.js" />
     <Content Include="Plugin\layer\theme\default\icon-ext.png" />
     <Content Include="Plugin\layer\theme\default\icon.png" />
     <Content Include="Plugin\layer\theme\default\layer.css" />
@@ -309,18 +313,6 @@
     <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
-    <Content Include="Plugin\zyuploader\css\zyUpload.css" />
-    <Content Include="Plugin\zyuploader\images\add_img.png" />
-    <Content Include="Plugin\zyuploader\images\bg.png" />
-    <Content Include="Plugin\zyuploader\images\delete_blue.png" />
-    <Content Include="Plugin\zyuploader\images\delete_white.png" />
-    <Content Include="Plugin\zyuploader\images\fileType\file.png" />
-    <Content Include="Plugin\zyuploader\images\fileType\rar.png" />
-    <Content Include="Plugin\zyuploader\images\fileType\txt.png" />
-    <Content Include="Plugin\zyuploader\images\fileType\zip.png" />
-    <Content Include="Plugin\zyuploader\images\success.png" />
-    <Content Include="Plugin\zyuploader\js\zyFile.js" />
-    <Content Include="Plugin\zyuploader\js\zyUpload.js" />
     <Content Include="Scripts\admin\admin-layout.js" />
     <Content Include="Scripts\admin\admin-nav.js" />
     <Content Include="Scripts\admin\admin-banner.js" />
@@ -339,7 +331,10 @@
     <Content Include="Plugin\summernote\font\summernote.ttf" />
     <Content Include="Plugin\summernote\font\summernote.woff" />
     <Content Include="Plugin\summernote\handler\UploadHandler.ashx" />
-    <Content Include="Plugin\zyuploader\handler\UploadHandler.ashx" />
+    <Content Include="Plugin\easyupload\font\iconfont.eot" />
+    <Content Include="Plugin\easyupload\font\iconfont.ttf" />
+    <Content Include="Plugin\easyupload\font\iconfont.woff" />
+    <Content Include="Plugin\easyupload\handler\UploadHandler.ashx" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -365,10 +360,10 @@
     <Compile Include="Models\DB\nav_nav.cs" />
     <Compile Include="Models\DB\nav_subnav.cs" />
     <Compile Include="Models\DB\page.cs" />
-    <Compile Include="Plugin\summernote\handler\UploadHandler.ashx.cs">
+    <Compile Include="Plugin\easyupload\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Plugin\zyuploader\handler\UploadHandler.ashx.cs">
+    <Compile Include="Plugin\summernote\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -397,7 +392,7 @@
     <Folder Include="Plugin\slimscroll\images\" />
     <Folder Include="Plugin\summernote\images\" />
     <Folder Include="Upload\editor\" />
-    <Folder Include="Upload\webuploader\banner\" />
+    <Folder Include="Upload\uploader\banner\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>

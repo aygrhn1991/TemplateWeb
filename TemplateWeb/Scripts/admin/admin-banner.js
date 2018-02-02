@@ -41,41 +41,18 @@ app.controller('bannerList', function ($scope, $http, NgTableParams) {
     $scope.Init();
 });
 app.controller('bannerAdd', function ($scope, $http) {
-    $("#demo").zyUpload({
-        width: "650px",                 // 宽度
-        height: "400px",                 // 宽度
-        itemWidth: "120px",                 // 文件项的宽度
-        itemHeight: "100px",                 // 文件项的高度
-        url: "/Plugin/zyuploader/handler/UploadHandler.ashx",  // 上传文件的路径
-        multiple: true,                    // 是否可以多个文件上传
-        dragDrop: true,                    // 是否可以拖动上传文件
-        del: true,                    // 是否可以删除文件
-        finishDel: false,  				  // 是否在上传文件完成后删除预览
-        /* 外部获得的回调接口 */
-        onSelect: function (files, allFiles) {                    // 选择文件的回调方法
-            console.info("当前选择了以下文件：");
-            console.info(files);
-            console.info("之前没上传的文件：");
-            console.info(allFiles);
-        },
-        onDelete: function (file, surplusFiles) {                     // 删除一个文件的回调方法
-            console.info("当前删除了此文件：");
-            console.info(file);
-            console.info("当前剩余的文件：");
-            console.info(surplusFiles);
-        },
-        onSuccess: function (file) {                    // 文件上传成功的回调方法
-            console.info("此文件上传成功：");
-            console.info(file);
-        },
-        onFailure: function (file) {                    // 文件上传失败的回调方法
-            console.info("此文件上传失败：");
-            console.info(file);
-        },
-        onComplete: function (responseInfo) {           // 上传完成的回调方法
-            console.info("文件上传完成");
-            console.info(responseInfo);
-        }
+    $('#easyContainer').easyUpload({
+        allowFileTypes: '*.jpg;*.png;*.gif;*.txt;*.pdf;*.exe;',//允许上传文件类型，格式';*.doc;*.pdf'
+        note: '提示：最多上传5个文件，超出默认前五个，支持格式为：jpg、png、gif、txt、pdf',
+        url: '/Plugin/easyupload/handler/UploadHandler.ashx',//上传文件地址
+        
+        successFunc: function (res) {
+            console.log('成功回调', res);
+        },//上传成功回调函数
+        errorFunc: function (res) {
+            console.log('失败回调', res);
+        },//上传失败回调函数
+        
     });
     //$scope.Init = function () {
     //    $scope.id = parseInt(window.GetUrlParam('id'));
