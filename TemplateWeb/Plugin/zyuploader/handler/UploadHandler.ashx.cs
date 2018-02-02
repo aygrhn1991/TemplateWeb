@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace TemplateWeb.Plugin.zyuploader.handler
@@ -21,7 +22,7 @@ namespace TemplateWeb.Plugin.zyuploader.handler
                 return;
             }
             HttpPostedFile file = files[0];
-            string pathPrefix = "/Upload/webuploader/banner/";
+            string pathPrefix = "/Upload/zyuploader/banner/";
             string relativePath = String.Format(pathPrefix + "{0}-{1}-{2}/", DateTime.Now.Year, DateTime.Now.Month.ToString("D2"), DateTime.Now.Day.ToString("D2"));
             string AabsolutePath = context.Server.MapPath(relativePath);
             string filename = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);

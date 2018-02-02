@@ -176,7 +176,7 @@
 				}
 				
 				// 处理不同类型文件代表的图标
-				var fileImgSrc = "control/images/fileType/";
+				var fileImgSrc = "/Plugin/zyuploader/images/fileType/";
 				if(file.type.indexOf("rar") > 0){
 					fileImgSrc = fileImgSrc + "rar.png";
 				}else if(file.type.indexOf("zip") > 0){
@@ -344,7 +344,7 @@
 					},
 					onFailure: function(file) {
 						$("#uploadProgress_" + file.index).hide();
-						$("#uploadSuccess_" + file.index).show();
+                        $("#uploadFailure_" + file.index).show();
 						$("#uploadInf").append("<p>文件" + file.name + "上传失败！</p>");	
 						//$("#uploadImage_" + file.index).css("opacity", 0.2);
 					},

@@ -7,7 +7,7 @@
 .upload_drag_area{display:inline-block; width:63%; padding:4em 0; margin-left:.5em; border:1px dashed #ddd; background:#fff no-repeat 20px center; color:#999; text-align:center; vertical-align:middle;}
 .upload_drag_hover{border-color:#069; box-shadow:inset 2px 2px 4px rgba(0, 0, 0, .5); color:#333;}
 .upload_preview{width:100%; border-top:1px solid #D2D2D2; border-bottom:1px solid #bbb; background-color:#fff; overflow:hidden; _zoom:1;}
-.upload_append_list{margin:1em; float:left; position:relative;}
+.upload_append_list{margin:1em; border: 1px solid #DFDFDF; float:left; position:relative;}
 .upload_append_list:hover{cursor:pointer;}
 .upload_delete{margin-left:2em;}
 .upload_image{/* max-height:135px; */ padding:0px;}
@@ -38,7 +38,7 @@
     line-height: 44px;
     width: 90%;
     min-width:120px;
-    margin: 0 auto 0px;
+    margin: 0 auto 9px;
     overflow: hidden;
     transition: background 0.2s;
 	-moz-transition: background 0.2s;
@@ -279,8 +279,3 @@
 }
 
  /* www.jq22.com */
-
-
-
-
-
