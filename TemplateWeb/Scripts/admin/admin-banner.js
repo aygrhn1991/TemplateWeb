@@ -42,8 +42,8 @@ app.controller('bannerList', function ($scope, $http, NgTableParams) {
 });
 app.controller('bannerAdd', function ($scope, $http) {
     $('#easyContainer').easyUpload({
-        allowFileTypes: '*.jpg;*.png;*.gif;*.txt;*.pdf;*.exe;',//允许上传文件类型，格式';*.doc;*.pdf'
-        note: '提示：最多上传5个文件，超出默认前五个，支持格式为：jpg、png、gif、txt、pdf',
+        allowFileTypes: '*.jpg;*.png;*.gif;',//允许上传文件类型，格式';*.doc;*.pdf'
+        note: '提示：最多上传5个文件，超出默认前五个，支持格式为：jpg、png、gif',
         url: '/Plugin/easyupload/handler/UploadHandler.ashx',//上传文件地址
         
         successFunc: function (res) {
