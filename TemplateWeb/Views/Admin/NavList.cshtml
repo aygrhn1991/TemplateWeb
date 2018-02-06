@@ -10,7 +10,7 @@
 
 <link href="~/Content/admin/admin-public.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-public.js"></script>
-<link href="~/Content/admin/admin-content.css" rel="stylesheet" />
+<link href="~/Content/admin/admin-layout.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-nav.js"></script>
 
 <div class="tp-content" ng-app="app" ng-controller="navList">
@@ -23,7 +23,7 @@
                 <th>排序</th>
                 <th>
                     <label class="label label-success" data-toggle="modal" data-target="#nav-add">
-                        <i class="glyphicon glyphicon-plus"></i>新增
+                        <i class="glyphicon glyphicon-plus"></i>&nbsp;新增
                     </label>
                 </th>
             </tr>
@@ -46,8 +46,8 @@
                     <label class="label label-warning" ng-click="SetSort(d,sortType.down)"><i class="glyphicon glyphicon-arrow-down tp-lable-glyphicon"></i></label>
                 </td>
                 <td>
-                    <a class="label label-primary" href="/Admin/NavContent?id={{d.id}}">内容管理</a>
-                    <label class="label label-danger" ng-click="Delete(d)">删除</label>
+                    <a class="label label-primary" href="/Admin/NavContent?id={{d.id}}"><i class="glyphicon glyphicon-edit"></i>&nbsp;内容管理</a>
+                    <label class="label label-danger" ng-click="Delete(d)"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</label>
                 </td>
             </tr>
         </tbody>

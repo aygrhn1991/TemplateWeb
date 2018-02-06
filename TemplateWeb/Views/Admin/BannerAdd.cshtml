@@ -13,9 +13,22 @@
 
 <link href="~/Content/admin/admin-public.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-public.js"></script>
-<link href="~/Content/admin/admin-content.css" rel="stylesheet" />
+<link href="~/Content/admin/admin-layout.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-banner.js"></script>
 
 <div class="tp-content" ng-app="app" ng-controller="bannerAdd">
-    <div id="easyContainer"></div>
+    <form>
+        <div class="form-group tp-form-half">
+            <label>标题：</label>
+            <input type="text" class="form-control" placeholder="请输入轮播标题..." ng-model="bannerModel.title">
+        </div>
+        <div class="form-group">
+            <label>正文：</label>
+            <div id="easyContainer"></div>
+        </div>
+        <div class="form-group tp-form-half text-center">
+            <button type="button" class="btn btn-success" ng-click="Save()">保&nbsp;存</button>
+        </div>
+    </form>
+    
 </div>

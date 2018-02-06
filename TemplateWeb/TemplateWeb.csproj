@@ -114,7 +114,6 @@
     <Content Include="App_Data\TemplateDB_log.ldf">
       <DependentUpon>TemplateDB.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\admin\admin-content.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -356,10 +355,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB\banner.cs" />
     <Compile Include="Models\DB\EntityDB.cs" />
     <Compile Include="Models\DB\nav_nav.cs" />
     <Compile Include="Models\DB\nav_subnav.cs" />
     <Compile Include="Models\DB\page.cs" />
+    <Compile Include="Models\DB\partner.cs" />
+    <Compile Include="Models\DB\relative_relative.cs" />
+    <Compile Include="Models\DB\relative_subrelative.cs" />
     <Compile Include="Plugin\easyupload\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>

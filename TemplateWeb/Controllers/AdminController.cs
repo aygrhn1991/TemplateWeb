@@ -259,14 +259,108 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #endregion
+        #region 轮播管理
+        #region 轮播管理
         public ActionResult BannerList()
         {
             return View();
         }
-
         public ActionResult BannerAdd()
         {
             return View();
         }
+        public ActionResult BannerList_Get()
+        {
+            var query = entity.banner.OrderBy(p => p.sort);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Banner_Add_Edit(banner bannerModel)
+        {
+            if (bannerModel.id == 0)
+            {
+                var query = entity.banner;
+                int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
+                banner banner = new banner()
+                {
+                    title = bannerModel.title,
+                    enable = bannerModel.enable,
+                    mode = bannerModel.mode,
+                    sort = ++maxSort,
+                    page_id = bannerModel.page_id,
+                    url = bannerModel.url,
+                    path = bannerModel.path,
+                    sys_datetime = DateTime.Now
+                };
+                entity.banner.Add(banner);
+            }
+            else
+            {
+                var query = entity.banner.FirstOrDefault(p => p.id == bannerModel.id);
+                query.title = bannerModel.title;
+                query.enable = bannerModel.enable;
+                query.mode = bannerModel.mode;
+                query.sort = bannerModel.sort;
+                query.page_id = bannerModel.page_id;
+                query.url = bannerModel.url;
+                query.path = bannerModel.path;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Banner_Delete(int id)
+        {
+            var query = entity.banner.FirstOrDefault(p => p.id == id);
+            entity.banner.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Banner_Sort(int id, string sortType)
+        {
+            var query = entity.banner.OrderBy(p => p.sort).ToArray();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (query[i].id == id)
+                {
+                    if (sortType == "up")
+                    {
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i - 1].sort;
+                            query[i - 1].sort = tempSort;
+                        }
+                    }
+                    else
+                    {
+                        if (i == query.Count() - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i + 1].sort;
+                            query[i + 1].sort = tempSort;
+                        }
+                    }
+                }
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 导航内容管理
+        public ActionResult BannerContent(int id)
+        {
+            return View();
+        }
+        public ActionResult Banner_Get(int id)
+        {
+            var query = entity.banner.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion
     }
 }
