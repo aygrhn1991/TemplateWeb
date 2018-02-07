@@ -32,12 +32,14 @@
             </tr>
             <tr>
                 <td class="text-right"><strong>站点名：</strong></td>
-                <td><input type="text" value="{{data.sitename}}" /><a class="tp-table-a" ng-click="Save('sitename',data.sitename)">修改</a></td>
+                <td>
+                    <input type="text" ng-model="data.sitename" /><a class="tp-table-a" ng-click="Save('sitename',data.sitename)">修改</a>
+                </td>
             </tr>
             <tr>
                 <td class="text-right"><strong>版权：</strong></td>
                 <td>
-                    <input type="text" value="{{data.copyright}}" /><a class="tp-table-a" ng-click="Save('copyright',data.copyright)">修改</a>
+                    <input type="text" ng-model="data.copyright" /><a class="tp-table-a" ng-click="Save('copyright',data.copyright)">修改</a>
                     <br /><small>推荐格式【中】：&copy; 2018 网站名称 版权所有</small>
                     <br /><small>推荐格式【英】：Copyright &copy; 2018 网站名称 All rights reserved</small>
                 </td>
@@ -45,7 +47,7 @@
             <tr>
                 <td class="text-right"><strong>ICP备案：</strong></td>
                 <td>
-                    <input type="text" value="{{data.icp}}" /><a class="tp-table-a" ng-click="Save('icp',data.icp)">修改</a>
+                    <input type="text" ng-model="data.icp" /><a class="tp-table-a" ng-click="Save('icp',data.icp)">修改</a>
                     <br /><small>推荐格式：京ICP备******号</small>
                 </td>
             </tr>

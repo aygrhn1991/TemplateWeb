@@ -5,11 +5,6 @@ app.controller('setting', function ($scope, $http, NgTableParams) {
             logo: 'logo',
             favicon: 'favicon'
         };
-        $scope.textType = {
-            sitename: '',
-            copyright: '',
-            icp: 'icp'
-        };
         $scope.LoadData();
     };
     $scope.LoadData = function () {
