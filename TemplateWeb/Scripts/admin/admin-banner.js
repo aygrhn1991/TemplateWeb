@@ -89,17 +89,16 @@ app.controller('bannerList', function ($scope, $http, NgTableParams) {
 app.controller('bannerAdd', function ($scope, $http) {
     $('#easyContainer').easyUpload({
         allowFileTypes: '*.jpg;*.png;*.gif;',
-        note: '提示：最多上传5个文件，超出默认前五个，支持格式为：jpg、png、gif',
+        note: '提示：支持格式为：jpg、png、gif',
         url: '/Plugin/easyupload/handler/UploadHandler.ashx',
+        formParam: { type: 'banner' },
         multi: false,
         successFunc: function (res) {
             $scope.bannerModel.path = res.imgUrl;
-            console.log(res.imgUrl);
         },
         errorFunc: function (res) {
             alert('文件上传失败');
         },
-
     });
     $scope.Init = function () {
         $scope.bannerModel = {
@@ -114,6 +113,64 @@ app.controller('bannerAdd', function ($scope, $http) {
         };
     };
     $scope.Save = function () {
+        window.LayerOpen();
+        $http.post('/Admin/Banner_Add_Edit', $scope.bannerModel).success(function (d) {
+            if (d == true) {
+                alert('保存成功');
+                self.location.href = '/Admin/BannerList';
+            } else {
+                alert('保存失败');
+                window.LayerClose();
+            }
+        }).error(function () {
+            console.log('http错误');
+            window.LayerClose();
+        });
+    };
+    $scope.Init();
+});
+app.controller('bannerContent', function ($scope, $http) {
+    $scope.Init = function () {
+        $scope.modeType = [
+            { key: 0, value: 'url外链' },
+            { key: 1, value: '单页' },
+        ];
+        $scope.id = parseInt(window.GetUrlParam('id'));
+        window.LayerOpen();
+        $http.post('/Admin/Banner_Get', {
+            id: $scope.id
+        }).success(function (d) {
+            $scope.bannerModel = d;
+            $scope.PageLoad();
+        }).error(function () {
+            console.log('http错误');
+            window.LayerClose();
+        });
+    };
+    $scope.SetMode = function (e) {
+        $scope.bannerModel.mode = e.key;
+    }
+    $scope.PageLoad = function () {
+        window.LayerOpen();
+        $http.post('/Admin/PageList_Get').success(function (d) {
+            $scope.pageList = d;
+            $scope.bannerModelPageTitle = '暂未选择单页';
+            d.forEach(function (e) {
+                if (e.id == $scope.bannerModel.page_id) {
+                    $scope.bannerModelPageTitle = e.title;
+                }
+            });
+            window.LayerClose();
+        }).error(function () {
+            console.log('http错误');
+            window.LayerClose();
+        });
+    };
+    $scope.SetPage = function (e) {
+        $scope.bannerModel.page_id = e.id;
+        $scope.bannerModelPageTitle = e.title;
+    };
+    $scope.Save = function (e) {
         window.LayerOpen();
         $http.post('/Admin/Banner_Add_Edit', $scope.bannerModel).success(function (d) {
             if (d == true) {

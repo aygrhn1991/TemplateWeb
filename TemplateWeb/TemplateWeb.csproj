@@ -312,6 +312,8 @@
     <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
+    <Content Include="Scripts\admin\admin-link.js" />
+    <Content Include="Scripts\admin\admin-partner.js" />
     <Content Include="Scripts\admin\admin-layout.js" />
     <Content Include="Scripts\admin\admin-nav.js" />
     <Content Include="Scripts\admin\admin-banner.js" />
@@ -357,12 +359,12 @@
     </Compile>
     <Compile Include="Models\DB\banner.cs" />
     <Compile Include="Models\DB\EntityDB.cs" />
+    <Compile Include="Models\DB\link_link.cs" />
+    <Compile Include="Models\DB\link_sublink.cs" />
     <Compile Include="Models\DB\nav_nav.cs" />
     <Compile Include="Models\DB\nav_subnav.cs" />
     <Compile Include="Models\DB\page.cs" />
     <Compile Include="Models\DB\partner.cs" />
-    <Compile Include="Models\DB\relative_relative.cs" />
-    <Compile Include="Models\DB\relative_subrelative.cs" />
     <Compile Include="Plugin\easyupload\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>
@@ -380,6 +382,12 @@
     <Content Include="Views\Admin\Test.cshtml" />
     <Content Include="Views\Admin\NavContent.cshtml" />
     <Content Include="Views\Admin\NavsubContent.cshtml" />
+    <Content Include="Views\Admin\BannerContent.cshtml" />
+    <Content Include="Views\Admin\PartnerList.cshtml" />
+    <Content Include="Views\Admin\PartnerAdd.cshtml" />
+    <Content Include="Views\Admin\LinksubContent.cshtml" />
+    <Content Include="Views\Admin\LinkContent.cshtml" />
+    <Content Include="Views\Admin\LinkList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -396,6 +404,7 @@
     <Folder Include="Plugin\summernote\images\" />
     <Folder Include="Upload\editor\" />
     <Folder Include="Upload\uploader\banner\" />
+    <Folder Include="Upload\uploader\partner\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>

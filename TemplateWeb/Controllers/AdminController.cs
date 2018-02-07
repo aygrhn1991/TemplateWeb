@@ -350,7 +350,7 @@ namespace TemplateWeb.Controllers
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
-        #region 导航内容管理
+        #region 轮播内容管理
         public ActionResult BannerContent(int id)
         {
             return View();
@@ -358,6 +358,282 @@ namespace TemplateWeb.Controllers
         public ActionResult Banner_Get(int id)
         {
             var query = entity.banner.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion
+        #region 合作管理
+        public ActionResult PartnerList()
+        {
+            return View();
+        }
+        public ActionResult PartnerAdd()
+        {
+            return View();
+        }
+        public ActionResult PartnerList_Get()
+        {
+            var query = entity.partner.OrderBy(p => p.sort);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Partner_Add_Edit(partner partnerModel)
+        {
+            if (partnerModel.id == 0)
+            {
+                var query = entity.partner;
+                int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
+                partner partner = new partner()
+                {
+                    title = partnerModel.title,
+                    enable = partnerModel.enable,
+                    sort = ++maxSort,
+                    url = partnerModel.url,
+                    path = partnerModel.path,
+                    sys_datetime = DateTime.Now
+                };
+                entity.partner.Add(partner);
+            }
+            else
+            {
+                var query = entity.partner.FirstOrDefault(p => p.id == partnerModel.id);
+                query.title = partnerModel.title;
+                query.enable = partnerModel.enable;
+                query.sort = partnerModel.sort;
+                query.url = partnerModel.url;
+                query.path = partnerModel.path;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Partner_Delete(int id)
+        {
+            var query = entity.partner.FirstOrDefault(p => p.id == id);
+            entity.partner.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Partner_Sort(int id, string sortType)
+        {
+            var query = entity.partner.OrderBy(p => p.sort).ToArray();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (query[i].id == id)
+                {
+                    if (sortType == "up")
+                    {
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i - 1].sort;
+                            query[i - 1].sort = tempSort;
+                        }
+                    }
+                    else
+                    {
+                        if (i == query.Count() - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i + 1].sort;
+                            query[i + 1].sort = tempSort;
+                        }
+                    }
+                }
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 链接管理
+        #region 链接管理
+        public ActionResult LinkList()
+        {
+            return View();
+        }
+        public ActionResult LinkList_Get()
+        {
+            var query = entity.link_link.OrderBy(p => p.sort);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Link_Add_Edit(link_link linkModel)
+        {
+            if (linkModel.id == 0)
+            {
+                var query = entity.link_link;
+                int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
+                link_link link = new link_link()
+                {
+                    title = linkModel.title,
+                    enable = linkModel.enable,
+                    mode = linkModel.mode,
+                    sort = ++maxSort,
+                    page_id = linkModel.page_id,
+                    url = linkModel.url,
+                    sys_datetime = DateTime.Now
+                };
+                entity.link_link.Add(link);
+            }
+            else
+            {
+                var query = entity.link_link.FirstOrDefault(p => p.id == linkModel.id);
+                query.title = linkModel.title;
+                query.enable = linkModel.enable;
+                query.mode = linkModel.mode;
+                query.sort = linkModel.sort;
+                query.page_id = linkModel.page_id;
+                query.url = linkModel.url;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Link_Delete(int id)
+        {
+            var query = entity.link_link.FirstOrDefault(p => p.id == id);
+            entity.link_link.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Link_Sort(int id, string sortType)
+        {
+            var query = entity.link_link.OrderBy(p => p.sort).ToArray();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (query[i].id == id)
+                {
+                    if (sortType == "up")
+                    {
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i - 1].sort;
+                            query[i - 1].sort = tempSort;
+                        }
+                    }
+                    else
+                    {
+                        if (i == query.Count() - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i + 1].sort;
+                            query[i + 1].sort = tempSort;
+                        }
+                    }
+                }
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 链接内容管理
+        public ActionResult LinkContent(int id)
+        {
+            return View();
+        }
+        public ActionResult Link_Get(int id)
+        {
+            var query = entity.link_link.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 子链接管理
+        public ActionResult SublinkList_Get(int id)
+        {
+            var query = entity.link_sublink.Where(p => p.link_id == id).OrderBy(p => p.sort);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Sublink_Add_Edit(link_sublink sublinkModel)
+        {
+            if (sublinkModel.id == 0)
+            {
+                var query = entity.link_sublink.Where(p => p.link_id == sublinkModel.link_id);
+                int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
+                link_sublink sublink = new link_sublink()
+                {
+                    link_id = sublinkModel.link_id,
+                    title = sublinkModel.title,
+                    enable = sublinkModel.enable,
+                    mode = sublinkModel.mode,
+                    sort = ++maxSort,
+                    page_id = sublinkModel.page_id,
+                    url = sublinkModel.url,
+                    sys_datetime = DateTime.Now
+                };
+                entity.link_sublink.Add(sublink);
+            }
+            else
+            {
+                var query = entity.link_sublink.FirstOrDefault(p => p.id == sublinkModel.id);
+                query.link_id = sublinkModel.link_id;
+                query.title = sublinkModel.title;
+                query.enable = sublinkModel.enable;
+                query.mode = sublinkModel.mode;
+                query.sort = sublinkModel.sort;
+                query.page_id = sublinkModel.page_id;
+                query.url = sublinkModel.url;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Sublink_Delete(int id)
+        {
+            var query = entity.link_sublink.FirstOrDefault(p => p.id == id);
+            entity.link_sublink.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Sublink_Sort(int id, string sortType)
+        {
+            var query = entity.link_sublink.OrderBy(p => p.sort).ToArray();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (query[i].id == id)
+                {
+                    if (sortType == "up")
+                    {
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i - 1].sort;
+                            query[i - 1].sort = tempSort;
+                        }
+                    }
+                    else
+                    {
+                        if (i == query.Count() - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i + 1].sort;
+                            query[i + 1].sort = tempSort;
+                        }
+                    }
+                }
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 子链接内容管理
+        public ActionResult LinksubContent(int id)
+        {
+            return View();
+        }
+        public ActionResult Sublink_Get(int id)
+        {
+            var query = entity.link_sublink.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion

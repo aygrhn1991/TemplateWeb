@@ -17,12 +17,13 @@ namespace TemplateWeb.Plugin.easyupload.handler
         {
             context.Response.ContentType = "application/json";
             HttpFileCollection files = context.Request.Files;
+            string type = context.Request["type"];
             if (files.Count <= 0)
             {
                 return;
             }
             HttpPostedFile file = files[0];
-            string pathPrefix = "/Upload/uploader/banner/";
+            string pathPrefix = "/Upload/uploader/" + type + "/";
             string relativePath = String.Format(pathPrefix + "{0}-{1}-{2}/", DateTime.Now.Year, DateTime.Now.Month.ToString("D2"), DateTime.Now.Day.ToString("D2"));
             string AabsolutePath = context.Server.MapPath(relativePath);
             string filename = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);

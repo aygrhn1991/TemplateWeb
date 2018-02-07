@@ -42,7 +42,7 @@
                 <input type="text" class="form-control" placeholder="请输入标题关键字..." ng-model="pageKeyWord">
             </div>
             <div class="tp-table-wrapper">
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-bordered table-condensed table-striped table-hover">
                     <tbody>
                         <tr ng-repeat="p in pageList | filter:pageKeyWord">
                             <td>{{$index+1}}</td>
@@ -65,7 +65,7 @@
                 <th>排序</th>
                 <th>
                     <label class="label label-success" data-toggle="modal" data-target="#subnav-add">
-                        <i class="glyphicon glyphicon-plus"></i>新增
+                        <i class="glyphicon glyphicon-plus"></i>&nbsp;新增
                     </label>
                 </th>
             </tr>
@@ -88,8 +88,8 @@
                     <label class="label label-warning" ng-click="SetSort(s,sortType.down)"><i class="glyphicon glyphicon-arrow-down tp-lable-glyphicon"></i></label>
                 </td>
                 <td>
-                    <a class="label label-primary" href="/Admin/NavsubContent?id={{s.id}}">内容管理</a>
-                    <label class="label label-danger" ng-click="Delete(s)">删除</label>
+                    <a class="label label-primary" href="/Admin/NavsubContent?id={{s.id}}"><i class="glyphicon glyphicon-edit"></i>&nbsp;内容管理</a>
+                    <label class="label label-danger" ng-click="Delete(s)"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</label>
                 </td>
             </tr>
         </tbody>
@@ -100,7 +100,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title">导航子添加</h4>
+                    <h4 class="modal-title">子导航添加</h4>
                 </div>
                 <div class="modal-body">
                     <form>

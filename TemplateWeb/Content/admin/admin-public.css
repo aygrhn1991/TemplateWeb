@@ -24,3 +24,8 @@ th, td {
 .no-padding {
     padding: 0;
 }
+
+table input {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}

@@ -160,7 +160,7 @@ app.controller('navContent', function ($scope, $http) {
     };
     $scope.SubnavLoad = function () {
         window.LayerOpen();
-        $http.post('/Admin/SubNavList_Get', {
+        $http.post('/Admin/SubnavList_Get', {
             id: $scope.id,
         }).success(function (d) {
             $scope.subnavList = d;
