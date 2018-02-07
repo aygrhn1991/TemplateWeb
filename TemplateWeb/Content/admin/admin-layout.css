@@ -46,7 +46,12 @@
         transition: .1s;
         transform: scale(1.5,1.5);
     }
-    .tp-img-small{
-        max-width:100%;
-        height:60px;
-    }
+
+.tp-table-input {
+    display: inline-block !important;
+}
+
+.tp-img-small {
+    max-width: 100%;
+    height: 60px;
+}

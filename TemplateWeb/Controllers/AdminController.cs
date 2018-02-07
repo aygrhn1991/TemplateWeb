@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -637,6 +638,60 @@ namespace TemplateWeb.Controllers
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
+        #endregion
+        #region 网站设置
+        public ActionResult Setting()
+        {
+            return View();
+        }
+        public ActionResult Setting_Get()
+        {
+            var query = entity.setting.ToArray();
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            foreach (var item in query)
+            {
+                dictionary.Add(item.key, item.value);
+            }
+            return Json(dictionary, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Setting_Upload(string key, HttpPostedFileBase file)
+        {
+            string relativePath = "/Upload/setting/";
+            string AabsolutePath = Server.MapPath(relativePath);
+            string filename = String.Format(key + "-{0}-{1}-{2}-{3}-{4}-{5}-{6}",
+                DateTime.Now.Year,
+                DateTime.Now.Month.ToString("D2"),
+                DateTime.Now.Day.ToString("D2"),
+                DateTime.Now.Hour.ToString("D2"),
+                DateTime.Now.Minute.ToString("D2"),
+                DateTime.Now.Second.ToString("D2"),
+                Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName));
+            string imgUrl = relativePath + filename;
+            if (!Directory.Exists(Path.GetDirectoryName(AabsolutePath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(AabsolutePath));
+            }
+            file.SaveAs(AabsolutePath + filename);
+            var query = entity.setting.FirstOrDefault(p => p.key == key);
+            if (query == null)
+            {
+                query = new setting() { key = key, value = null };
+                entity.setting.Add(query);
+            }
+            query.value = imgUrl;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Setting_Save(string key, string value)
+        {
+            var query = entity.setting.FirstOrDefault(p => p.key == key);
+            if (query == null)
+            {
+                query = new setting() { key = key, value = null };
+                entity.setting.Add(query);
+            }
+            query.value = value;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

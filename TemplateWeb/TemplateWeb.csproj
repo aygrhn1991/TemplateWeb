@@ -313,6 +313,7 @@
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
     <Content Include="Scripts\admin\admin-link.js" />
+    <Content Include="Scripts\admin\admin-setting.js" />
     <Content Include="Scripts\admin\admin-partner.js" />
     <Content Include="Scripts\admin\admin-layout.js" />
     <Content Include="Scripts\admin\admin-nav.js" />
@@ -365,6 +366,7 @@
     <Compile Include="Models\DB\nav_subnav.cs" />
     <Compile Include="Models\DB\page.cs" />
     <Compile Include="Models\DB\partner.cs" />
+    <Compile Include="Models\DB\setting.cs" />
     <Compile Include="Plugin\easyupload\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>
@@ -388,6 +390,7 @@
     <Content Include="Views\Admin\LinksubContent.cshtml" />
     <Content Include="Views\Admin\LinkContent.cshtml" />
     <Content Include="Views\Admin\LinkList.cshtml" />
+    <Content Include="Views\Admin\Setting.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -403,6 +406,7 @@
     <Folder Include="Plugin\slimscroll\images\" />
     <Folder Include="Plugin\summernote\images\" />
     <Folder Include="Upload\editor\" />
+    <Folder Include="Upload\setting\" />
     <Folder Include="Upload\uploader\banner\" />
     <Folder Include="Upload\uploader\partner\" />
     <Folder Include="Views\Home\" />

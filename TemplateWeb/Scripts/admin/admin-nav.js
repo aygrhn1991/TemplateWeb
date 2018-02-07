@@ -99,6 +99,7 @@ app.controller('navAdd', function ($scope, $http) {
         };
     };
     $scope.Save = function () {
+        window.LayerOpen();
         $http.post('/Admin/Nav_Add_Edit', $scope.navModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
@@ -171,6 +172,7 @@ app.controller('navContent', function ($scope, $http) {
         });
     };
     $scope.Save = function () {
+        window.LayerOpen();
         $http.post('/Admin/Nav_Add_Edit', $scope.navModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
@@ -336,6 +338,7 @@ app.controller('subnavContent', function ($scope, $http) {
         $scope.subnavModelPageTitle = e.title;
     };
     $scope.Save = function (e) {
+        window.LayerOpen();
         $http.post('/Admin/Subnav_Add_Edit', $scope.subnavModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');

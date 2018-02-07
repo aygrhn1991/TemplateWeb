@@ -19,6 +19,7 @@ namespace TemplateWeb.Models.DB
         public virtual DbSet<nav_subnav> nav_subnav { get; set; }
         public virtual DbSet<page> page { get; set; }
         public virtual DbSet<partner> partner { get; set; }
+        public virtual DbSet<setting> setting { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -99,6 +99,7 @@ app.controller('linkAdd', function ($scope, $http) {
         };
     };
     $scope.Save = function () {
+        window.LayerOpen();
         $http.post('/Admin/Link_Add_Edit', $scope.linkModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
@@ -171,6 +172,7 @@ app.controller('linkContent', function ($scope, $http) {
         });
     };
     $scope.Save = function () {
+        window.LayerOpen();
         $http.post('/Admin/Link_Add_Edit', $scope.linkModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
@@ -336,6 +338,7 @@ app.controller('sublinkContent', function ($scope, $http) {
         $scope.sublinkModelPageTitle = e.title;
     };
     $scope.Save = function (e) {
+        window.LayerOpen();
         $http.post('/Admin/Sublink_Add_Edit', $scope.sublinkModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');

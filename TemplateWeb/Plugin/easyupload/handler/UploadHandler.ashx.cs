@@ -23,10 +23,16 @@ namespace TemplateWeb.Plugin.easyupload.handler
                 return;
             }
             HttpPostedFile file = files[0];
-            string pathPrefix = "/Upload/uploader/" + type + "/";
-            string relativePath = String.Format(pathPrefix + "{0}-{1}-{2}/", DateTime.Now.Year, DateTime.Now.Month.ToString("D2"), DateTime.Now.Day.ToString("D2"));
+            string relativePath = "/Upload/uploader/" + type + "/";
             string AabsolutePath = context.Server.MapPath(relativePath);
-            string filename = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
+            string filename = String.Format("{0}-{1}-{2}-{3}-{4}-{5}-{6}",
+                DateTime.Now.Year,
+                DateTime.Now.Month.ToString("D2"),
+                DateTime.Now.Day.ToString("D2"),
+                DateTime.Now.Hour.ToString("D2"),
+                DateTime.Now.Minute.ToString("D2"),
+                DateTime.Now.Second.ToString("D2"),
+                Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName));
             string imgUrl = relativePath + filename;
             if (!Directory.Exists(Path.GetDirectoryName(AabsolutePath)))
             {

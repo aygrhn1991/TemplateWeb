@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+@Styles.Render("~/bundles/css-lib")
+@Styles.Render("~/bundles/css-public")
+@Scripts.Render("~/bundles/script-lib")
+@Scripts.Render("~/bundles/script-public")
+
+<link href="~/Content/admin/admin-public.css" rel="stylesheet" />
+<script src="~/Scripts/admin/admin-public.js"></script>
+<link href="~/Content/admin/admin-layout.css" rel="stylesheet" />
+<script src="~/Scripts/admin/admin-setting.js"></script>
+
+<div class="tp-content" ng-app="app" ng-controller="setting">
+    <table class="table table-condensed table-striped table-hover">
+        <tbody>
+            <tr>
+                <td class="text-right"><strong>logo：</strong></td>
+                <td>
+                    <input id="logo" type="file" class="tp-table-input" /><a class="tp-table-a" ng-click="Upload(fileType.logo)">上传</a>
+                    <img src="{{data.logo}}" class="tp-table-img" ng-show="data.logo!=null" />
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>favicon：</strong></td>
+                <td>
+                    <input id="favicon" type="file" class="tp-table-input" /><a class="tp-table-a" ng-click="Upload(fileType.favicon)">上传</a>
+                    <img src="{{data.favicon}}" class="tp-table-img" ng-show="data.favicon!=null" />
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>站点名：</strong></td>
+                <td><input type="text" value="{{data.sitename}}" /><a class="tp-table-a" ng-click="Save('sitename',data.sitename)">修改</a></td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>版权：</strong></td>
+                <td>
+                    <input type="text" value="{{data.copyright}}" /><a class="tp-table-a" ng-click="Save('copyright',data.copyright)">修改</a>
+                    <br /><small>推荐格式【中】：&copy; 2018 网站名称 版权所有</small>
+                    <br /><small>推荐格式【英】：Copyright &copy; 2018 网站名称 All rights reserved</small>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>ICP备案：</strong></td>
+                <td>
+                    <input type="text" value="{{data.icp}}" /><a class="tp-table-a" ng-click="Save('icp',data.icp)">修改</a>
+                    <br /><small>推荐格式：京ICP备******号</small>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
