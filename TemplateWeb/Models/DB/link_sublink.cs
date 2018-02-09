@@ -14,15 +14,15 @@ namespace TemplateWeb.Models.DB
 
         public string title { get; set; }
 
+        public int? page_id { get; set; }
+
+        public string url { get; set; }
+
         public bool? enable { get; set; }
 
         public int? mode { get; set; }
 
         public int? sort { get; set; }
-
-        public int? page_id { get; set; }
-
-        public string url { get; set; }
 
         public DateTime? sys_datetime { get; set; }
     }

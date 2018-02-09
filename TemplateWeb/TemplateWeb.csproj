@@ -359,13 +359,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\banner.cs" />
+    <Compile Include="Models\DB\employ.cs" />
+    <Compile Include="Models\DB\employ_type.cs" />
     <Compile Include="Models\DB\EntityDB.cs" />
     <Compile Include="Models\DB\link_link.cs" />
     <Compile Include="Models\DB\link_sublink.cs" />
+    <Compile Include="Models\DB\messageaboard.cs" />
     <Compile Include="Models\DB\nav_nav.cs" />
     <Compile Include="Models\DB\nav_subnav.cs" />
+    <Compile Include="Models\DB\news.cs" />
+    <Compile Include="Models\DB\news_type.cs" />
     <Compile Include="Models\DB\page.cs" />
     <Compile Include="Models\DB\partner.cs" />
+    <Compile Include="Models\DB\product.cs" />
+    <Compile Include="Models\DB\product_type.cs" />
     <Compile Include="Models\DB\setting.cs" />
     <Compile Include="Plugin\easyupload\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
