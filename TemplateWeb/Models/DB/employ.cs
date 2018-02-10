@@ -25,11 +25,25 @@ namespace TemplateWeb.Models.DB
 
         public int? employ_number { get; set; }
 
-        public string position_description { get; set; }
+        public string position_description_1 { get; set; }
 
-        public string position_requirement { get; set; }
+        public string position_description_2 { get; set; }
+
+        public string position_description_3 { get; set; }
+
+        public string position_description_4 { get; set; }
+
+        public string position_requirement_1 { get; set; }
+
+        public string position_requirement_2 { get; set; }
+
+        public string position_requirement_3 { get; set; }
+
+        public string position_requirement_4 { get; set; }
 
         public string benefit { get; set; }
+
+        public string remark { get; set; }
 
         public DateTime? sys_datetime { get; set; }
     }

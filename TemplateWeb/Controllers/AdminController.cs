@@ -693,5 +693,146 @@ namespace TemplateWeb.Controllers
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        #region 留言管理
+        public ActionResult MessageBoardList()
+        {
+            return View();
+        }
+        public ActionResult MessageBoardList_Get()
+        {
+            var query = entity.messageaboard.OrderByDescending(p => p.id).ToArray().Select(p => new
+            {
+                p.id,
+                p.contact_name,
+                p.contact_phone,
+                p.contact_other,
+                p.content,
+                p.state_mark,
+                p.state_read,
+                p.state_solve,
+                sys_datetime = p.sys_datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult MessageBoard_Add_Edit(messageaboard messageaboardModel)
+        {
+            var query = entity.messageaboard.FirstOrDefault(p => p.id == messageaboardModel.id);
+            query.state_mark = messageaboardModel.state_mark;
+            query.state_read = messageaboardModel.state_read;
+            query.state_solve = messageaboardModel.state_solve;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult MessageBoard_Delete(int id)
+        {
+            var query = entity.messageaboard.FirstOrDefault(p => p.id == id);
+            entity.messageaboard.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 招聘管理
+        #region 分类管理
+        public ActionResult EmployTypeList()
+        {
+            return View();
+        }
+        public ActionResult EmployTypeList_Get()
+        {
+            var query = entity.employ_type.OrderByDescending(p => p.id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult EmployType_Add_Edit(employ_type typeModel)
+        {
+            if (typeModel.id == 0)
+            {
+                employ_type type = new employ_type() { name = typeModel.name };
+                entity.employ_type.Add(type);
+            }
+            else
+            {
+                var query = entity.employ_type.FirstOrDefault(p => p.id == typeModel.id);
+                query.name = typeModel.name;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult EmployType_Delete(int id)
+        {
+            var query = entity.employ_type.FirstOrDefault(p => p.id == id);
+            entity.employ_type.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 招聘管理
+        public ActionResult EmployList()
+        {
+            return View();
+        }
+        public ActionResult EmployAdd()
+        {
+            return View();
+        }
+        public ActionResult EmployList_Get()
+        {
+            var query = entity.employ.OrderByDescending(p => p.id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Employ_Add_Edit(employ employModel)
+        {
+            if (employModel.id == 0)
+            {
+                employ employ = new employ()
+                {
+                    type_id = employModel.type_id,
+                    position_name = employModel.position_name,
+                    salary = employModel.salary,
+                    education = employModel.education,
+                    experience = employModel.experience,
+                    work_place = employModel.work_place,
+                    employ_number = employModel.employ_number,
+                    position_description_1 = employModel.position_description_1,
+                    position_description_2 = employModel.position_description_2,
+                    position_description_3 = employModel.position_description_3,
+                    position_description_4 = employModel.position_description_4,
+                    position_requirement_1 = employModel.position_requirement_1,
+                    position_requirement_2 = employModel.position_requirement_2,
+                    position_requirement_3 = employModel.position_requirement_3,
+                    position_requirement_4 = employModel.position_requirement_4,
+                    benefit = employModel.benefit,
+                    remark = employModel.remark,
+                    sys_datetime = DateTime.Now,
+                };
+                entity.employ.Add(employ);
+            }
+            else
+            {
+                var query = entity.employ.FirstOrDefault(p => p.id == employModel.id);
+                query.type_id = employModel.type_id;
+                query.position_name = employModel.position_name;
+                query.salary = employModel.salary;
+                query.education = employModel.education;
+                query.experience = employModel.experience;
+                query.work_place = employModel.work_place;
+                query.employ_number = employModel.employ_number;
+                query.position_description_1 = employModel.position_description_1;
+                query.position_description_2 = employModel.position_description_2;
+                query.position_description_3 = employModel.position_description_3;
+                query.position_description_4 = employModel.position_description_4;
+                query.position_requirement_1 = employModel.position_requirement_1;
+                query.position_requirement_2 = employModel.position_requirement_2;
+                query.position_requirement_3 = employModel.position_requirement_3;
+                query.position_requirement_4 = employModel.position_requirement_4;
+                query.benefit = employModel.benefit;
+                query.remark = employModel.remark;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Employ_Delete(int id)
+        {
+            var query = entity.employ.FirstOrDefault(p => p.id == id);
+            entity.employ.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion
     }
 }

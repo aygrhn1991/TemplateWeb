@@ -313,6 +313,8 @@
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
     <Content Include="Scripts\admin\admin-link.js" />
+    <Content Include="Scripts\admin\admin-messageboard.js" />
+    <Content Include="Scripts\admin\admin-employ.js" />
     <Content Include="Scripts\admin\admin-setting.js" />
     <Content Include="Scripts\admin\admin-partner.js" />
     <Content Include="Scripts\admin\admin-layout.js" />
@@ -398,6 +400,10 @@
     <Content Include="Views\Admin\LinkContent.cshtml" />
     <Content Include="Views\Admin\LinkList.cshtml" />
     <Content Include="Views\Admin\Setting.cshtml" />
+    <Content Include="Views\Admin\MessageBoardList.cshtml" />
+    <Content Include="Views\Admin\EmployTypeList.cshtml" />
+    <Content Include="Views\Admin\EmployList.cshtml" />
+    <Content Include="Views\Admin\EmployAdd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
