@@ -904,7 +904,20 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult News_Get(int id)
         {
-            var query = entity.news.FirstOrDefault(p => p.id == id);
+            var query = entity.news.Where(p => p.id == id).ToArray().Select(p => new
+            {
+                p.author,
+                p.content,
+                datetime = p.datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                p.description,
+                p.id,
+                p.path,
+                p.sys_datetime,
+                p.title,
+                p.top,
+                p.type_id,
+                p.views,
+            });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult NewsList_Get()
