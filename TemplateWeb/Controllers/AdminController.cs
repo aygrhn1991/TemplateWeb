@@ -861,5 +861,113 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #endregion
+        #region 新闻管理
+        #region 分类管理
+        public ActionResult NewsTypeList()
+        {
+            return View();
+        }
+        public ActionResult NewsTypeList_Get()
+        {
+            var query = entity.news_type.OrderByDescending(p => p.id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult NewsType_Add_Edit(news_type typeModel)
+        {
+            if (typeModel.id == 0)
+            {
+                news_type type = new news_type() { name = typeModel.name };
+                entity.news_type.Add(type);
+            }
+            else
+            {
+                var query = entity.news_type.FirstOrDefault(p => p.id == typeModel.id);
+                query.name = typeModel.name;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult NewsType_Delete(int id)
+        {
+            var query = entity.news_type.FirstOrDefault(p => p.id == id);
+            entity.news_type.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 新闻管理
+        public ActionResult NewsList()
+        {
+            return View();
+        }
+        public ActionResult NewsAdd()
+        {
+            return View();
+        }
+        public ActionResult News_Get(int id)
+        {
+            var query = entity.news.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult NewsList_Get()
+        {
+            var query = entity.news.OrderByDescending(p => p.id).Join(entity.news_type, a => a.type_id, b => b.id, (a, b) => new
+            {
+                a.author,
+                a.content,
+                datetime = a.datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                a.description,
+                a.id,
+                a.path,
+                a.sys_datetime,
+                a.title,
+                a.top,
+                a.type_id,
+                a.views,
+                type = b.name,
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult News_Add_Edit(news newsModel)
+        {
+            if (newsModel.id == 0)
+            {
+                news news = new news()
+                {
+                    id = 0,
+                    author = newsModel.author,
+                    content = newsModel.content,
+                    datetime = newsModel.datetime,
+                    description = newsModel.description,
+                    path = newsModel.path,
+                    title = newsModel.title,
+                    top = newsModel.top,
+                    type_id = newsModel.type_id,
+                    views = newsModel.views,
+                    sys_datetime = DateTime.Now,
+                };
+                entity.news.Add(news);
+            }
+            else
+            {
+                var query = entity.news.FirstOrDefault(p => p.id == newsModel.id);
+                query.author = newsModel.author;
+                query.content = newsModel.content;
+                query.datetime = newsModel.datetime;
+                query.description = newsModel.description;
+                query.path = newsModel.path;
+                query.title = newsModel.title;
+                query.top = newsModel.top;
+                query.type_id = newsModel.type_id;
+                query.views = newsModel.views;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult News_Delete(int id)
+        {
+            var query = entity.news.FirstOrDefault(p => p.id == id);
+            entity.news.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion
     }
 }
