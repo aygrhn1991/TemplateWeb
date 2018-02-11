@@ -62,7 +62,7 @@ app.controller('messageBoardList', function ($scope, $http, NgTableParams) {
                 if (d == true) {
                     window.LayerClose();
                     $scope.LoadData();
-                    $scope.tempMessageBoardContent = e.content;
+                    $scope.tempMessageBoard = e;
                     $('#messageboard-read').modal('show');
                 } else {
                     alert('保存失败');
@@ -73,7 +73,7 @@ app.controller('messageBoardList', function ($scope, $http, NgTableParams) {
                 window.LayerClose();
             });
         } else {
-            $scope.tempMessageBoardContent = e.content;
+            $scope.tempMessageBoard = e;
             $('#messageboard-read').modal('show');
         }
     };

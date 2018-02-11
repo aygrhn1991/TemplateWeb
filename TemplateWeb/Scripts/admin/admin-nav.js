@@ -90,7 +90,7 @@ app.controller('navAdd', function ($scope, $http) {
     $scope.Init = function () {
         $scope.navModel = {
             id: 0,
-            title: '',
+            title: null,
             enable: false,
             mode: 0,
             url: null,
@@ -270,7 +270,7 @@ app.controller('subnavAdd', function ($scope, $http) {
         $scope.subnavModel = {
             id: 0,
             nav_id: parseInt(window.GetUrlParam('id')),
-            title: '',
+            title: null,
             enable: false,
             mode: 0,
             sort: null,

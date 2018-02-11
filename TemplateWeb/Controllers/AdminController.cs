@@ -771,9 +771,36 @@ namespace TemplateWeb.Controllers
         {
             return View();
         }
+        public ActionResult Employ_Get(int id)
+        {
+            var query = entity.employ.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult EmployList_Get()
         {
-            var query = entity.employ.OrderByDescending(p => p.id);
+            var query = entity.employ.OrderByDescending(p => p.id).Join(entity.employ_type, a => a.type_id, b => b.id, (a, b) => new
+            {
+                a.benefit,
+                a.education,
+                a.employ_number,
+                a.experience,
+                a.id,
+                a.position_description_1,
+                a.position_description_2,
+                a.position_description_3,
+                a.position_description_4,
+                a.position_name,
+                a.position_requirement_1,
+                a.position_requirement_2,
+                a.position_requirement_3,
+                a.position_requirement_4,
+                a.remark,
+                a.salary,
+                a.sys_datetime,
+                a.type_id,
+                a.work_place,
+                type = b.name
+            });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Employ_Add_Edit(employ employModel)

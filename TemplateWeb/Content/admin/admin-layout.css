@@ -60,6 +60,14 @@
     color: red;
 }
 
+.tp-table-modal > tbody > tr > td:first-child {
+    width: 120px;
+}
+
+.tp-input-margin-bottom {
+    margin-bottom: 3px;
+}
+
 .tp-img-small {
     max-width: 100%;
     height: 60px;

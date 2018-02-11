@@ -103,7 +103,7 @@ app.controller('bannerAdd', function ($scope, $http) {
     $scope.Init = function () {
         $scope.bannerModel = {
             id: 0,
-            title: '',
+            title: null,
             enable: false,
             mode: 0,
             url: null,

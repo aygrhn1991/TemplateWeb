@@ -46,8 +46,8 @@ app.controller('pageAdd', function ($scope, $http) {
         if ($scope.id == 0) {
             $scope.pageModel = {
                 id: 0,
-                title: '',
-                content: '',
+                title: null,
+                content: null,
             };
         } else {
             window.LayerOpen();

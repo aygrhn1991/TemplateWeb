@@ -28,14 +28,11 @@
                     <label class="label label-success" ng-if="d.state_read">已读</label>
                     <label class="label label-danger" ng-if="!d.state_read">未读</label>
                 </td>
-                <td title="'联系人'" sortable="'contact_name'" filter="{contact_name:'text'}">{{d.contact_name}}</td>
-                <td title="'联系电话'" sortable="'contact_phone'" filter="{contact_phone:'text'}">{{d.contact_phone}}</td>
                 <td title="'留言时间'" sortable="'sys_datetime'" filter="{sys_datetime:'text'}">{{d.sys_datetime}}</td>
-                <td title="'留言内容'" sortable="'content'" filter="{content:'text'}">{{d.content|limitTo:20}}</td>
-                <td title="'处理状态'" sortable="'state_read'">
+                <td title="'留言内容'" sortable="'content'" filter="{content:'text'}">{{d.content|limitTo:20}}...</td>
+                <td title="'处理状态'" sortable="'state_solve'">
                     <label class="label label-success" ng-if="d.state_solve">已处理</label>
-                    <label class="label label-danger" ng-if="!d.state_solve">未处理</label>
-                    <a class="tp-table-a" ng-if="!d.state_solve" ng-click="SetSolve(d)">标记为已处理</a>
+                    <label class="label label-danger" ng-if="!d.state_solve" ng-click="SetSolve(d)">标记为已处理</label>
                 </td>
                 <td title="'操作'">
                     <label class="label label-primary" ng-click="SetRead(d)"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;浏览</label>
@@ -53,7 +50,34 @@
                     <h4 class="modal-title">留言内容</h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{tempMessageBoardContent}}</p>
+                    <table class="table table-condensed table-bordered table-striped table-hover tp-table-modal">
+                        <tbody>
+                            <tr>
+                                <td class="text-right"><strong>ID：</strong></td>
+                                <td>{{tempMessageBoard.id}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>联系人：</strong></td>
+                                <td>{{tempMessageBoard.contact_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>联系电话：</strong></td>
+                                <td>{{tempMessageBoard.contact_phone}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>其他联系方式：</strong></td>
+                                <td>{{tempMessageBoard.contact_other}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>留言时间：</strong></td>
+                                <td>{{tempMessageBoard.sys_datetime}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>留言内容：</strong></td>
+                                <td><p>{{tempMessageBoard.content}}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">关闭</button>

@@ -90,7 +90,7 @@ app.controller('linkAdd', function ($scope, $http) {
     $scope.Init = function () {
         $scope.linkModel = {
             id: 0,
-            title: '',
+            title: null,
             enable: false,
             mode: 0,
             url: null,
@@ -270,7 +270,7 @@ app.controller('sublinkAdd', function ($scope, $http) {
         $scope.sublinkModel = {
             id: 0,
             link_id: parseInt(window.GetUrlParam('id')),
-            title: '',
+            title: null,
             enable: false,
             mode: 0,
             sort: null,

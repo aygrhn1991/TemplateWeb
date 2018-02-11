@@ -103,7 +103,7 @@ app.controller('partnerAdd', function ($scope, $http) {
     $scope.Init = function () {
         $scope.partnerModel = {
             id: 0,
-            title: '',
+            title: null,
             enable: false,
             url: null,
             sort: null,
