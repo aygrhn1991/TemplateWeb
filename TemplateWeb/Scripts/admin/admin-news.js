@@ -76,8 +76,8 @@ app.controller('newsTypeAdd', function ($scope, $http) {
 app.controller('newsAdd', function ($scope, $http) {
     $scope.Init = function () {
         window.LayerOpen();
-        $http.post('/Admin/EmployTypeList_Get').success(function (d) {
-            $scope.employType = d;
+        $http.post('/Admin/NewsTypeList_Get').success(function (d) {
+            $scope.newsType = d;
             window.LayerClose();
         }).error(function () {
             console.log('http错误');
@@ -85,32 +85,66 @@ app.controller('newsAdd', function ($scope, $http) {
         });
         $scope.id = parseInt(window.GetUrlParam('id'));
         if ($scope.id == 0) {
-            $scope.employModel = {
+            $scope.newsModel = {
                 id: 0,
                 type_id: 0,
-                position_name: null,
-                salary: null,
-                education: null,
-                experience: null,
-                work_place: null,
-                employ_number: null,
-                position_description_1: null,
-                position_description_2: null,
-                position_description_3: null,
-                position_description_4: null,
-                position_requirement_1: null,
-                position_requirement_2: null,
-                position_requirement_3: null,
-                position_requirement_4: null,
-                benefit: null,
-                remark: null,
+                title: null,
+                author: null,
+                datetime: null,
+                path: null,
+                description: null,
+                content: null,
+                top: false,
+                views: 0,
             };
+            laydate.render({
+                elem: '#date',
+                done: function (value) {
+                    console.log(value);
+                    $scope.newsModel.datetime = value;
+                }
+            });
+            $('#easyContainer').easyUpload({
+                allowFileTypes: '*.jpg;*.png;*.gif;',
+                note: '提示：支持格式为：jpg、png、gif',
+                url: '/Plugin/easyupload/handler/UploadHandler.ashx',
+                formParam: { type: 'news' },
+                multi: false,
+                successFunc: function (res) {
+                    $scope.newsModel.path = res.imgUrl;
+                },
+                errorFunc: function (res) {
+                    alert('文件上传失败');
+                },
+            });
         } else {
             window.LayerOpen();
-            $http.post('/Admin/Employ_Get', {
+            $http.post('/Admin/News_Get', {
                 id: $scope.id
             }).success(function (d) {
-                $scope.employModel = d;
+                $scope.newsModel = d;
+                $('#summernote').summernote('code', d.content);
+                laydate.render({
+                    elem: '#date',
+                    value: d.datetime,
+                    done: function (value) {
+                        console.log(value);
+                        $scope.newsModel.datetime = value;
+                    }
+                });
+                $('#easyContainer').easyUpload({
+                    allowFileTypes: '*.jpg;*.png;*.gif;',
+                    note: '提示：支持格式为：jpg、png、gif',
+                    url: '/Plugin/easyupload/handler/UploadHandler.ashx',
+                    formParam: { type: 'news' },
+                    multi: false,
+                    successFunc: function (res) {
+                        $scope.newsModel.path = res.imgUrl;
+                    },
+                    errorFunc: function (res) {
+                        alert('文件上传失败');
+                    },
+                });
                 window.LayerClose();
             }).error(function () {
                 console.log('http错误');
@@ -120,11 +154,11 @@ app.controller('newsAdd', function ($scope, $http) {
     };
     $scope.Save = function () {
         window.LayerOpen();
-        $http.post('/Admin/Employ_Add_Edit', $scope.employModel).success(function (d) {
+        $scope.newsModel.content = $('#summernote').summernote('code');
+        $http.post('/Admin/News_Add_Edit', $scope.newsModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
-                window.location.href = '/Admin/EmployList';
-                $scope.LoadData();
+                self.location.href = '/Admin/NewsList';
             } else {
                 alert('保存失败');
                 window.LayerClose();
@@ -134,7 +168,18 @@ app.controller('newsAdd', function ($scope, $http) {
             window.LayerClose();
         });
     };
-    $scope.Init();
+    $('#summernote').summernote({
+        lang: 'zh-CN',
+        minHeight: '60%',
+        callbacks: {
+            onInit: function () {
+                $scope.Init();
+            },
+            onImageUpload: function (files) {
+                window.EditorImageUpload(files);
+            }
+        }
+    });
 });
 app.controller('newsList', function ($scope, $http, NgTableParams) {
     $scope.Init = function () {
@@ -142,7 +187,7 @@ app.controller('newsList', function ($scope, $http, NgTableParams) {
     };
     $scope.LoadData = function () {
         window.LayerOpen();
-        $http.post('/Admin/EmployList_Get').success(function (d) {
+        $http.post('/Admin/NewsList_Get').success(function (d) {
             $scope.data = d;
             $scope.dt = new NgTableParams({
                 count: 10,
@@ -159,7 +204,7 @@ app.controller('newsList', function ($scope, $http, NgTableParams) {
     $scope.Delete = function (e) {
         if (confirm('是否删除：' + e.name)) {
             window.LayerOpen();
-            $http.post('/Admin/Employ_Delete', {
+            $http.post('/Admin/News_Delete', {
                 id: e.id
             }).success(function (d) {
                 if (d == true) {
@@ -173,6 +218,22 @@ app.controller('newsList', function ($scope, $http, NgTableParams) {
                 console.log('http错误');
             });
         }
+    };
+    $scope.SetTop = function (e) {
+        window.LayerOpen();
+        e.top = !e.top;
+        $http.post('/Admin/News_Add_Edit', e).success(function (d) {
+            if (d == true) {
+                alert('保存成功');
+                $scope.LoadData();
+            } else {
+                alert('保存失败');
+                window.LayerClose();
+            }
+        }).error(function () {
+            console.log('http错误');
+            window.LayerClose();
+        });
     };
     $scope.Init();
 });

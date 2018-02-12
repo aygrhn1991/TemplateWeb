@@ -28,8 +28,8 @@
                     <label class="label label-success" ng-if="d.state_read">已读</label>
                     <label class="label label-danger" ng-if="!d.state_read">未读</label>
                 </td>
-                <td title="'留言时间'" sortable="'sys_datetime'" filter="{sys_datetime:'text'}">{{d.sys_datetime}}</td>
                 <td title="'留言内容'" sortable="'content'" filter="{content:'text'}">{{d.content|limitTo:20}}...</td>
+                <td title="'留言时间'" sortable="'sys_datetime'" filter="{sys_datetime:'text'}">{{d.sys_datetime}}</td>
                 <td title="'处理状态'" sortable="'state_solve'">
                     <label class="label label-success" ng-if="d.state_solve">已处理</label>
                     <label class="label label-danger" ng-if="!d.state_solve" ng-click="SetSolve(d)">标记为已处理</label>

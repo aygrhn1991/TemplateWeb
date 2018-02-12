@@ -137,6 +137,9 @@
     <Content Include="Plugin\easyupload\font\iconfont.svg" />
     <Content Include="Plugin\easyupload\images\loading.gif" />
     <Content Include="Plugin\easyupload\js\easyUpload.js" />
+    <Content Include="Plugin\laydate\laydate.js" />
+    <Content Include="Plugin\laydate\theme\default\font\iconfont.svg" />
+    <Content Include="Plugin\laydate\theme\default\laydate.css" />
     <Content Include="Plugin\layer\theme\default\icon-ext.png" />
     <Content Include="Plugin\layer\theme\default\icon.png" />
     <Content Include="Plugin\layer\theme\default\layer.css" />
@@ -340,6 +343,9 @@
     <Content Include="Plugin\easyupload\font\iconfont.ttf" />
     <Content Include="Plugin\easyupload\font\iconfont.woff" />
     <Content Include="Plugin\easyupload\handler\UploadHandler.ashx" />
+    <Content Include="Plugin\laydate\theme\default\font\iconfont.eot" />
+    <Content Include="Plugin\laydate\theme\default\font\iconfont.ttf" />
+    <Content Include="Plugin\laydate\theme\default\font\iconfont.woff" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -425,6 +431,7 @@
     <Folder Include="Upload\editor\" />
     <Folder Include="Upload\setting\" />
     <Folder Include="Upload\uploader\banner\" />
+    <Folder Include="Upload\uploader\news\" />
     <Folder Include="Upload\uploader\partner\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>

@@ -11,55 +11,65 @@
 <link href="~/Plugin/easyupload/css/easy-upload.css" rel="stylesheet" />
 <script src="~/Plugin/easyupload/js/easyUpload.js"></script>
 
+<link href="~/Plugin/summernote/css/summernote.css" rel="stylesheet" />
+<script src="~/Plugin/summernote/js/summernote.js"></script>
+<script src="~/Plugin/summernote/js/lang/summernote-zh-CN.js"></script>
+
+<script src="~/Plugin/laydate/laydate.js"></script>
+
 <link href="~/Content/admin/admin-public.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-public.js"></script>
 <link href="~/Content/admin/admin-layout.css" rel="stylesheet" />
-<script src="~/Scripts/admin/admin-employ.js"></script>
+<script src="~/Scripts/admin/admin-news.js"></script>
 
-<div class="tp-content" ng-app="app" ng-controller="employAdd">
+<style>
+    .btn-sm {
+        line-height: 0;
+    }
+</style>
+
+<div class="tp-content" ng-app="app" ng-controller="newsAdd">
     <div class="row">
         <div class="col-xs-4">
             <div class="form-group">
                 <label>分类：</label>
-                <select class="form-control" ng-options="t.id as t.name for t in employType" ng-model="employModel.type_id"></select>
+                <select class="form-control" ng-options="t.id as t.name for t in newsType" ng-model="newsModel.type_id"></select>
             </div>
         </div>
         <div class="col-xs-4">
             <div class="form-group">
                 <label>标题：</label>
-                <input type="text" class="form-control" placeholder="请输入职位名称..." ng-model="employModel.position_name">
+                <input type="text" class="form-control" placeholder="请输入标题..." ng-model="newsModel.title">
             </div>
         </div>
         <div class="col-xs-4">
             <div class="form-group">
                 <label>作者：</label>
-                <input type="text" class="form-control" placeholder="请输入招聘数量..." ng-model="employModel.employ_number">
+                <input type="text" class="form-control" placeholder="请输入作者..." ng-model="newsModel.author">
             </div>
         </div>
         <div class="col-xs-4">
             <div class="form-group">
-                <label>发布时间：</label>
-                <input type="text" class="form-control" placeholder="请输入薪资水平..." ng-model="employModel.salary">
+                <label>发布日期：</label>
+                <input type="text" class="form-control" placeholder="请选择发布日期..." id="date">
             </div>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-12">
             <div class="form-group">
-                <label>封面图片：</label>
-                <input type="text" class="form-control" placeholder="请输入薪资水平..." ng-model="employModel.salary">
+                <label>图片：<img src="{{newsModel.path}}" class="tp-img-small" ng-if="newsModel.path!=null" /></label>
+                <div id="easyContainer"></div>
             </div>
             <div class="form-group">
                 <label>描述：</label>
-                <input type="text" class="form-control" placeholder="请输入薪资水平..." ng-model="employModel.salary">
+                <textarea class="form-control" rows="3" ng-model="newsModel.description"></textarea>
             </div>
             <div class="form-group">
-                <label>内容：</label>
-                <input type="text" class="form-control" placeholder="请输入薪资水平..." ng-model="employModel.salary">
+                <label>正文：</label>
+                <div id="summernote"></div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group text-center">
-            <button type="button" class="btn btn-success" ng-click="Save()">保&nbsp;存</button>
+            <div class="form-group text-center">
+                <button type="button" class="btn btn-success" ng-click="Save()">保&nbsp;存</button>
+            </div>
         </div>
     </div>
 </div>

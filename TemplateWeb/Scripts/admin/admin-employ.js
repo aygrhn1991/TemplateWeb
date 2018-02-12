@@ -123,8 +123,7 @@ app.controller('employAdd', function ($scope, $http) {
         $http.post('/Admin/Employ_Add_Edit', $scope.employModel).success(function (d) {
             if (d == true) {
                 alert('保存成功');
-                window.location.href = '/Admin/EmployList';
-                $scope.LoadData();
+                self.location.href = '/Admin/EmployList';
             } else {
                 alert('保存失败');
                 window.LayerClose();

@@ -908,7 +908,7 @@ namespace TemplateWeb.Controllers
             {
                 p.author,
                 p.content,
-                datetime = p.datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                datetime = p.datetime.Value.ToString("yyyy-MM-dd"),
                 p.description,
                 p.id,
                 p.path,
@@ -917,16 +917,16 @@ namespace TemplateWeb.Controllers
                 p.top,
                 p.type_id,
                 p.views,
-            });
+            }).FirstOrDefault();
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult NewsList_Get()
         {
-            var query = entity.news.OrderByDescending(p => p.id).Join(entity.news_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.news.OrderByDescending(p => p.id).ToArray().Join(entity.news_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.author,
                 a.content,
-                datetime = a.datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                datetime = a.datetime.Value.ToString("yyyy-MM-dd"),
                 a.description,
                 a.id,
                 a.path,
