@@ -368,22 +368,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\banner.cs" />
-    <Compile Include="Models\DB\employ.cs" />
-    <Compile Include="Models\DB\employ_type.cs" />
     <Compile Include="Models\DB\EntityDB.cs" />
-    <Compile Include="Models\DB\link_link.cs" />
-    <Compile Include="Models\DB\link_sublink.cs" />
-    <Compile Include="Models\DB\messageaboard.cs" />
-    <Compile Include="Models\DB\nav_nav.cs" />
-    <Compile Include="Models\DB\nav_subnav.cs" />
-    <Compile Include="Models\DB\news.cs" />
-    <Compile Include="Models\DB\news_type.cs" />
-    <Compile Include="Models\DB\page.cs" />
-    <Compile Include="Models\DB\partner.cs" />
-    <Compile Include="Models\DB\product.cs" />
-    <Compile Include="Models\DB\product_type.cs" />
-    <Compile Include="Models\DB\setting.cs" />
+    <Compile Include="Models\DB\lay_banner.cs" />
+    <Compile Include="Models\DB\lay_link_link.cs" />
+    <Compile Include="Models\DB\lay_link_sublink.cs" />
+    <Compile Include="Models\DB\lay_nav_nav.cs" />
+    <Compile Include="Models\DB\lay_nav_subnav.cs" />
+    <Compile Include="Models\DB\lay_page.cs" />
+    <Compile Include="Models\DB\lay_partner.cs" />
+    <Compile Include="Models\DB\lay_setting.cs" />
+    <Compile Include="Models\DB\module_employ.cs" />
+    <Compile Include="Models\DB\module_employ_type.cs" />
+    <Compile Include="Models\DB\module_messageaboard.cs" />
+    <Compile Include="Models\DB\module_news.cs" />
+    <Compile Include="Models\DB\module_news_type.cs" />
+    <Compile Include="Models\DB\module_product.cs" />
+    <Compile Include="Models\DB\module_product_type.cs" />
     <Compile Include="Plugin\easyupload\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>

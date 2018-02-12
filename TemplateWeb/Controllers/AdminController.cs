@@ -34,30 +34,30 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult PageList_Get()
         {
-            var query = entity.page.OrderByDescending(p => p.id);
+            var query = entity.lay_page.OrderByDescending(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Page_Get(int id)
         {
-            var query = entity.page.FirstOrDefault(p => p.id == id);
+            var query = entity.lay_page.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         [ValidateInput(false)]
-        public ActionResult Page_Add_Edit(page pageModel)
+        public ActionResult Page_Add_Edit(lay_page pageModel)
         {
             if (pageModel.id == 0)
             {
-                page page = new page()
+                lay_page page = new lay_page()
                 {
                     title = pageModel.title,
                     content = pageModel.content,
                     sys_datetime = DateTime.Now
                 };
-                entity.page.Add(page);
+                entity.lay_page.Add(page);
             }
             else
             {
-                var query = entity.page.FirstOrDefault(p => p.id == pageModel.id);
+                var query = entity.lay_page.FirstOrDefault(p => p.id == pageModel.id);
                 query.title = pageModel.title;
                 query.content = pageModel.content;
             }
@@ -65,8 +65,8 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Page_Delete(int id)
         {
-            var query = entity.page.FirstOrDefault(p => p.id == id);
-            entity.page.Remove(query);
+            var query = entity.lay_page.FirstOrDefault(p => p.id == id);
+            entity.lay_page.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -78,16 +78,16 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult NavList_Get()
         {
-            var query = entity.nav_nav.OrderBy(p => p.sort);
+            var query = entity.lay_nav_nav.OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Nav_Add_Edit(nav_nav navModel)
+        public ActionResult Nav_Add_Edit(lay_nav_nav navModel)
         {
             if (navModel.id == 0)
             {
-                var query = entity.nav_nav;
+                var query = entity.lay_nav_nav;
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
-                nav_nav nav = new nav_nav()
+                lay_nav_nav nav = new lay_nav_nav()
                 {
                     title = navModel.title,
                     enable = navModel.enable,
@@ -97,11 +97,11 @@ namespace TemplateWeb.Controllers
                     url = navModel.url,
                     sys_datetime = DateTime.Now
                 };
-                entity.nav_nav.Add(nav);
+                entity.lay_nav_nav.Add(nav);
             }
             else
             {
-                var query = entity.nav_nav.FirstOrDefault(p => p.id == navModel.id);
+                var query = entity.lay_nav_nav.FirstOrDefault(p => p.id == navModel.id);
                 query.title = navModel.title;
                 query.enable = navModel.enable;
                 query.mode = navModel.mode;
@@ -113,13 +113,13 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Nav_Delete(int id)
         {
-            var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
-            entity.nav_nav.Remove(query);
+            var query = entity.lay_nav_nav.FirstOrDefault(p => p.id == id);
+            entity.lay_nav_nav.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Nav_Sort(int id, string sortType)
         {
-            var query = entity.nav_nav.OrderBy(p => p.sort).ToArray();
+            var query = entity.lay_nav_nav.OrderBy(p => p.sort).ToArray();
             for (int i = 0; i < query.Count(); i++)
             {
                 if (query[i].id == id)
@@ -162,23 +162,23 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Nav_Get(int id)
         {
-            var query = entity.nav_nav.FirstOrDefault(p => p.id == id);
+            var query = entity.lay_nav_nav.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #region 子导航管理
         public ActionResult SubnavList_Get(int id)
         {
-            var query = entity.nav_subnav.Where(p => p.nav_id == id).OrderBy(p => p.sort);
+            var query = entity.lay_nav_subnav.Where(p => p.nav_id == id).OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Subnav_Add_Edit(nav_subnav subnavModel)
+        public ActionResult Subnav_Add_Edit(lay_nav_subnav subnavModel)
         {
             if (subnavModel.id == 0)
             {
-                var query = entity.nav_subnav.Where(p => p.nav_id == subnavModel.nav_id);
+                var query = entity.lay_nav_subnav.Where(p => p.nav_id == subnavModel.nav_id);
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
-                nav_subnav subnav = new nav_subnav()
+                lay_nav_subnav subnav = new lay_nav_subnav()
                 {
                     nav_id = subnavModel.nav_id,
                     title = subnavModel.title,
@@ -189,11 +189,11 @@ namespace TemplateWeb.Controllers
                     url = subnavModel.url,
                     sys_datetime = DateTime.Now
                 };
-                entity.nav_subnav.Add(subnav);
+                entity.lay_nav_subnav.Add(subnav);
             }
             else
             {
-                var query = entity.nav_subnav.FirstOrDefault(p => p.id == subnavModel.id);
+                var query = entity.lay_nav_subnav.FirstOrDefault(p => p.id == subnavModel.id);
                 query.nav_id = subnavModel.nav_id;
                 query.title = subnavModel.title;
                 query.enable = subnavModel.enable;
@@ -206,13 +206,13 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Subnav_Delete(int id)
         {
-            var query = entity.nav_subnav.FirstOrDefault(p => p.id == id);
-            entity.nav_subnav.Remove(query);
+            var query = entity.lay_nav_subnav.FirstOrDefault(p => p.id == id);
+            entity.lay_nav_subnav.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Subnav_Sort(int id, string sortType)
         {
-            var query = entity.nav_subnav.OrderBy(p => p.sort).ToArray();
+            var query = entity.lay_nav_subnav.OrderBy(p => p.sort).ToArray();
             for (int i = 0; i < query.Count(); i++)
             {
                 if (query[i].id == id)
@@ -255,7 +255,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Subnav_Get(int id)
         {
-            var query = entity.nav_subnav.FirstOrDefault(p => p.id == id);
+            var query = entity.lay_nav_subnav.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -272,16 +272,16 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult BannerList_Get()
         {
-            var query = entity.banner.OrderBy(p => p.sort);
+            var query = entity.lay_banner.OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Banner_Add_Edit(banner bannerModel)
+        public ActionResult Banner_Add_Edit(lay_banner bannerModel)
         {
             if (bannerModel.id == 0)
             {
-                var query = entity.banner;
+                var query = entity.lay_banner;
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
-                banner banner = new banner()
+                lay_banner banner = new lay_banner()
                 {
                     title = bannerModel.title,
                     enable = bannerModel.enable,
@@ -292,11 +292,11 @@ namespace TemplateWeb.Controllers
                     path = bannerModel.path,
                     sys_datetime = DateTime.Now
                 };
-                entity.banner.Add(banner);
+                entity.lay_banner.Add(banner);
             }
             else
             {
-                var query = entity.banner.FirstOrDefault(p => p.id == bannerModel.id);
+                var query = entity.lay_banner.FirstOrDefault(p => p.id == bannerModel.id);
                 query.title = bannerModel.title;
                 query.enable = bannerModel.enable;
                 query.mode = bannerModel.mode;
@@ -309,13 +309,13 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Banner_Delete(int id)
         {
-            var query = entity.banner.FirstOrDefault(p => p.id == id);
-            entity.banner.Remove(query);
+            var query = entity.lay_banner.FirstOrDefault(p => p.id == id);
+            entity.lay_banner.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Banner_Sort(int id, string sortType)
         {
-            var query = entity.banner.OrderBy(p => p.sort).ToArray();
+            var query = entity.lay_banner.OrderBy(p => p.sort).ToArray();
             for (int i = 0; i < query.Count(); i++)
             {
                 if (query[i].id == id)
@@ -358,7 +358,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Banner_Get(int id)
         {
-            var query = entity.banner.FirstOrDefault(p => p.id == id);
+            var query = entity.lay_banner.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -374,16 +374,16 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult PartnerList_Get()
         {
-            var query = entity.partner.OrderBy(p => p.sort);
+            var query = entity.lay_partner.OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Partner_Add_Edit(partner partnerModel)
+        public ActionResult Partner_Add_Edit(lay_partner partnerModel)
         {
             if (partnerModel.id == 0)
             {
-                var query = entity.partner;
+                var query = entity.lay_partner;
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
-                partner partner = new partner()
+                lay_partner partner = new lay_partner()
                 {
                     title = partnerModel.title,
                     enable = partnerModel.enable,
@@ -392,11 +392,11 @@ namespace TemplateWeb.Controllers
                     path = partnerModel.path,
                     sys_datetime = DateTime.Now
                 };
-                entity.partner.Add(partner);
+                entity.lay_partner.Add(partner);
             }
             else
             {
-                var query = entity.partner.FirstOrDefault(p => p.id == partnerModel.id);
+                var query = entity.lay_partner.FirstOrDefault(p => p.id == partnerModel.id);
                 query.title = partnerModel.title;
                 query.enable = partnerModel.enable;
                 query.sort = partnerModel.sort;
@@ -407,13 +407,13 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Partner_Delete(int id)
         {
-            var query = entity.partner.FirstOrDefault(p => p.id == id);
-            entity.partner.Remove(query);
+            var query = entity.lay_partner.FirstOrDefault(p => p.id == id);
+            entity.lay_partner.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Partner_Sort(int id, string sortType)
         {
-            var query = entity.partner.OrderBy(p => p.sort).ToArray();
+            var query = entity.lay_partner.OrderBy(p => p.sort).ToArray();
             for (int i = 0; i < query.Count(); i++)
             {
                 if (query[i].id == id)
@@ -457,16 +457,16 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult LinkList_Get()
         {
-            var query = entity.link_link.OrderBy(p => p.sort);
+            var query = entity.lay_link_link.OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Link_Add_Edit(link_link linkModel)
+        public ActionResult Link_Add_Edit(lay_link_link linkModel)
         {
             if (linkModel.id == 0)
             {
-                var query = entity.link_link;
+                var query = entity.lay_link_link;
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
-                link_link link = new link_link()
+                lay_link_link link = new lay_link_link()
                 {
                     title = linkModel.title,
                     enable = linkModel.enable,
@@ -476,11 +476,11 @@ namespace TemplateWeb.Controllers
                     url = linkModel.url,
                     sys_datetime = DateTime.Now
                 };
-                entity.link_link.Add(link);
+                entity.lay_link_link.Add(link);
             }
             else
             {
-                var query = entity.link_link.FirstOrDefault(p => p.id == linkModel.id);
+                var query = entity.lay_link_link.FirstOrDefault(p => p.id == linkModel.id);
                 query.title = linkModel.title;
                 query.enable = linkModel.enable;
                 query.mode = linkModel.mode;
@@ -492,13 +492,13 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Link_Delete(int id)
         {
-            var query = entity.link_link.FirstOrDefault(p => p.id == id);
-            entity.link_link.Remove(query);
+            var query = entity.lay_link_link.FirstOrDefault(p => p.id == id);
+            entity.lay_link_link.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Link_Sort(int id, string sortType)
         {
-            var query = entity.link_link.OrderBy(p => p.sort).ToArray();
+            var query = entity.lay_link_link.OrderBy(p => p.sort).ToArray();
             for (int i = 0; i < query.Count(); i++)
             {
                 if (query[i].id == id)
@@ -541,23 +541,23 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Link_Get(int id)
         {
-            var query = entity.link_link.FirstOrDefault(p => p.id == id);
+            var query = entity.lay_link_link.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #region 子链接管理
         public ActionResult SublinkList_Get(int id)
         {
-            var query = entity.link_sublink.Where(p => p.link_id == id).OrderBy(p => p.sort);
+            var query = entity.lay_link_sublink.Where(p => p.link_id == id).OrderBy(p => p.sort);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Sublink_Add_Edit(link_sublink sublinkModel)
+        public ActionResult Sublink_Add_Edit(lay_link_sublink sublinkModel)
         {
             if (sublinkModel.id == 0)
             {
-                var query = entity.link_sublink.Where(p => p.link_id == sublinkModel.link_id);
+                var query = entity.lay_link_sublink.Where(p => p.link_id == sublinkModel.link_id);
                 int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
-                link_sublink sublink = new link_sublink()
+                lay_link_sublink sublink = new lay_link_sublink()
                 {
                     link_id = sublinkModel.link_id,
                     title = sublinkModel.title,
@@ -568,11 +568,11 @@ namespace TemplateWeb.Controllers
                     url = sublinkModel.url,
                     sys_datetime = DateTime.Now
                 };
-                entity.link_sublink.Add(sublink);
+                entity.lay_link_sublink.Add(sublink);
             }
             else
             {
-                var query = entity.link_sublink.FirstOrDefault(p => p.id == sublinkModel.id);
+                var query = entity.lay_link_sublink.FirstOrDefault(p => p.id == sublinkModel.id);
                 query.link_id = sublinkModel.link_id;
                 query.title = sublinkModel.title;
                 query.enable = sublinkModel.enable;
@@ -585,13 +585,13 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Sublink_Delete(int id)
         {
-            var query = entity.link_sublink.FirstOrDefault(p => p.id == id);
-            entity.link_sublink.Remove(query);
+            var query = entity.lay_link_sublink.FirstOrDefault(p => p.id == id);
+            entity.lay_link_sublink.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Sublink_Sort(int id, string sortType)
         {
-            var query = entity.link_sublink.OrderBy(p => p.sort).ToArray();
+            var query = entity.lay_link_sublink.OrderBy(p => p.sort).ToArray();
             for (int i = 0; i < query.Count(); i++)
             {
                 if (query[i].id == id)
@@ -634,7 +634,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Sublink_Get(int id)
         {
-            var query = entity.link_sublink.FirstOrDefault(p => p.id == id);
+            var query = entity.lay_link_sublink.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -646,7 +646,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Setting_Get()
         {
-            var query = entity.setting.ToArray();
+            var query = entity.lay_setting.ToArray();
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             foreach (var item in query)
             {
@@ -672,22 +672,22 @@ namespace TemplateWeb.Controllers
                 Directory.CreateDirectory(Path.GetDirectoryName(AabsolutePath));
             }
             file.SaveAs(AabsolutePath + filename);
-            var query = entity.setting.FirstOrDefault(p => p.key == key);
+            var query = entity.lay_setting.FirstOrDefault(p => p.key == key);
             if (query == null)
             {
-                query = new setting() { key = key, value = null };
-                entity.setting.Add(query);
+                query = new lay_setting() { key = key, value = null };
+                entity.lay_setting.Add(query);
             }
             query.value = imgUrl;
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Setting_Save(string key, string value)
         {
-            var query = entity.setting.FirstOrDefault(p => p.key == key);
+            var query = entity.lay_setting.FirstOrDefault(p => p.key == key);
             if (query == null)
             {
-                query = new setting() { key = key, value = null };
-                entity.setting.Add(query);
+                query = new lay_setting() { key = key, value = null };
+                entity.lay_setting.Add(query);
             }
             query.value = value;
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
@@ -701,7 +701,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult MessageBoardList_Get()
         {
-            var query = entity.messageaboard.OrderByDescending(p => p.id).ToArray().Select(p => new
+            var query = entity.module_messageaboard.OrderByDescending(p => p.id).ToArray().Select(p => new
             {
                 p.id,
                 p.contact_name,
@@ -715,9 +715,9 @@ namespace TemplateWeb.Controllers
             });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult MessageBoard_Add_Edit(messageaboard messageaboardModel)
+        public ActionResult MessageBoard_Add_Edit(module_messageaboard messageaboardModel)
         {
-            var query = entity.messageaboard.FirstOrDefault(p => p.id == messageaboardModel.id);
+            var query = entity.module_messageaboard.FirstOrDefault(p => p.id == messageaboardModel.id);
             query.state_mark = messageaboardModel.state_mark;
             query.state_read = messageaboardModel.state_read;
             query.state_solve = messageaboardModel.state_solve;
@@ -725,8 +725,8 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult MessageBoard_Delete(int id)
         {
-            var query = entity.messageaboard.FirstOrDefault(p => p.id == id);
-            entity.messageaboard.Remove(query);
+            var query = entity.module_messageaboard.FirstOrDefault(p => p.id == id);
+            entity.module_messageaboard.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -738,27 +738,27 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult EmployTypeList_Get()
         {
-            var query = entity.employ_type.OrderByDescending(p => p.id);
+            var query = entity.module_employ_type.OrderByDescending(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult EmployType_Add_Edit(employ_type typeModel)
+        public ActionResult EmployType_Add_Edit(module_employ_type typeModel)
         {
             if (typeModel.id == 0)
             {
-                employ_type type = new employ_type() { name = typeModel.name };
-                entity.employ_type.Add(type);
+                module_employ_type type = new module_employ_type() { name = typeModel.name };
+                entity.module_employ_type.Add(type);
             }
             else
             {
-                var query = entity.employ_type.FirstOrDefault(p => p.id == typeModel.id);
+                var query = entity.module_employ_type.FirstOrDefault(p => p.id == typeModel.id);
                 query.name = typeModel.name;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult EmployType_Delete(int id)
         {
-            var query = entity.employ_type.FirstOrDefault(p => p.id == id);
-            entity.employ_type.Remove(query);
+            var query = entity.module_employ_type.FirstOrDefault(p => p.id == id);
+            entity.module_employ_type.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -773,12 +773,12 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Employ_Get(int id)
         {
-            var query = entity.employ.FirstOrDefault(p => p.id == id);
+            var query = entity.module_employ.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult EmployList_Get()
         {
-            var query = entity.employ.OrderByDescending(p => p.id).Join(entity.employ_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.module_employ.OrderByDescending(p => p.id).Join(entity.module_employ_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.benefit,
                 a.education,
@@ -803,11 +803,11 @@ namespace TemplateWeb.Controllers
             });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Employ_Add_Edit(employ employModel)
+        public ActionResult Employ_Add_Edit(module_employ employModel)
         {
             if (employModel.id == 0)
             {
-                employ employ = new employ()
+                module_employ employ = new module_employ()
                 {
                     type_id = employModel.type_id,
                     position_name = employModel.position_name,
@@ -828,11 +828,11 @@ namespace TemplateWeb.Controllers
                     remark = employModel.remark,
                     sys_datetime = DateTime.Now,
                 };
-                entity.employ.Add(employ);
+                entity.module_employ.Add(employ);
             }
             else
             {
-                var query = entity.employ.FirstOrDefault(p => p.id == employModel.id);
+                var query = entity.module_employ.FirstOrDefault(p => p.id == employModel.id);
                 query.type_id = employModel.type_id;
                 query.position_name = employModel.position_name;
                 query.salary = employModel.salary;
@@ -855,8 +855,8 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Employ_Delete(int id)
         {
-            var query = entity.employ.FirstOrDefault(p => p.id == id);
-            entity.employ.Remove(query);
+            var query = entity.module_employ.FirstOrDefault(p => p.id == id);
+            entity.module_employ.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -869,27 +869,27 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult NewsTypeList_Get()
         {
-            var query = entity.news_type.OrderByDescending(p => p.id);
+            var query = entity.module_news_type.OrderByDescending(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult NewsType_Add_Edit(news_type typeModel)
+        public ActionResult NewsType_Add_Edit(module_news_type typeModel)
         {
             if (typeModel.id == 0)
             {
-                news_type type = new news_type() { name = typeModel.name };
-                entity.news_type.Add(type);
+                module_news_type type = new module_news_type() { name = typeModel.name };
+                entity.module_news_type.Add(type);
             }
             else
             {
-                var query = entity.news_type.FirstOrDefault(p => p.id == typeModel.id);
+                var query = entity.module_news_type.FirstOrDefault(p => p.id == typeModel.id);
                 query.name = typeModel.name;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult NewsType_Delete(int id)
         {
-            var query = entity.news_type.FirstOrDefault(p => p.id == id);
-            entity.news_type.Remove(query);
+            var query = entity.module_news_type.FirstOrDefault(p => p.id == id);
+            entity.module_news_type.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -904,7 +904,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult News_Get(int id)
         {
-            var query = entity.news.Where(p => p.id == id).ToArray().Select(p => new
+            var query = entity.module_news.Where(p => p.id == id).ToArray().Select(p => new
             {
                 p.author,
                 p.content,
@@ -922,7 +922,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult NewsList_Get()
         {
-            var query = entity.news.OrderByDescending(p => p.id).ToArray().Join(entity.news_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.module_news.OrderByDescending(p => p.id).ToArray().Join(entity.module_news_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.author,
                 a.content,
@@ -939,11 +939,11 @@ namespace TemplateWeb.Controllers
             });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult News_Add_Edit(news newsModel)
+        public ActionResult News_Add_Edit(module_news newsModel)
         {
             if (newsModel.id == 0)
             {
-                news news = new news()
+                module_news news = new module_news()
                 {
                     id = 0,
                     author = newsModel.author,
@@ -957,11 +957,11 @@ namespace TemplateWeb.Controllers
                     views = newsModel.views,
                     sys_datetime = DateTime.Now,
                 };
-                entity.news.Add(news);
+                entity.module_news.Add(news);
             }
             else
             {
-                var query = entity.news.FirstOrDefault(p => p.id == newsModel.id);
+                var query = entity.module_news.FirstOrDefault(p => p.id == newsModel.id);
                 query.author = newsModel.author;
                 query.content = newsModel.content;
                 query.datetime = newsModel.datetime;
@@ -976,8 +976,8 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult News_Delete(int id)
         {
-            var query = entity.news.FirstOrDefault(p => p.id == id);
-            entity.news.Remove(query);
+            var query = entity.module_news.FirstOrDefault(p => p.id == id);
+            entity.module_news.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -990,27 +990,27 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult ProductTypeList_Get()
         {
-            var query = entity.product_type.OrderByDescending(p => p.id);
+            var query = entity.module_product_type.OrderByDescending(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ProductType_Add_Edit(product_type typeModel)
+        public ActionResult ProductType_Add_Edit(module_product_type typeModel)
         {
             if (typeModel.id == 0)
             {
-                product_type type = new product_type() { name = typeModel.name };
-                entity.product_type.Add(type);
+                module_product_type type = new module_product_type() { name = typeModel.name };
+                entity.module_product_type.Add(type);
             }
             else
             {
-                var query = entity.product_type.FirstOrDefault(p => p.id == typeModel.id);
+                var query = entity.module_product_type.FirstOrDefault(p => p.id == typeModel.id);
                 query.name = typeModel.name;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ProductType_Delete(int id)
         {
-            var query = entity.product_type.FirstOrDefault(p => p.id == id);
-            entity.product_type.Remove(query);
+            var query = entity.module_product_type.FirstOrDefault(p => p.id == id);
+            entity.module_product_type.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -1025,12 +1025,12 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Product_Get(int id)
         {
-            var query = entity.product.FirstOrDefault(p => p.id == id);
+            var query = entity.module_product.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ProductList_Get()
         {
-            var query = entity.product.OrderByDescending(p => p.id).ToArray().Join(entity.product_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.module_product.OrderByDescending(p => p.id).ToArray().Join(entity.module_product_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.content,
                 a.description,
@@ -1044,11 +1044,11 @@ namespace TemplateWeb.Controllers
             });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Product_Add_Edit(product productModel)
+        public ActionResult Product_Add_Edit(module_product productModel)
         {
             if (productModel.id == 0)
             {
-                product product = new product()
+                module_product product = new module_product()
                 {
                     id = 0,
                     name = productModel.name,
@@ -1059,11 +1059,11 @@ namespace TemplateWeb.Controllers
                     type_id = productModel.type_id,
                     sys_datetime = DateTime.Now,
                 };
-                entity.product.Add(product);
+                entity.module_product.Add(product);
             }
             else
             {
-                var query = entity.product.FirstOrDefault(p => p.id == productModel.id);
+                var query = entity.module_product.FirstOrDefault(p => p.id == productModel.id);
                 query.name = productModel.name;
                 query.content = productModel.content;
                 query.description = productModel.description;
@@ -1075,8 +1075,8 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Product_Delete(int id)
         {
-            var query = entity.product.FirstOrDefault(p => p.id == id);
-            entity.product.Remove(query);
+            var query = entity.module_product.FirstOrDefault(p => p.id == id);
+            entity.module_product.Remove(query);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
