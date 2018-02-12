@@ -315,6 +315,7 @@
     <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
+    <Content Include="Scripts\admin\admin-product.js" />
     <Content Include="Scripts\admin\admin-news.js" />
     <Content Include="Scripts\admin\admin-link.js" />
     <Content Include="Scripts\admin\admin-messageboard.js" />
@@ -414,6 +415,9 @@
     <Content Include="Views\Admin\NewsTypeList.cshtml" />
     <Content Include="Views\Admin\NewsList.cshtml" />
     <Content Include="Views\Admin\NewsAdd.cshtml" />
+    <Content Include="Views\Admin\ProductTypeList.cshtml" />
+    <Content Include="Views\Admin\ProductList.cshtml" />
+    <Content Include="Views\Admin\ProductAdd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -433,6 +437,7 @@
     <Folder Include="Upload\uploader\banner\" />
     <Folder Include="Upload\uploader\news\" />
     <Folder Include="Upload\uploader\partner\" />
+    <Folder Include="Upload\uploader\product\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>

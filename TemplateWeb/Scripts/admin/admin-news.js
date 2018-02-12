@@ -202,7 +202,7 @@ app.controller('newsList', function ($scope, $http, NgTableParams) {
         });
     };
     $scope.Delete = function (e) {
-        if (confirm('是否删除：' + e.name)) {
+        if (confirm('是否删除：' + e.title)) {
             window.LayerOpen();
             $http.post('/Admin/News_Delete', {
                 id: e.id

@@ -982,5 +982,104 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #endregion
+        #region 产品管理
+        #region 分类管理
+        public ActionResult ProductTypeList()
+        {
+            return View();
+        }
+        public ActionResult ProductTypeList_Get()
+        {
+            var query = entity.product_type.OrderByDescending(p => p.id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ProductType_Add_Edit(product_type typeModel)
+        {
+            if (typeModel.id == 0)
+            {
+                product_type type = new product_type() { name = typeModel.name };
+                entity.product_type.Add(type);
+            }
+            else
+            {
+                var query = entity.product_type.FirstOrDefault(p => p.id == typeModel.id);
+                query.name = typeModel.name;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ProductType_Delete(int id)
+        {
+            var query = entity.product_type.FirstOrDefault(p => p.id == id);
+            entity.product_type.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 产品管理
+        public ActionResult ProductList()
+        {
+            return View();
+        }
+        public ActionResult ProductAdd()
+        {
+            return View();
+        }
+        public ActionResult Product_Get(int id)
+        {
+            var query = entity.product.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ProductList_Get()
+        {
+            var query = entity.product.OrderByDescending(p => p.id).ToArray().Join(entity.product_type, a => a.type_id, b => b.id, (a, b) => new
+            {
+                a.content,
+                a.description,
+                a.id,
+                a.name,
+                a.path,
+                a.sys_datetime,
+                a.top,
+                a.type_id,
+                type = b.name,
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Product_Add_Edit(product productModel)
+        {
+            if (productModel.id == 0)
+            {
+                product product = new product()
+                {
+                    id = 0,
+                    name = productModel.name,
+                    content = productModel.content,
+                    description = productModel.description,
+                    path = productModel.path,
+                    top = productModel.top,
+                    type_id = productModel.type_id,
+                    sys_datetime = DateTime.Now,
+                };
+                entity.product.Add(product);
+            }
+            else
+            {
+                var query = entity.product.FirstOrDefault(p => p.id == productModel.id);
+                query.name = productModel.name;
+                query.content = productModel.content;
+                query.description = productModel.description;
+                query.path = productModel.path;
+                query.top = productModel.top;
+                query.type_id = productModel.type_id;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Product_Delete(int id)
+        {
+            var query = entity.product.FirstOrDefault(p => p.id == id);
+            entity.product.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion
     }
 }
