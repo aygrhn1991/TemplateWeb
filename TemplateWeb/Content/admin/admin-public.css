@@ -25,7 +25,8 @@ th, td {
     padding: 0;
 }
 
-table input {
+table input,
+table textarea {
     border-radius: 3px;
     border: 1px solid #ccc;
 }

@@ -639,6 +639,84 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #endregion
+        #region 通知管理
+        public ActionResult NoticeList()
+        {
+            return View();
+        }
+        public ActionResult NoticeList_Get()
+        {
+            var query = entity.lay_notice.OrderBy(p => p.sort);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Notice_Add_Edit(lay_notice noticeModel)
+        {
+            if (noticeModel.id == 0)
+            {
+                var query = entity.lay_notice;
+                int maxSort = query.Count() <= 0 ? 0 : query.Max(p => p.sort.Value);
+                lay_notice notice = new lay_notice()
+                {
+                    enable = noticeModel.enable,
+                    sort = ++maxSort,
+                    content = noticeModel.content,
+                    sys_datetime = DateTime.Now,
+                };
+                entity.lay_notice.Add(notice);
+            }
+            else
+            {
+                var query = entity.lay_notice.FirstOrDefault(p => p.id == noticeModel.id);
+                query.enable = noticeModel.enable;
+                query.sort = noticeModel.sort;
+                query.content = noticeModel.content;
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Notice_Delete(int id)
+        {
+            var query = entity.lay_notice.FirstOrDefault(p => p.id == id);
+            entity.lay_notice.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Notice_Sort(int id, string sortType)
+        {
+            var query = entity.lay_notice.OrderBy(p => p.sort).ToArray();
+            for (int i = 0; i < query.Count(); i++)
+            {
+                if (query[i].id == id)
+                {
+                    if (sortType == "up")
+                    {
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i - 1].sort;
+                            query[i - 1].sort = tempSort;
+                        }
+                    }
+                    else
+                    {
+                        if (i == query.Count() - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            int tempSort = query[i].sort.Value;
+                            query[i].sort = query[i + 1].sort;
+                            query[i + 1].sort = tempSort;
+                        }
+                    }
+                }
+            }
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
         #region 网站设置
         public ActionResult Setting()
         {

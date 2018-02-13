@@ -17,6 +17,7 @@ namespace TemplateWeb.Models.DB
         public virtual DbSet<lay_link_sublink> lay_link_sublink { get; set; }
         public virtual DbSet<lay_nav_nav> lay_nav_nav { get; set; }
         public virtual DbSet<lay_nav_subnav> lay_nav_subnav { get; set; }
+        public virtual DbSet<lay_notice> lay_notice { get; set; }
         public virtual DbSet<lay_page> lay_page { get; set; }
         public virtual DbSet<lay_partner> lay_partner { get; set; }
         public virtual DbSet<lay_setting> lay_setting { get; set; }

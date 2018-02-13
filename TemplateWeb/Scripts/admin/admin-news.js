@@ -100,7 +100,6 @@ app.controller('newsAdd', function ($scope, $http) {
             laydate.render({
                 elem: '#date',
                 done: function (value) {
-                    console.log(value);
                     $scope.newsModel.datetime = value;
                 }
             });
@@ -128,7 +127,6 @@ app.controller('newsAdd', function ($scope, $http) {
                     elem: '#date',
                     value: d.datetime,
                     done: function (value) {
-                        console.log(value);
                         $scope.newsModel.datetime = value;
                     }
                 });

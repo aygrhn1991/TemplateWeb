@@ -315,6 +315,7 @@
     <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
+    <Content Include="Scripts\admin\admin-notice.js" />
     <Content Include="Scripts\admin\admin-product.js" />
     <Content Include="Scripts\admin\admin-news.js" />
     <Content Include="Scripts\admin\admin-link.js" />
@@ -374,6 +375,7 @@
     <Compile Include="Models\DB\lay_link_sublink.cs" />
     <Compile Include="Models\DB\lay_nav_nav.cs" />
     <Compile Include="Models\DB\lay_nav_subnav.cs" />
+    <Compile Include="Models\DB\lay_notice.cs" />
     <Compile Include="Models\DB\lay_page.cs" />
     <Compile Include="Models\DB\lay_partner.cs" />
     <Compile Include="Models\DB\lay_setting.cs" />
@@ -418,6 +420,7 @@
     <Content Include="Views\Admin\ProductTypeList.cshtml" />
     <Content Include="Views\Admin\ProductList.cshtml" />
     <Content Include="Views\Admin\ProductAdd.cshtml" />
+    <Content Include="Views\Admin\NoticeList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
