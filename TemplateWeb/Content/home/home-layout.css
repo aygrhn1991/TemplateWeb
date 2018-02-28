@@ -161,56 +161,113 @@
     color: white;
 }
 /*----------------------*/
-/*marquee函数_滚动基础样式*/
-.marquee {
-    clear: both;
-    position: relative;
+/*.demo {
+    width: 1000px;
 }
 
-    .marquee a.arr {
-        position: absolute;
-        display: block;
-        cursor: pointer;
-    }
+strong {
+    font-weight: 700;
+}
 
-    .marquee a.prev {
-        right: 23px;
-        top: -30px;
-        background: url(images/lr_arr_icon.gif) no-repeat left center;
-        width: 23px;
-        height: 37px;
-    }
+:focus {
+    outline: 0;
+}
 
-    .marquee a.next {
-        right: 0px;
-        top: -30px;
-        background: url(images/lr_arr_icon.gif) no-repeat right center;
-        width: 23px;
-        height: 37px;
-    }
+#mod_header, #mod_main, #mod_footer {
+    width: 900px;
+    margin: 0 auto 20px;
+}
 
-    .marquee .inner {
+#mod_footer {
+    margin: 0 auto;
+    padding-bottom: 20px;
+    font-family: Arial;
+}
+
+#mod_header h1 {
+    font: 700 22px/2 'Microsoft YaHei';
+    text-align: center;
+}
+
+#desc pre {
+    font: 13px/15px 'Lucida Console',Arial;
+    color: #7F9F7F;
+}
+
+.mod {
+    border-bottom: 5px dashed #f00;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.mod_hd h2 {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    font: 700 16px/2 'Microsoft YaHei',SimSun;
+    color: #fff;
+    background: #104778;
+    text-shadow: 1px 1px 1px #8DB2E3;
+}
+
+.mod_ft strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.mod_ft ul {
+    margin-bottom: 10px;
+}
+
+.mod_ft li {
+    list-style: disc inside none;
+    line-height: 20px;
+}
+
+.demo, .code {
+    margin-bottom: 10px;
+}
+
+    .code textarea {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
         width: 100%;
-        display: block;
-        overflow: scroll
+        height: 150px;
+        font: 12px/1.4 'Lucida Console',Arial;
+        background: #ddd;
+        resize: none;
     }
 
-        .marquee .inner ul {
-            clear: both;
-            padding: 0px;
-            overflow: hidden
-        }
-        /*纵向滚动时必须设置ul的height属性*/
-        .marquee .inner li {
-            overflow: hidden
-        }
-            /*横向必须设置li宽度，纵向时必须设置li高度*/
-            .marquee .inner li.hx {
-                float: left;
-                text-align: center;
-            }
-            /*横向滚动li样式*/
-            .marquee .inner li.zx {
-                text-align: left;
-            }
-/*纵向滚动li样式*/
+.to_top {
+    text-align: right;
+}
+
+    .to_top a {
+        text-decoration: none;
+    }
+
+#mod_footer {
+    text-align: center;
+}*/
+.wrap {
+    width:100%;
+}.wrap, .box {
+    margin-bottom: 10px;
+}
+
+    .wrap ul, .wrap .ul {
+        overflow: hidden;
+        clear: both;
+        *zoom: 1;
+    }
+
+    .wrap li, .wrap .li {
+        list-style: none;
+        width: 120px;
+        height: 80px;
+        padding: 5px;
+        background: #ccc;
+        margin: 2px 5px 10px 5px;
+        font: 700 30px/80px Arial;
+        text-align: center;
+    }
