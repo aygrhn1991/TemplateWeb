@@ -122,6 +122,8 @@
     <Content Include="Content\admin\admin-public.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\home\home-layout.css" />
+    <Content Include="Content\home\home-public.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -366,6 +368,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -421,6 +424,8 @@
     <Content Include="Views\Admin\ProductList.cshtml" />
     <Content Include="Views\Admin\ProductAdd.cshtml" />
     <Content Include="Views\Admin\NoticeList.cshtml" />
+    <Content Include="Views\Shared\_Layout_Home.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -441,7 +446,6 @@
     <Folder Include="Upload\uploader\news\" />
     <Folder Include="Upload\uploader\partner\" />
     <Folder Include="Upload\uploader\product\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

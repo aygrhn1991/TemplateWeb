@@ -1,0 +1,216 @@
+﻿.tp-nav {
+    background-color: #4c4c4c;
+    color: white;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.tp-nav-logo {
+    float: left;
+    margin: 0 10px;
+}
+
+    .tp-nav-logo > img {
+        height: 60px;
+    }
+
+.tp-nav-account {
+    float: right;
+    line-height: 60px;
+    font-size: 14px;
+    width: 120px;
+    text-align: center;
+}
+
+    .tp-nav-account > a {
+        color: white;
+    }
+
+.tp-nav-nav {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .tp-nav-nav > li {
+        position: relative;
+        display: inline-block;
+    }
+
+        .tp-nav-nav > li:hover {
+            background-color: #ff4c4c;
+        }
+
+            .tp-nav-nav > li:hover .tp-nav-subnav {
+                display: block;
+            }
+
+        .tp-nav-nav > li > a {
+            display: block;
+            width: 120px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            color: white;
+            font-size: 20px;
+        }
+
+.tp-nav-subnav {
+    list-style: none;
+    display: none;
+    position: absolute;
+    z-index: 99999;
+    top: 60px;
+    left: 0;
+    background-color: #4c4c4c;
+    width: 120px;
+    margin: 0;
+    padding: 0;
+}
+
+    .tp-nav-subnav > li:hover {
+        background-color: #ff4c4c;
+    }
+
+    .tp-nav-subnav > li > a {
+        border-top: 1px solid gray;
+        display: block;
+        width: 120px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: white;
+        font-size: 18px;
+    }
+
+.tp-notice {
+    background-color: black;
+    color: white;
+    font-size: 12px;
+}
+
+#home-carousel {
+    height: 300px;
+    margin-top: -5px;
+}
+
+    #home-carousel img {
+        height: 300px;
+        margin: 0 auto;
+    }
+
+.tp-footer {
+    background-color: #4c4c4c;
+}
+
+.tp-footer-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 30px 10px;
+}
+
+.tp-footer-link {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .tp-footer-link > li {
+        display: inline-block;
+        width: 200px;
+        line-height: 40px;
+    }
+
+        .tp-footer-link > li > a {
+            font-size: 18px;
+            color: white;
+        }
+
+.tp-footer-sublink {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .tp-footer-sublink > li > a {
+        font-size: 14px;
+        color: white;
+    }
+
+.tp-footer-qr {
+    float: right;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 20px;
+}
+
+    .tp-footer-qr img {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 5px;
+    }
+
+.tp-footer-bottom {
+    text-align: center;
+    border-top: 1px solid gray;
+    font-size: 12px;
+    padding: 10px 0;
+    color: white;
+}
+/*----------------------*/
+/*marquee函数_滚动基础样式*/
+.marquee {
+    clear: both;
+    position: relative;
+}
+
+    .marquee a.arr {
+        position: absolute;
+        display: block;
+        cursor: pointer;
+    }
+
+    .marquee a.prev {
+        right: 23px;
+        top: -30px;
+        background: url(images/lr_arr_icon.gif) no-repeat left center;
+        width: 23px;
+        height: 37px;
+    }
+
+    .marquee a.next {
+        right: 0px;
+        top: -30px;
+        background: url(images/lr_arr_icon.gif) no-repeat right center;
+        width: 23px;
+        height: 37px;
+    }
+
+    .marquee .inner {
+        width: 100%;
+        display: block;
+        overflow: scroll
+    }
+
+        .marquee .inner ul {
+            clear: both;
+            padding: 0px;
+            overflow: hidden
+        }
+        /*纵向滚动时必须设置ul的height属性*/
+        .marquee .inner li {
+            overflow: hidden
+        }
+            /*横向必须设置li宽度，纵向时必须设置li高度*/
+            .marquee .inner li.hx {
+                float: left;
+                text-align: center;
+            }
+            /*横向滚动li样式*/
+            .marquee .inner li.zx {
+                text-align: left;
+            }
+/*纵向滚动li样式*/

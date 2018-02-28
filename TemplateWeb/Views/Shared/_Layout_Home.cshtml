@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>模板 - 前台</title>
+    @Styles.Render("~/bundles/css-lib")
+    @Styles.Render("~/bundles/css-public")
+    @Scripts.Render("~/bundles/script-lib")
+    @Scripts.Render("~/bundles/script-public")
+
+    <link href="~/Content/home/home-public.css" rel="stylesheet" />
+    <link href="~/Content/home/home-layout.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="tp-nav">
+        <a class="tp-nav-logo" href="/Home/Index">
+            <img src="~/Upload/setting/test.png" />
+        </a>
+        <ul class="tp-nav-nav">
+            @for (int i = 0; i < 6; i++)
+            {
+                <li>
+                    <a>
+                        四个字字
+                    </a>
+                    <ul class="tp-nav-subnav">
+                        <li><a>四个字字</a></li>
+                        <li><a>四个字字</a></li>
+                        <li><a>四个字字</a></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+        <div class="tp-nav-account">
+            <span class="glyphicon glyphicon-user"></span>
+            <a href="/Home/Index">登陆</a>&nbsp;/&nbsp;
+            <a href="/Home/Index">注册</a>
+        </div>
+    </nav>
+    <marquee class="tp-notice" direction="left">通知公告：网站开发中，功能陆续上线。</marquee>
+    <header id="home-carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#home-carousel" data-slide-to="1"></li>
+            <li data-target="#home-carousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <a href="http://www.baidu.com">
+                    <img class="tp-carousel-img" src="~/Upload/setting/logo-2018-02-13-10-32-23-b02e3d421fbe40acb9670d732216e702.jpg" />
+                </a>
+            </div>
+            <div class="item">
+                <a href="http://www.baidu.com">
+                    <img src="~/Upload/setting/logo-2018-02-13-10-32-23-b02e3d421fbe40acb9670d732216e702.jpg" />
+                </a>
+            </div>
+            <div class="item">
+                <a href="http://www.baidu.com">
+                    <img src="~/Upload/setting/logo-2018-02-13-10-32-23-b02e3d421fbe40acb9670d732216e702.jpg" />
+                </a>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#home-carousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#home-carousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </header>
+    @RenderBody()
+    <footer class="tp-footer">
+        <div class="tp-footer-wrapper">
+            <ul class="tp-footer-link">
+                @for (int i = 0; i < 4; i++)
+                {
+                    <li>
+                        <a>
+                            123123123
+                        </a>
+                        <ul class="tp-footer-sublink">
+                            <li><a>123</a></li>
+                            <li><a>123</a></li>
+                            <li><a>123</a></li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+            <div class="tp-footer-qr">
+                <img src="~/Upload/setting/logo-2018-02-13-10-32-23-b02e3d421fbe40acb9670d732216e702.jpg" />
+                <p>微信公众平台</p>
+            </div>
+        </div>
+        <div class="tp-footer-bottom">
+            微信公众平台微信公众平台微信公众平台微信公众平台
+        </div>
+    </footer>
+</body>
+</html>

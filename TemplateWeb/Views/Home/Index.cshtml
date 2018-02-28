@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Home.cshtml";
+}
+
+
+<script>
+    function marquee(boxid, direction, ITimes) {
+        var movedistance = 0, alldistance = 0;
+        var $boxid = $("#" + boxid);
+        var $inner = $boxid.children(".inner")
+        var $boxid_ul = $inner.children("ul");
+        var $boxid_ul_li = $boxid_ul.children("li");
+        var $prevarr = $boxid.children(".prev");
+        var $nextarr = $boxid.children(".next");
+        if (direction == "left" || direction == "right") {
+            movedistance = parseInt($boxid_ul_li.eq(0).innerWidth());
+            $boxid_ul_li.addClass("hx");
+        }
+        else {
+            movedistance = parseInt($boxid_ul_li.eq(0).innerHeight());
+            $boxid_ul_li.addClass("zx");
+        }
+        var nums = $boxid_ul_li.size();
+        var alldistance = movedistance * nums;
+        if (direction == "left" || direction == "right") {
+            if (alldistance < $inner.innerWidth()) {
+                return;
+            }
+        }
+        else {
+            if (alldistance < $inner.innerHeight()) {
+                return;
+            }
+        }
+        var itemwidth = $boxid_ul_li.eq(0).css("width");
+        var itemheight = $boxid_ul_li.eq(0).css("height");
+        var con = $boxid_ul.html();
+        $boxid_ul.prepend(con);
+        $boxid_ul.append(con);
+        if (direction == "left" || direction == "right") {
+            $boxid_ul.css("width", nums * movedistance * 3 + "px");
+            $inner.scrollLeft(alldistance);
+            $prevarr.click(function () { scroll("left"); });
+            $nextarr.click(function () { scroll("right"); });
+        }
+        else {
+            $boxid_ul.css("height", nums * movedistance * 3 + "px");
+            $inner.scrollTop(alldistance);
+            $prevarr.click(function () { scroll("up"); });
+            $nextarr.click(function () { scroll("down"); });
+        }
+        function scroll(dir) {
+            if (dir == "left") {
+                $inner.animate({ scrollLeft: "+=" + movedistance + "px" }, "normal", function () { reduction(); });
+            }
+            else if (dir == "right") {
+                $inner.animate({ scrollLeft: "-=" + movedistance + "px" }, "normal", function () { reduction(); });
+            }
+            else if (dir == "up") {
+                $inner.animate({ scrollTop: "+=" + movedistance + "px" }, "normal", function () { reduction(); });
+            }
+            else if (dir == "down") {
+                $inner.animate({ scrollTop: "-=" + movedistance + "px" }, "normal", function () { reduction(); });
+            }
+        }
+
+        function reduction() {
+            var scrolledLength = 0;
+            if (direction == "left" || direction == "right") {
+                scrolledLength = $inner.scrollLeft();
+                if (scrolledLength >= alldistance * 2 || scrolledLength <= 0) {
+                    $inner.scrollLeft(alldistance);
+                }
+            }
+            else {
+                scrolledLength = $inner.scrollTop();
+                if (scrolledLength >= alldistance * 2 || scrolledLength <= 0) {
+                    $inner.scrollTop(alldistance);
+                }
+            }
+        }
+
+        var it = setInterval(function () { scroll(direction); }, ITimes);
+        $boxid.mouseenter(function () {
+            clearInterval(it);
+        });
+        $boxid.mouseleave(function () {
+            it = setInterval(function () { scroll(direction); }, ITimes);
+        });
+
+    }
+</script>
+<div id="module_200" class="module_box">
+    <div class="module_box_inner">
+        <div class="module_title">
+            <span class="module_sign">合作伙伴</span>
+            <span class="module_more"></span>
+        </div>
+        <div id="module_content_200" class="module_content module_content_introduct">
+            <div>
+                <div class="gonggao marquee" id="m_200_0">
+                    <a class="prev"></a>
+                    <a class="next"></a>
+                    <div class="inner">
+                        <ul>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                            <li class="hx"><a><img style="width:100px;height:50px;" src="~/Upload/setting/test.png" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                                marquee("m_200_0", "left", 1500);
+                </script>
+            </div>
+        </div>
+        <div class="module_footer">
+            <span class="l"></span>
+            <span class="r"></span>
+        </div>
+    </div>
+</div>
+
+
