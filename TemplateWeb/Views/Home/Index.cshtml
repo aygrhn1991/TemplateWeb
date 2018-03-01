@@ -4,23 +4,45 @@
     Layout = "~/Views/Shared/_Layout_Home.cshtml";
 }
 
-<div id="wrap1" class="wrap">
-    <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-    </ul>
+
+<div class="tp-partner">
+    @for (int i = 0; i < 13; i++)
+    {
+        <a class="tp-partner-item" href="http://www.baidu.com">
+            <img src="~/Upload/setting/test.png" />
+            @*<p>爱学堂</p>*@
+        </a>
+    }
 </div>
-<script type="text/javascript">
+@*<style>
+
+    .dowebok {
+        width: 790px;
+        margin: 100px auto;
+        font-size: 0;
+    }
+
+        .dowebok img {
+            height:100px;
+            margin-left: 10px;
+            vertical-align: top;
+        }
+</style>
+<div class="tp-partner">
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+    <a href="http://www.baidu.com"><img src="~/Upload/setting/test.png" /></a>
+</div>*@
+<script>
     $(function () {
-        $('#wrap1').marquee();
-    })
+        $('.tp-partner').liMarquee();
+    });
 </script>
-
-

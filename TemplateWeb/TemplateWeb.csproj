@@ -149,7 +149,8 @@
     <Content Include="Plugin\layer\theme\default\loading-1.gif" />
     <Content Include="Plugin\layer\theme\default\loading-2.gif" />
     <Content Include="Plugin\layer\layer.js" />
-    <Content Include="Plugin\marquee\js\marquee.js" />
+    <Content Include="Plugin\marquee\css\liMarquee.css" />
+    <Content Include="Plugin\marquee\js\liMarquee.js" />
     <Content Include="Plugin\ngtable\css\ng-table.css" />
     <Content Include="Plugin\ngtable\css\ng-table.min.css" />
     <Content Include="Plugin\ngtable\js\ng-table.js" />
@@ -354,6 +355,8 @@
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\home\home-index.js" />
+    <Content Include="Scripts\home\home-public.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Web.config" />
@@ -427,6 +430,8 @@
     <Content Include="Views\Admin\NoticeList.cshtml" />
     <Content Include="Views\Shared\_Layout_Home.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Partial_Home_Footer.cshtml" />
+    <Content Include="Views\Shared\_Partial_Home_Header.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -435,7 +440,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Plugin\marquee\css\" />
     <Folder Include="Plugin\marquee\images\" />
     <Folder Include="Plugin\metismenu\images\" />
     <Folder Include="Plugin\ngtable\images\" />

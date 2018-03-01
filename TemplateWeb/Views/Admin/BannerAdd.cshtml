@@ -4,9 +4,12 @@
 }
 
 @Styles.Render("~/bundles/css-lib")
-@Styles.Render("~/bundles/css-public")
 @Scripts.Render("~/bundles/script-lib")
-@Scripts.Render("~/bundles/script-public")
+
+<script src="~/Plugin/layer/layer.js"></script>
+
+<link href="~/Plugin/ngtable/css/ng-table.css" rel="stylesheet" />
+<script src="~/Plugin/ngtable/js/ng-table.js"></script>
 
 <link href="~/Plugin/easyupload/css/easy-upload.css" rel="stylesheet" />
 <script src="~/Plugin/easyupload/js/easyUpload.js"></script>
@@ -30,5 +33,5 @@
             <button type="button" class="btn btn-success" ng-click="Save()">保&nbsp;存</button>
         </div>
     </form>
-    
+
 </div>

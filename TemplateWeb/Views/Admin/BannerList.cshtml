@@ -3,9 +3,12 @@
     Layout = null;
 }
 @Styles.Render("~/bundles/css-lib")
-@Styles.Render("~/bundles/css-public")
 @Scripts.Render("~/bundles/script-lib")
-@Scripts.Render("~/bundles/script-public")
+
+<script src="~/Plugin/layer/layer.js"></script>
+
+<link href="~/Plugin/ngtable/css/ng-table.css" rel="stylesheet" />
+<script src="~/Plugin/ngtable/js/ng-table.js"></script>
 
 <link href="~/Content/admin/admin-public.css" rel="stylesheet" />
 <script src="~/Scripts/admin/admin-public.js"></script>
@@ -28,7 +31,7 @@
             <tr ng-repeat="d in data">
                 <td>{{$index+1}}</td>
                 <td>
-                    <img src="{{d.path}}" class="tp-table-img"/>
+                    <img src="{{d.path}}" class="tp-table-img" />
                 </td>
                 <td>
                     <input type="text" ng-model="d.title" />

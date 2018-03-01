@@ -90,13 +90,13 @@
     font-size: 12px;
 }
 
-#home-carousel {
-    height: 300px;
+#tp-carousel {
+    /*height: 300px;*/
     margin-top: -5px;
 }
 
-    #home-carousel img {
-        height: 300px;
+    #tp-carousel img {
+        /*height: 300px;*/
         margin: 0 auto;
     }
 
@@ -160,114 +160,22 @@
     padding: 10px 0;
     color: white;
 }
-/*----------------------*/
-/*.demo {
+
+.tp-partner {
     width: 1000px;
-}
-
-strong {
-    font-weight: 700;
-}
-
-:focus {
-    outline: 0;
-}
-
-#mod_header, #mod_main, #mod_footer {
-    width: 900px;
-    margin: 0 auto 20px;
-}
-
-#mod_footer {
     margin: 0 auto;
-    padding-bottom: 20px;
-    font-family: Arial;
 }
 
-#mod_header h1 {
-    font: 700 22px/2 'Microsoft YaHei';
-    text-align: center;
+.tp-partner-item {
+    width: 200px;
+    height: 100px;
 }
 
-#desc pre {
-    font: 13px/15px 'Lucida Console',Arial;
-    color: #7F9F7F;
-}
-
-.mod {
-    border-bottom: 5px dashed #f00;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
-
-.mod_hd h2 {
-    margin-bottom: 10px;
-    padding: 0 20px;
-    font: 700 16px/2 'Microsoft YaHei',SimSun;
-    color: #fff;
-    background: #104778;
-    text-shadow: 1px 1px 1px #8DB2E3;
-}
-
-.mod_ft strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.mod_ft ul {
-    margin-bottom: 10px;
-}
-
-.mod_ft li {
-    list-style: disc inside none;
-    line-height: 20px;
-}
-
-.demo, .code {
-    margin-bottom: 10px;
-}
-
-    .code textarea {
-        margin: 0;
-        border: 0 none;
-        padding: 0;
-        width: 100%;
-        height: 150px;
-        font: 12px/1.4 'Lucida Console',Arial;
-        background: #ddd;
-        resize: none;
-    }
-
-.to_top {
-    text-align: right;
-}
-
-    .to_top a {
-        text-decoration: none;
-    }
-
-#mod_footer {
-    text-align: center;
-}*/
-.wrap {
-    width:100%;
-}.wrap, .box {
-    margin-bottom: 10px;
-}
-
-    .wrap ul, .wrap .ul {
-        overflow: hidden;
-        clear: both;
-        *zoom: 1;
-    }
-
-    .wrap li, .wrap .li {
-        list-style: none;
-        width: 120px;
+    .tp-partner-item > img {
+        width: 180px;
         height: 80px;
-        padding: 5px;
-        background: #ccc;
-        margin: 2px 5px 10px 5px;
-        font: 700 30px/80px Arial;
+    }
+
+    .tp-partner-item > p {
         text-align: center;
     }
