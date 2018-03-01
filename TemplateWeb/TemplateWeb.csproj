@@ -149,8 +149,8 @@
     <Content Include="Plugin\layer\theme\default\loading-1.gif" />
     <Content Include="Plugin\layer\theme\default\loading-2.gif" />
     <Content Include="Plugin\layer\layer.js" />
-    <Content Include="Plugin\marquee\css\liMarquee.css" />
-    <Content Include="Plugin\marquee\js\liMarquee.js" />
+    <Content Include="Plugin\limarquee\css\liMarquee.css" />
+    <Content Include="Plugin\limarquee\js\liMarquee.js" />
     <Content Include="Plugin\ngtable\css\ng-table.css" />
     <Content Include="Plugin\ngtable\css\ng-table.min.css" />
     <Content Include="Plugin\ngtable\js\ng-table.js" />
@@ -440,7 +440,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Plugin\marquee\images\" />
+    <Folder Include="Plugin\limarquee\images\" />
     <Folder Include="Plugin\metismenu\images\" />
     <Folder Include="Plugin\ngtable\images\" />
     <Folder Include="Plugin\pace\images\" />

@@ -7,14 +7,15 @@
     @Styles.Render("~/bundles/css-lib")
     @Scripts.Render("~/bundles/script-lib")
 
-    <link href="~/Plugin/marquee/css/liMarquee.css" rel="stylesheet" />
-    <script src="~/Plugin/marquee/js/liMarquee.js"></script>
+    <link href="~/Plugin/limarquee/css/liMarquee.css" rel="stylesheet" />
+    <script src="~/Plugin/limarquee/js/liMarquee.js"></script>
 
     <link href="~/Content/home/home-public.css" rel="stylesheet" />
+    <script src="~/Scripts/home/home-public.js"></script>
     <link href="~/Content/home/home-layout.css" rel="stylesheet" />
-
+    <script src="~/Scripts/home/home-index.js"></script>
 </head>
-<body>
+<body ng-app="app" ng-controller="index">
     @Html.Partial("_Partial_Home_Header")
     @RenderBody()
     @Html.Partial("_Partial_Home_Footer")

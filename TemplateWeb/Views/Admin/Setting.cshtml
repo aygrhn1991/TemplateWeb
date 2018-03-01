@@ -23,14 +23,14 @@
                 <td class="text-right"><strong>logo：</strong></td>
                 <td>
                     <input id="logo" type="file" class="tp-table-input" /><a class="tp-table-a" ng-click="Upload(fileType.logo)">上传</a>
-                    <img src="{{data.logo}}" class="tp-table-img" ng-show="data.logo!=null" />
+                    <img ng-src="{{data.logo}}" class="tp-table-img" ng-show="data.logo!=null" />
                 </td>
             </tr>
             <tr>
                 <td class="text-right"><strong>favicon：</strong></td>
                 <td>
                     <input id="favicon" type="file" class="tp-table-input" /><a class="tp-table-a" ng-click="Upload(fileType.favicon)">上传</a>
-                    <img src="{{data.favicon}}" class="tp-table-img" ng-show="data.favicon!=null" />
+                    <img ng-src="{{data.favicon}}" class="tp-table-img" ng-show="data.favicon!=null" />
                 </td>
             </tr>
             <tr>

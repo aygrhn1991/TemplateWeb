@@ -33,7 +33,7 @@
             <tr ng-repeat="d in data">
                 <td>{{$index+1}}</td>
                 <td>
-                    <img src="{{d.path}}" class="tp-table-img" />
+                    <img ng-src="{{d.path}}" class="tp-table-img" />
                 </td>
                 <td>
                     <input type="text" ng-model="d.title" />

@@ -25,7 +25,7 @@
                     <i class="fa fa-fw fa-send tp-table-fa tp-table-fa-select" ng-if="d.top" ng-click="SetTop(d)"></i>
                     <i class="fa fa-fw fa-send-o tp-table-fa" ng-if="!d.top" ng-click="SetTop(d)"></i>
                 </td>
-                <td title="'图片'"><img src="{{d.path}}" class="tp-table-img" /></td>
+                <td title="'图片'"><img ng-src="{{d.path}}" class="tp-table-img" /></td>
                 <td title="'新闻分类'" sortable="'type'" filter="{type:'text'}">{{d.type}}</td>
                 <td title="'标题'" sortable="'title'" filter="{title:'text'}">{{d.title}}</td>
                 <td title="'发布日期'" sortable="'datetime'" filter="{datetime:'text'}">{{d.datetime}}</td>

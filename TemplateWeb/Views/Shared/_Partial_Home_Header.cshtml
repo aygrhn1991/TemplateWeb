@@ -3,19 +3,12 @@
         <img src="~/Upload/setting/test.png" />
     </a>
     <ul class="tp-nav-nav">
-        @for (int i = 0; i < 6; i++)
-        {
-            <li>
-                <a>
-                    四个字字
-                </a>
-                <ul class="tp-nav-subnav">
-                    <li><a>四个字字</a></li>
-                    <li><a>四个字字</a></li>
-                    <li><a>四个字字</a></li>
-                </ul>
-            </li>
-        }
+        <li ng-repeat="n in param.nav">
+            <a href="{{n.mode==0?(n.url==null||n.url==''?'javascript:void(0);':n.url):n.mode==1?'/Home/Pagge?id='+n.page_id:'javascript:void(0);'}}" ng-bind="n.title"></a>
+            <ul ng-if="n.mode==2" class="tp-nav-subnav">
+                <li ng-repeat="sn in n.subnav"><a href="{{sn.mode==0?(sn.url==null||sn.url==''?'javascript:void(0);':sn.url):sn.mode==1?'/Home/Pagge?id='+sn.page_id:'javascript:void(0);'}}" ng-bind="sn.title"></a></li>
+            </ul>
+        </li>
     </ul>
     <div class="tp-nav-account">
         <span class="glyphicon glyphicon-user"></span>
@@ -24,11 +17,11 @@
     </div>
 </nav>
 <marquee class="tp-notice" direction="left">通知公告：网站开发中，功能陆续上线。</marquee>
-<div id="tp-carousel" class="carousel slide" data-ride="carousel">
+<div id="tp-banner" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#tp-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#tp-carousel" data-slide-to="1"></li>
-        <li data-target="#tp-carousel" data-slide-to="2"></li>
+        <li data-target="#tp-banner" data-slide-to="0" class="active"></li>
+        <li data-target="#tp-banner" data-slide-to="1"></li>
+        <li data-target="#tp-banner" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
         <div class="item active">
@@ -47,10 +40,10 @@
             </a>
         </div>
     </div>
-    <a class="left carousel-control" href="#tp-carousel" data-slide="prev">
+    <a class="left carousel-control" href="#tp-banner" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
-    <a class="right carousel-control" href="#tp-carousel" data-slide="next">
+    <a class="right carousel-control" href="#tp-banner" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 </div>
