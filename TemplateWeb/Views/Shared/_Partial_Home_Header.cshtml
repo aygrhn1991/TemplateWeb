@@ -1,6 +1,6 @@
 ﻿<nav class="tp-nav">
     <a class="tp-nav-logo" href="/Home/Index">
-        <img src="~/Upload/setting/test.png" />
+        <img ng-src="{{param.param.logo}}" />
     </a>
     <ul class="tp-nav-nav">
         <li ng-repeat="n in param.nav">
@@ -16,27 +16,15 @@
         <a href="/Home/Index">注册</a>
     </div>
 </nav>
-<marquee class="tp-notice" direction="left">通知公告：网站开发中，功能陆续上线。</marquee>
+<marquee class="tp-notice" direction="left">公告：<span ng-repeat="n in param.notice" ng-bind="($index+1)+'.'+n.content+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></span></marquee>
 <div id="tp-banner" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#tp-banner" data-slide-to="0" class="active"></li>
-        <li data-target="#tp-banner" data-slide-to="1"></li>
-        <li data-target="#tp-banner" data-slide-to="2"></li>
+        <li data-target="#tp-banner" data-slide-to="{{$index}}" ng-class="{'active':$index==0}" ng-repeat="b in param.banner"></li>
     </ol>
     <div class="carousel-inner">
-        <div class="item active">
-            <a href="http://www.baidu.com">
-                <img src="~/Upload/setting/test.png" />
-            </a>
-        </div>
-        <div class="item">
-            <a href="http://www.baidu.com">
-                <img src="~/Upload/setting/test.png" />
-            </a>
-        </div>
-        <div class="item">
-            <a href="http://www.baidu.com">
-                <img src="~/Upload/setting/test.png" />
+        <div class="item" ng-class="{'active':$index==0}" ng-repeat="b in param.banner">
+            <a href="{{b.mode==0?(b.url==null||b.url==''?'javascript:void(0);':b.url):'/Home/Pagge?id='+b.page_id}}">
+                <img ng-src="{{b.path}}" />
             </a>
         </div>
     </div>

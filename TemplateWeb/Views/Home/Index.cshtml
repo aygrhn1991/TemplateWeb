@@ -6,17 +6,9 @@
 
 
 <div class="tp-partner">
-    @for (int i = 0; i < 13; i++)
-    {
-        <a class="tp-partner-item" href="http://www.baidu.com">
-            <img src="~/Upload/setting/test.png" />
-            <p>爱学堂</p>
-        </a>
-    }
-    <script>
-        $(function () {
-            $('.tp-partner').liMarquee();
-        });
-    </script>
+    <a class="tp-partner-item" href="{{p.url==null||p.url==''?'javascript:void(0);':p.url}}" ng-repeat="p in param.partner">
+        <img ng-src="{{p.path}}" />
+        <div ng-bind="p.title"></div>
+    </a>
 </div>
 

@@ -96,7 +96,7 @@
 }
 
     #tp-banner img {
-        /*height: 300px;*/
+        height: 300px;
         margin: 0 auto;
     }
 
@@ -106,6 +106,7 @@
 
 .tp-footer-wrapper {
     width: 1000px;
+    min-height: 210px;
     margin: 0 auto;
     padding: 30px 10px;
 }
@@ -120,6 +121,7 @@
     .tp-footer-link > li {
         display: inline-block;
         width: 200px;
+        vertical-align: top;
         line-height: 40px;
     }
 
@@ -144,7 +146,6 @@
     color: white;
     text-align: center;
     font-size: 12px;
-    padding-top: 20px;
 }
 
     .tp-footer-qr img {
@@ -163,7 +164,8 @@
 
 .tp-partner {
     width: 1000px;
-    margin: 0 auto;
+    margin: 20px auto;
+    height: 120px !important;
 }
 
 .tp-partner-item {
@@ -178,8 +180,9 @@
         height: 90px;
     }
 
-    .tp-partner-item > p {
+    .tp-partner-item > div {
         text-align: center;
         font-size: 14px;
-        color:black;
+        color: black;
+        line-height: 30px;
     }

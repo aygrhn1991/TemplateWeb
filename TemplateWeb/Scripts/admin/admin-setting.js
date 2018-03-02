@@ -3,7 +3,8 @@ app.controller('setting', function ($scope, $http, NgTableParams) {
     $scope.Init = function () {
         $scope.fileType = {
             logo: 'logo',
-            favicon: 'favicon'
+            favicon: 'favicon',
+            qr: 'qr'
         };
         $scope.LoadData();
     };
@@ -29,6 +30,10 @@ app.controller('setting', function ($scope, $http, NgTableParams) {
         }
         if (e == $scope.fileType.favicon && !/\.(ico)$/.test(file.name)) {
             alert('请上传.ico格式文件');
+            return;
+        }
+        if (e == $scope.fileType.qr && !/\.(gif|jpg|png|GIF|JPG|PNG)$/.test(file.name)) {
+            alert('文件格式不支持');
             return;
         }
         window.LayerOpen();

@@ -69,6 +69,12 @@ namespace TemplateWeb.Controllers
                     q.url,
                 }),
             });
+            var paramList = entity.lay_setting.ToArray();
+            Dictionary<string, string> param = new Dictionary<string, string>();
+            foreach (var item in paramList)
+            {
+                param.Add(item.key, item.value);
+            }
             return Json(new
             {
                 nav,
@@ -76,6 +82,7 @@ namespace TemplateWeb.Controllers
                 banner,
                 partner,
                 link,
+                param,
             }, JsonRequestBehavior.AllowGet);
         }
     }

@@ -34,6 +34,13 @@
                 </td>
             </tr>
             <tr>
+                <td class="text-right"><strong>二维码：</strong></td>
+                <td>
+                    <input id="qr" type="file" class="tp-table-input" /><a class="tp-table-a" ng-click="Upload(fileType.qr)">上传</a>
+                    <img ng-src="{{data.qr}}" class="tp-table-img" ng-show="data.qr!=null" />
+                </td>
+            </tr>
+            <tr>
                 <td class="text-right"><strong>站点名：</strong></td>
                 <td>
                     <input type="text" ng-model="data.sitename" /><a class="tp-table-a" ng-click="Save('sitename',data.sitename)">修改</a>
