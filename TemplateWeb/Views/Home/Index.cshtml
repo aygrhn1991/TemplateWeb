@@ -3,12 +3,59 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_Home.cshtml";
 }
-
-
-<div class="tp-partner">
-    <a class="tp-partner-item" href="{{p.url==null||p.url==''?'javascript:void(0);':p.url}}" ng-repeat="p in param.partner">
-        <img ng-src="{{p.path}}" />
-        <div ng-bind="p.title"></div>
-    </a>
+<br />
+<div class="tp-index">
+    <div class="tp-index-title">
+        测试测试
+        <a class="tp-index-more">
+            更多<span class="glyphicon glyphicon-menu-right"></span>
+        </a>
+    </div>
+    <ul class="tp-product">
+        @for (int i = 0; i < 4; i++)
+        {
+            <li>
+                <a class="tp-product-item">
+                    <div class="tp-product-top">推荐</div>
+                    <div class="tp-product-img">
+                        <img src="~/Upload/setting/qr-2018-03-02-23-02-07-0c0a01e28f8c4e5cb4ac579e5f3b939e.jpg" />
+                    </div>
+                    <div class="tp-product-title">测试测试</div>
+                </a>
+            </li>
+        }
+    </ul>
 </div>
-
+<div class="tp-index">
+    <div class="tp-index-title">
+        测试测试
+        <a class="tp-index-more">
+            更多<span class="glyphicon glyphicon-menu-right"></span>
+        </a>
+    </div>
+    <ul class="tp-news">
+        @for (int i = 0; i < 4; i++)
+        {
+            <li>
+                <a class="tp-news-item">
+                    <div class="tp-news-top">推荐</div>
+                    <div class="tp-news-img">
+                        <img src="~/Upload/setting/qr-2018-03-02-23-02-07-0c0a01e28f8c4e5cb4ac579e5f3b939e.jpg" />
+                    </div>
+                    <div class="tp-news-content">
+                        <div class="tp-news-title">测试测试测试测试测试测试测试测试测试测试</div>
+                        <div class="tp-news-description">
+                            测试测试测试测试测试
+                            测试测试测试测试测试
+                            测试测试测试测试测试
+                            测试测试测试测试测试
+                        </div>
+                        <div class="tp-news-bottom">
+                            [2018-8-8]&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open"></span>&nbsp;123
+                        </div>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

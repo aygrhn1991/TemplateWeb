@@ -16,7 +16,7 @@
         <a href="/Home/Index">注册</a>
     </div>
 </nav>
-<marquee class="tp-notice" direction="left">公告：<span ng-repeat="n in param.notice" ng-bind="($index+1)+'.'+n.content+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></span></marquee>
+<marquee class="tp-notice" direction="left">通知：<span ng-repeat="n in param.notice" ng-bind="($index+1)+'.'+n.content+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></span></marquee>
 <div id="tp-banner" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#tp-banner" data-slide-to="{{$index}}" ng-class="{'active':$index==0}" ng-repeat="b in param.banner"></li>
