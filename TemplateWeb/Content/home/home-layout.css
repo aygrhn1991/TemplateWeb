@@ -109,6 +109,7 @@
     width: 1000px;
     margin: 20px auto;
     height: 120px !important;
+    background-color: #f3f3f3;
 }
 
 .tp-partner-item {
@@ -212,13 +213,13 @@
         left: 0;
         display: block;
         width: 5px;
-        height: 20px;
+        height: 24px;
         background-color: #ff4c4c;
     }
 
 .tp-index-more {
     float: right;
-    padding-top: 6px;
+    padding-top: 10px;
     font-size: 14px;
     font-weight: normal;
     color: #ff4c4c;
@@ -326,6 +327,10 @@
     overflow: hidden;
 }
 
+    .tp-news-item:hover {
+        background-color: #f3f3f3;
+    }
+
 .tp-news-top {
     position: absolute;
     z-index: 1;
@@ -352,16 +357,17 @@
 .tp-news-content {
     position: absolute;
     top: 0;
-    left: 190px;
+    left: 200px;
     width: 280px;
     height: 120px;
-    color: black;
+    color: #4c4c4c;
     line-height: 24px;
     font-size: 14px;
 }
 
 .tp-news-title {
     font-size: 18px;
+    font-weight: bold;
     line-height: 36px;
     overflow: hidden;
     text-overflow: ellipsis;

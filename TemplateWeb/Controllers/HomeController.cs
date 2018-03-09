@@ -85,5 +85,44 @@ namespace TemplateWeb.Controllers
                 param,
             }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult IndexContent_Get()
+        {
+            var product = entity.module_product_type.OrderByDescending(p => p.id).ToArray().Select(p => new
+            {
+                p.id,
+                p.name,
+                product = entity.module_product.Where(q => q.type_id == p.id).OrderByDescending(q => q.top).ThenBy(q => q.id).Take(4).Select(q => new
+                {
+                    q.id,
+                    q.type_id,
+                    q.name,
+                    q.path,
+                    q.description,
+                    q.top,
+                }),
+            });
+            var news = entity.module_news_type.OrderByDescending(p => p.id).ToArray().Select(p => new
+            {
+                p.id,
+                p.name,
+                news = entity.module_news.Where(q => q.type_id == p.id).OrderByDescending(q => q.top).ThenBy(q => q.id).Take(4).ToArray().Select(q => new
+                {
+                    q.id,
+                    q.type_id,
+                    q.title,
+                    q.author,
+                    datetime = q.datetime.Value.ToString("yyyy-MM-dd"),
+                    q.path,
+                    q.description,
+                    q.top,
+                    q.views,
+                }),
+            });
+            return Json(new
+            {
+                product,
+                news,
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

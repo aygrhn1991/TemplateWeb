@@ -3,59 +3,53 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_Home.cshtml";
 }
-<br />
-<div class="tp-index">
-    <div class="tp-index-title">
-        测试测试
-        <a class="tp-index-more">
-            更多<span class="glyphicon glyphicon-menu-right"></span>
-        </a>
-    </div>
-    <ul class="tp-product">
-        @for (int i = 0; i < 4; i++)
-        {
-            <li>
+<div ng-controller="index">
+    <br />
+    <div class="tp-index" ng-repeat="pt in content.product">
+        <div class="tp-index-title">
+            <span ng-bind="pt.name"></span>
+            <a class="tp-index-more">
+                更多<span class="glyphicon glyphicon-menu-right"></span>
+            </a>
+        </div>
+        <ul class="tp-product">
+            <li ng-repeat="p in pt.product">
                 <a class="tp-product-item">
-                    <div class="tp-product-top">推荐</div>
+                    <div class="tp-product-top" ng-if="p.top==true">推荐</div>
                     <div class="tp-product-img">
-                        <img src="~/Upload/setting/qr-2018-03-02-23-02-07-0c0a01e28f8c4e5cb4ac579e5f3b939e.jpg" />
+                        <img ng-src="{{p.path}}" />
                     </div>
-                    <div class="tp-product-title">测试测试</div>
+                    <div class="tp-product-title" ng-bind="p.name"></div>
                 </a>
             </li>
-        }
-    </ul>
-</div>
-<div class="tp-index">
-    <div class="tp-index-title">
-        测试测试
-        <a class="tp-index-more">
-            更多<span class="glyphicon glyphicon-menu-right"></span>
-        </a>
+        </ul>
     </div>
-    <ul class="tp-news">
-        @for (int i = 0; i < 4; i++)
-        {
-            <li>
+    <div class="tp-index" ng-repeat="nt in content.news">
+        <div class="tp-index-title">
+            <span ng-bind="nt.name"></span>
+            <a class="tp-index-more">
+                更多<span class="glyphicon glyphicon-menu-right"></span>
+            </a>
+        </div>
+        <ul class="tp-news">
+            <li ng-repeat="n in nt.news">
                 <a class="tp-news-item">
-                    <div class="tp-news-top">推荐</div>
+                    <div class="tp-news-top" ng-if="n.top==true">推荐</div>
                     <div class="tp-news-img">
-                        <img src="~/Upload/setting/qr-2018-03-02-23-02-07-0c0a01e28f8c4e5cb4ac579e5f3b939e.jpg" />
+                        <img ng-src="{{n.path}}" />
                     </div>
                     <div class="tp-news-content">
-                        <div class="tp-news-title">测试测试测试测试测试测试测试测试测试测试</div>
-                        <div class="tp-news-description">
-                            测试测试测试测试测试
-                            测试测试测试测试测试
-                            测试测试测试测试测试
-                            测试测试测试测试测试
-                        </div>
+                        <div class="tp-news-title" ng-bind="n.title"></div>
+                        <div class="tp-news-description" ng-bind="n.description"></div>
                         <div class="tp-news-bottom">
-                            [2018-8-8]&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open"></span>&nbsp;123
+                            [<span ng-bind="n.datetime"></span>]&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;
+                            <span ng-bind="n.views"></span>
                         </div>
                     </div>
                 </a>
             </li>
-        }
-    </ul>
+        </ul>
+    </div>
 </div>
+
