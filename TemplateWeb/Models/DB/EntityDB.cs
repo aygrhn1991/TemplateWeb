@@ -8,7 +8,7 @@ namespace TemplateWeb.Models.DB
     public partial class EntityDB : DbContext
     {
         public EntityDB()
-            : base("name=EntityDB_Local")
+            : base("name=EntityDB")
         {
         }
 

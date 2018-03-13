@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TemplateWeb.Models.DB;
 
 namespace TemplateWeb
 {
@@ -15,6 +16,8 @@ namespace TemplateWeb
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            EntityDB entity = new EntityDB();
+            entity.Database.CreateIfNotExists();
         }
     }
 }
