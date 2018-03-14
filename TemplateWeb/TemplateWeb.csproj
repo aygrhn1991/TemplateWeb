@@ -376,11 +376,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Extension\AdminAuthorizeAttribute.cs" />
-    <Compile Include="Extension\DES.cs" />
+    <Compile Include="Extension\AdminManager.cs" />
+    <Compile Include="Extension\DESTool.cs" />
     <Compile Include="Extension\SysTool.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account\AdminModel.cs" />
+    <Compile Include="Models\DB\account_admin.cs" />
     <Compile Include="Models\DB\EntityDB.cs" />
     <Compile Include="Models\DB\lay_banner.cs" />
     <Compile Include="Models\DB\lay_link_link.cs" />
@@ -412,7 +415,6 @@
     <Content Include="Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
-    <Content Include="Views\Admin\Test.cshtml" />
     <Content Include="Views\Admin\NavContent.cshtml" />
     <Content Include="Views\Admin\NavsubContent.cshtml" />
     <Content Include="Views\Admin\BannerContent.cshtml" />
@@ -440,6 +442,7 @@
     <Content Include="Views\Shared\_Layout_Mobile.cshtml" />
     <Content Include="Views\Mobile\Index.cshtml" />
     <Content Include="Views\Shared\_Partial_Mobile_Footer.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

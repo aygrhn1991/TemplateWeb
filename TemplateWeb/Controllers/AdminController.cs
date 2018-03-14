@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TemplateWeb.Extension;
+using TemplateWeb.Models.Account;
 using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers
 {
+    [AdminAuthorize]
     public class AdminController : Controller
     {
         EntityDB entity = new EntityDB();
@@ -19,10 +23,51 @@ namespace TemplateWeb.Controllers
         {
             return View();
         }
-        public ActionResult Test()
+
+        #region 登陆
+        [AllowAnonymous]
+        public ActionResult Login()
         {
             return View();
         }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(string phone, string password)
+        {
+            account_admin admin = entity.account_admin.FirstOrDefault(p => p.phone == phone);
+            if (admin != null && DESTool.Encrypt(password) == admin.password)
+            {
+                if (admin.enable == true)
+                {
+                    AdminModel model = new AdminModel()
+                    {
+                        phone = admin.phone,
+                        password = admin.password,
+                        isAuth = true,
+                    };
+                    HttpCookie cookie = new HttpCookie("tpadmin");
+                    string cookieStr = JsonConvert.SerializeObject(model);
+                    cookie.Value = DESTool.Encrypt(cookieStr);
+                    HttpContext.Response.AppendCookie(cookie);
+                    return Json(true, JsonRequestBehavior.AllowGet); ;
+                }
+                else
+                {
+                    return Json("账号已被停用", JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json("账号或密码错误", JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            HttpCookie cookie = new HttpCookie("tpadmin");
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Response.AppendCookie(cookie);
+            return RedirectToAction("Login", "Admin");
+        }
+        #endregion
+
         #region 单页管理
         public ActionResult PageList()
         {

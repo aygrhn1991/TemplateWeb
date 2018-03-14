@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TemplateWeb.Extension;
 using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers
@@ -16,6 +17,12 @@ namespace TemplateWeb.Controllers
             //{
             //    return RedirectToAction("Index", "Mobile");
             //}
+            return View();
+        }
+        public ActionResult Test()
+        {
+            string a = DESTool.Encrypt("aaaa");
+            string b = DESTool.Decrypt(a);
             return View();
         }
         public ActionResult IndexParam_Get()

@@ -12,6 +12,7 @@ namespace TemplateWeb.Models.DB
         {
         }
 
+        public virtual DbSet<account_admin> account_admin { get; set; }
         public virtual DbSet<lay_banner> lay_banner { get; set; }
         public virtual DbSet<lay_link_link> lay_link_link { get; set; }
         public virtual DbSet<lay_link_sublink> lay_link_sublink { get; set; }
