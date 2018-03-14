@@ -375,6 +375,9 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
+    <Compile Include="Extension\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Extension\DES.cs" />
+    <Compile Include="Extension\SysTool.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
