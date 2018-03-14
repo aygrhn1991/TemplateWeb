@@ -2,9 +2,9 @@
     <div class="tp-footer-wrapper">
         <ul class="tp-footer-link">
             <li ng-repeat="l in param.link">
-                <a href="{{l.mode==0?(l.url==null||l.url==''?'javascript:void(0);':l.url):l.mode==1?'/Home/Pagge?id='+l.page_id:'javascript:void(0);'}}" ng-bind="l.title"></a>
+                <a href="{{l.mode==0?(l.url==null||l.url==''?'javascript:void(0);':l.url):l.mode==1?'/Home/Page?id='+l.page_id:'javascript:void(0);'}}" ng-bind="l.title"></a>
                 <ul ng-if="l.mode==2" class="tp-footer-sublink">
-                    <li ng-repeat="sl in l.subnav"><a href="{{sl.mode==0?(sl.url==null||sl.url==''?'javascript:void(0);':sl.url):sl.mode==1?'/Home/Pagge?id='+sl.page_id:'javascript:void(0);'}}" ng-bind="sl.title"></a></li>
+                    <li ng-repeat="sl in l.subnav"><a href="{{sl.mode==0?(sl.url==null||sl.url==''?'javascript:void(0);':sl.url):sl.mode==1?'/Home/Page?id='+sl.page_id:'javascript:void(0);'}}" ng-bind="sl.title"></a></li>
                 </ul>
             </li>
         </ul>

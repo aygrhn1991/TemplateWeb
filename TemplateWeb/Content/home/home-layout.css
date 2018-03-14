@@ -369,3 +369,7 @@
 .tp-news-bottom > span {
     color: gray;
 }
+
+.tp-page-content {
+    padding: 20px 0;
+}

@@ -11,7 +11,7 @@
     </ol>
     <div class="carousel-inner">
         <div class="item" ng-class="{'active':$index==0}" ng-repeat="b in param.banner">
-            <a href="{{b.mode==0?(b.url==null||b.url==''?'javascript:void(0);':b.url):'/Home/Pagge?id='+b.page_id}}">
+            <a href="{{b.mode==0?(b.url==null||b.url==''?'javascript:void(0);':b.url):'/Home/Page?id='+b.page_id}}">
                 <img ng-src="{{b.path}}" />
             </a>
         </div>

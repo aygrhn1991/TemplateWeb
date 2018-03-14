@@ -10,10 +10,10 @@ namespace TemplateWeb.Controllers
     {
         public ActionResult Index()
         {
-            //if (!Request.Browser.IsMobileDevice)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (!Request.Browser.IsMobileDevice)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
     }

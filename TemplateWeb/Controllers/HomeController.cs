@@ -13,10 +13,10 @@ namespace TemplateWeb.Controllers
         EntityDB entity = new EntityDB();
         public ActionResult Index()
         {
-            //if (Request.Browser.IsMobileDevice)
-            //{
-            //    return RedirectToAction("Index", "Mobile");
-            //}
+            if (Request.Browser.IsMobileDevice)
+            {
+                return RedirectToAction("Index", "Mobile");
+            }
             return View();
         }
         public ActionResult Test()
@@ -134,6 +134,24 @@ namespace TemplateWeb.Controllers
                 product,
                 news,
             }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Page()
+        {
+            return View();
+        }
+        public ActionResult Page_Get(int id)
+        {
+            lay_page page = entity.lay_page.FirstOrDefault(p => p.id == id);
+            return Json(page, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult News()
+        {
+            return View();
+        }
+        public ActionResult News_Get(int id)
+        {
+            module_news news = entity.module_news.FirstOrDefault(p => p.id == id);
+            return Json(news, JsonRequestBehavior.AllowGet);
         }
     }
 }

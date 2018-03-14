@@ -4,9 +4,9 @@
     </a>
     <ul class="tp-nav-nav">
         <li ng-repeat="n in param.nav">
-            <a href="{{n.mode==0?(n.url==null||n.url==''?'javascript:void(0);':n.url):n.mode==1?'/Home/Pagge?id='+n.page_id:'javascript:void(0);'}}" ng-bind="n.title"></a>
+            <a href="{{n.mode==0?(n.url==null||n.url==''?'javascript:void(0);':n.url):n.mode==1?'/Home/Page?id='+n.page_id:'javascript:void(0);'}}" ng-bind="n.title"></a>
             <ul ng-if="n.mode==2" class="tp-nav-subnav">
-                <li ng-repeat="sn in n.subnav"><a href="{{sn.mode==0?(sn.url==null||sn.url==''?'javascript:void(0);':sn.url):sn.mode==1?'/Home/Pagge?id='+sn.page_id:'javascript:void(0);'}}" ng-bind="sn.title"></a></li>
+                <li ng-repeat="sn in n.subnav"><a href="{{sn.mode==0?(sn.url==null||sn.url==''?'javascript:void(0);':sn.url):sn.mode==1?'/Home/Page?id='+sn.page_id:'javascript:void(0);'}}" ng-bind="sn.title"></a></li>
             </ul>
         </li>
     </ul>

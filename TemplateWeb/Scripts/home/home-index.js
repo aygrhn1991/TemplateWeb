@@ -28,3 +28,20 @@ app.controller('index', function ($scope, $http) {
     };
     $scope.Init();
 });
+app.controller('page', function ($scope, $http, $sce) {
+    $scope.Init = function () {
+        $scope.id = parseInt(window.GetUrlParam('id'));
+        $scope.LoadData();
+    };
+    $scope.LoadData = function () {
+        $http.post('/Home/Page_Get', {
+            id: $scope.id
+        }).success(function (d) {
+            $scope.page = d;
+            $scope.page.content = $sce.trustAsHtml($scope.page.content);
+        }).error(function () {
+            console.log('http错误');
+        });
+    };
+    $scope.Init();
+});
