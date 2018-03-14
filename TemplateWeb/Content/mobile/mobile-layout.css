@@ -1,0 +1,113 @@
+﻿.tpm-nav {
+    position: fixed;
+    bottom: 0;
+    background-color: #4c4c4c;
+    color: white;
+    width: 100%;
+    height: 45px;
+}
+
+.tpm-nav-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .tpm-nav-nav > li {
+        display: inline-block;
+        width: 32.5%;
+    }
+
+        .tpm-nav-nav > li > a,
+        .tpm-nav-nav > li > div {
+            display: block;
+            width: 100%;
+            height: 45px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .tpm-nav-nav > li > div {
+            cursor: pointer;
+            border-left: 1px solid #f3f3f3;
+            border-right: 1px solid #f3f3f3;
+        }
+
+.tpm-nav-subnav,
+.tpm-nav-subnav-item {
+    list-style: none;
+    background-color: #4c4c4c;
+    width: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+    .tpm-nav-subnav > li > a,
+    .tpm-nav-subnav-item > li > a {
+        border-top: 1px solid #b3b3b3;
+        display: block;
+        padding: 0;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        color: white;
+        font-size: 14px;
+    }
+
+        .tpm-nav-subnav > li > a:hover {
+            background-color: #4c4c4c;
+            color: white;
+        }
+
+.tpm-nav-subnav-item {
+    background-color: #666666;
+}
+
+    .tpm-nav-subnav-item > li > a {
+        font-size: 12px;
+    }
+
+.tpm-notice {
+    background-color: black;
+    color: white;
+    font-size: 12px;
+}
+
+#tpm-banner {
+    margin-top: -5px;
+}
+
+    #tpm-banner img {
+        width: 100%;
+        /*height: 200px;*/
+    }
+
+.tpm-partner {
+    width: 100%;
+    margin: 20px auto;
+    height: 130px !important;
+    background-color: #f3f3f3;
+}
+
+.tpm-partner-item {
+    display: inline-block;
+    width: 180px;
+    margin: 0 10px;
+}
+
+    .tpm-partner-item > img {
+        border: 1px solid #b3b3b3;
+        width: 100%;
+        height: 90px;
+    }
+
+    .tpm-partner-item > div {
+        text-align: center;
+        font-size: 14px;
+        color: black;
+        line-height: 30px;
+    }

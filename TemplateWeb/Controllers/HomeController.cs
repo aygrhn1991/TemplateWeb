@@ -12,10 +12,10 @@ namespace TemplateWeb.Controllers
         EntityDB entity = new EntityDB();
         public ActionResult Index()
         {
-            if (Request.Browser.IsMobileDevice)
-            {
-                return RedirectToAction("Index", "Mobile");
-            }
+            //if (Request.Browser.IsMobileDevice)
+            //{
+            //    return RedirectToAction("Index", "Mobile");
+            //}
             return View();
         }
         public ActionResult IndexParam_Get()
