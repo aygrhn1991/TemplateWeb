@@ -242,17 +242,9 @@
 
     .tp-product > li {
         display: inline-block;
-        width: 230px;
-        margin: 0 10px;
+        width: 250px;
+        padding: 10px;
     }
-
-        .tp-product > li:first-child {
-            margin-left: 0;
-        }
-
-        .tp-product > li:last-child {
-            margin-right: 0;
-        }
 
 .tp-product-item {
     position: relative;
@@ -308,17 +300,9 @@
 
     .tp-news > li {
         display: inline-block;
-        width: 480px;
-        margin: 10px;
+        width: 500px;
+        padding: 10px;
     }
-
-        .tp-news > li:nth-child(2n+1) {
-            margin-left: 0;
-        }
-
-        .tp-news > li:nth-child(2n+2) {
-            margin-right: 0;
-        }
 
 .tp-news-item {
     position: relative;
