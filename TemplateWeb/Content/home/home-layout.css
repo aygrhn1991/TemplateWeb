@@ -373,3 +373,17 @@
 .tp-page-content {
     padding: 20px 0;
 }
+
+.tp-news-list {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.tp-news-nav {
+    float: left;
+    width: 250px;
+}
+
+.tp-news-list > .tp-news {
+    margin-left: 250px
+}

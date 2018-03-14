@@ -45,3 +45,19 @@ app.controller('page', function ($scope, $http, $sce) {
     };
     $scope.Init();
 });
+app.controller('newsList', function ($scope, $http) {
+    $scope.Init = function () {
+        $scope.id = parseInt(window.GetUrlParam('id'));
+        $scope.LoadData();
+    };
+    $scope.LoadData = function () {
+        $http.post('/Home/NewsList_Get', {
+            id: $scope.id
+        }).success(function (d) {
+            $scope.newsList = d;
+        }).error(function () {
+            console.log('http错误');
+        });
+    };
+    $scope.Init();
+});

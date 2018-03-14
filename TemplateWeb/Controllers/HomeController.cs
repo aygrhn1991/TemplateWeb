@@ -144,14 +144,25 @@ namespace TemplateWeb.Controllers
             lay_page page = entity.lay_page.FirstOrDefault(p => p.id == id);
             return Json(page, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult News()
+        public ActionResult NewsList()
         {
             return View();
         }
-        public ActionResult News_Get(int id)
+        public ActionResult NewsList_Get(int id)
         {
-            module_news news = entity.module_news.FirstOrDefault(p => p.id == id);
-            return Json(news, JsonRequestBehavior.AllowGet);
+            var query = entity.module_news.Where(p => p.type_id == id).OrderByDescending(p => p.top).ThenBy(p => p.id).ToArray().Select(q => new
+            {
+                q.id,
+                q.type_id,
+                q.title,
+                q.author,
+                datetime = q.datetime.Value.ToString("yyyy-MM-dd"),
+                q.path,
+                q.description,
+                q.top,
+                q.views,
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
         }
     }
 }

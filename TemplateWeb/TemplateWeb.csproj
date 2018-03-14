@@ -444,7 +444,7 @@
     <Content Include="Views\Shared\_Partial_Mobile_Footer.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
-    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\NewsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
