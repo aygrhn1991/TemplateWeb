@@ -445,6 +445,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
     <Content Include="Views\Home\NewsList.cshtml" />
+    <Content Include="Views\Home\NewsDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -5,10 +5,12 @@
 }
 
 <div class="tp-news-list" ng-controller="newsList">
-    <div class="tp-news-nav">1</div>
+    <ul class="tp-index-nav">
+        <li ng-class="{'tp-index-nav-active':nt.id==id}" ng-repeat="nt in newsType"><a ng-bind="nt.name"></a></li>
+    </ul>
     <ul class="tp-news">
         <li ng-repeat="n in newsList">
-            <a class="tp-news-item">
+            <a class="tp-news-item" href="/Home/NewsDetail?id={{n.id}}">
                 <div class="tp-news-top" ng-if="n.top==true">推荐</div>
                 <div class="tp-news-img">
                     <img ng-src="{{n.path}}" />
@@ -17,7 +19,8 @@
                     <div class="tp-news-title" ng-bind="n.title"></div>
                     <div class="tp-news-description" ng-bind="n.description"></div>
                     <div class="tp-news-bottom">
-                        [<span ng-bind="n.datetime"></span>]&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-time"></span>&nbsp;
+                        <span ng-bind="n.datetime"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                         <span class="glyphicon glyphicon-eye-open"></span>&nbsp;
                         <span ng-bind="n.views"></span>
                     </div>

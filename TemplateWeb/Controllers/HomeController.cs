@@ -21,11 +21,9 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Test()
         {
-            string a = DESTool.Encrypt("aaaa");
-            string b = DESTool.Decrypt(a);
             return View();
         }
-        public ActionResult IndexParam_Get()
+        public ActionResult Layout_Get()
         {
             var nav = entity.lay_nav_nav.Where(p => p.enable == true).OrderBy(p => p.sort).ToArray().Select(p => new
             {
@@ -96,7 +94,7 @@ namespace TemplateWeb.Controllers
                 param,
             }, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult IndexContent_Get()
+        public ActionResult Index_Get()
         {
             var product = entity.module_product_type.OrderByDescending(p => p.id).ToArray().Select(p => new
             {
@@ -135,6 +133,7 @@ namespace TemplateWeb.Controllers
                 news,
             }, JsonRequestBehavior.AllowGet);
         }
+        #region 单页
         public ActionResult Page()
         {
             return View();
@@ -144,9 +143,16 @@ namespace TemplateWeb.Controllers
             lay_page page = entity.lay_page.FirstOrDefault(p => p.id == id);
             return Json(page, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+        #region 新闻
         public ActionResult NewsList()
         {
             return View();
+        }
+        public ActionResult NewsTypeList_Get()
+        {
+            var query = entity.module_news_type;
+            return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult NewsList_Get(int id)
         {
@@ -164,5 +170,27 @@ namespace TemplateWeb.Controllers
             });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult NewsDetail()
+        {
+            return View();
+        }
+        public ActionResult NewsDetail_Get(int id)
+        {
+            var query = entity.module_news.Where(p => p.id == id).ToArray().Select(q => new
+            {
+                q.id,
+                q.type_id,
+                q.title,
+                q.author,
+                datetime = q.datetime.Value.ToString("yyyy-MM-dd"),
+                q.path,
+                q.description,
+                q.top,
+                q.views,
+                q.content,
+            }).FirstOrDefault();
+            return Json(query, JsonRequestBehavior.AllowGet);
+        } 
+        #endregion
     }
 }
