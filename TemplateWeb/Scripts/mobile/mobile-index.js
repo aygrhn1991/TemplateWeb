@@ -4,7 +4,7 @@ app.controller('layout', function ($scope, $http) {
         $scope.LoadData();
     };
     $scope.LoadData = function () {
-        $http.post('/Home/IndexParam_Get').success(function (d) {
+        $http.post('/Home/Layout_Get').success(function (d) {
             $scope.param = d;
             $('.tpm-partner').liMarquee();
             $('#favicon-icon').attr('href', $scope.param.param.favicon);
@@ -20,7 +20,7 @@ app.controller('index', function ($scope, $http) {
         $scope.LoadData();
     };
     $scope.LoadData = function () {
-        $http.post('/Home/IndexContent_Get').success(function (d) {
+        $http.post('/Home/Index_Get').success(function (d) {
             $scope.content = d;
         }).error(function () {
             console.log('http错误');
