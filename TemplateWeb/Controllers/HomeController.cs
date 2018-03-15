@@ -176,21 +176,23 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult NewsDetail_Get(int id)
         {
-            var query = entity.module_news.Where(p => p.id == id).ToArray().Select(q => new
+            var query = entity.module_news.FirstOrDefault(p => p.id == id);
+            query.views++;
+            entity.SaveChanges();
+            return Json(new
             {
-                q.id,
-                q.type_id,
-                q.title,
-                q.author,
-                datetime = q.datetime.Value.ToString("yyyy-MM-dd"),
-                q.path,
-                q.description,
-                q.top,
-                q.views,
-                q.content,
-            }).FirstOrDefault();
-            return Json(query, JsonRequestBehavior.AllowGet);
-        } 
+                query.id,
+                query.type_id,
+                query.title,
+                query.author,
+                datetime = query.datetime.Value.ToString("yyyy-MM-dd"),
+                query.path,
+                query.description,
+                query.top,
+                query.views,
+                query.content,
+            }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

@@ -6,7 +6,7 @@
 
 <div class="tp-news-detail" ng-controller="newsDetail">
     <ul class="tp-index-nav">
-        <li ng-class="{'tp-index-nav-active':nt.id==news.type_id}" ng-repeat="nt in newsType"><a ng-bind="nt.name"></a></li>
+        <li ng-class="{'tp-index-nav-active':nt.id==news.type_id}" ng-repeat="nt in newsType"><a ng-bind="nt.name" href="/Home/NewsList?id={{nt.id}}"></a></li>
     </ul>
     <div class="tp-news-right">
         <div class="tp-news-title" ng-bind="news.title"></div>

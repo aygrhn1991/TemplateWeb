@@ -46,13 +46,13 @@
     <div class="tp-index" ng-repeat="nt in content.news">
         <div class="tp-index-title">
             <span ng-bind="nt.name"></span>
-            <a class="tp-index-more">
+            <a class="tp-index-more" href="/Home/NewsList?id={{nt.id}}">
                 更多<span class="glyphicon glyphicon-menu-right"></span>
             </a>
         </div>
         <ul class="tp-news">
             <li ng-repeat="n in nt.news">
-                <a class="tp-news-item">
+                <a class="tp-news-item" href="/Home/NewsDetail?id={{n.id}}">
                     <div class="tp-news-top" ng-if="n.top==true">推荐</div>
                     <div class="tp-news-img">
                         <img ng-src="{{n.path}}" />
