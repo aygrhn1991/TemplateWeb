@@ -405,6 +405,7 @@
 .tp-news-list {
     width: 1000px;
     margin: 0 auto;
+    min-height: 300px;
 }
 
     .tp-news-list > .tp-news {
@@ -422,6 +423,7 @@
 .tp-news-detail {
     width: 1000px;
     margin: 0 auto;
+    min-height: 300px;
 }
 
 .tp-news-right {
