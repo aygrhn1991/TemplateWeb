@@ -27,13 +27,13 @@
     <div class="tp-index" ng-repeat="pt in content.product">
         <div class="tp-index-title">
             <span ng-bind="pt.name"></span>
-            <a class="tp-index-more">
+            <a class="tp-index-more" href="/Home/ProductList?id={{pt.id}}">
                 更多<span class="glyphicon glyphicon-menu-right"></span>
             </a>
         </div>
         <ul class="tp-product">
             <li ng-repeat="p in pt.product">
-                <a class="tp-product-item">
+                <a class="tp-product-item" href="/Home/ProductDetail?id={{p.id}}">
                     <div class="tp-product-top" ng-if="p.top==true">推荐</div>
                     <div class="tp-product-img">
                         <img ng-src="{{p.path}}" />

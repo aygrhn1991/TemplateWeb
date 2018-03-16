@@ -194,5 +194,38 @@ namespace TemplateWeb.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
         #endregion
+        #region 产品
+        public ActionResult ProductList()
+        {
+            return View();
+        }
+        public ActionResult ProductTypeList_Get()
+        {
+            var query = entity.module_product_type;
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ProductList_Get(int id)
+        {
+            var query = entity.module_product.Where(p => p.type_id == id).OrderByDescending(p => p.top).ThenBy(p => p.id).Select(q => new
+            {
+                q.id,
+                q.type_id,
+                q.name,
+                q.path,
+                q.description,
+                q.top,
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ProductDetail()
+        {
+            return View();
+        }
+        public ActionResult ProductDetail_Get(int id)
+        {
+            var query = entity.module_product.FirstOrDefault(p => p.id == id);
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

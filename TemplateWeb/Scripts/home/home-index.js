@@ -88,3 +88,46 @@ app.controller('newsDetail', function ($scope, $http, $sce) {
     };
     $scope.Init();
 });
+app.controller('productList', function ($scope, $http) {
+    $scope.Init = function () {
+        $scope.id = parseInt(window.GetUrlParam('id'));
+        $scope.LoadData();
+    };
+    $scope.LoadData = function () {
+        $http.post('/Home/ProductTypeList_Get').success(function (d) {
+            $scope.productType = d;
+        }).error(function () {
+            console.log('http错误');
+        });
+        $http.post('/Home/ProductList_Get', {
+            id: $scope.id
+        }).success(function (d) {
+            $scope.productList = d;
+        }).error(function () {
+            console.log('http错误');
+        });
+    };
+    $scope.Init();
+});
+app.controller('productDetail', function ($scope, $http, $sce) {
+    $scope.Init = function () {
+        $scope.id = parseInt(window.GetUrlParam('id'));
+        $scope.LoadData();
+    };
+    $scope.LoadData = function () {
+        $http.post('/Home/ProductTypeList_Get').success(function (d) {
+            $scope.productType = d;
+        }).error(function () {
+            console.log('http错误');
+        });
+        $http.post('/Home/ProductDetail_Get', {
+            id: $scope.id
+        }).success(function (d) {
+            $scope.product = d;
+            $scope.product.content = $sce.trustAsHtml($scope.product.content);
+        }).error(function () {
+            console.log('http错误');
+        });
+    };
+    $scope.Init();
+});

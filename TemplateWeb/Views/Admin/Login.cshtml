@@ -40,23 +40,24 @@
             </div>
         </div>
         <script>
-        function add() {
-            $.ajax({
-                url: "/Admin/Login",
-                type: "post",
-                data: {
-                    phone: $('#phone').val(),
-                    password: $('#password').val()
-                },
-                dataType: "json",
-                success: function (d) {
-                    alert(d);
-                    if (d == true) {
-                        window.location.href = '/admin/index';
-                    }
-                },
-            });
-        }
+            function add() {
+                $.ajax({
+                    url: "/Admin/Login",
+                    type: "post",
+                    data: {
+                        phone: $('#phone').val(),
+                        password: $('#password').val()
+                    },
+                    dataType: "json",
+                    success: function (d) {
+                        if (d == true) {
+                            window.location.href = '/admin/index';
+                        } else {
+                            alert(d);
+                        }
+                    },
+                });
+            }
         </script>
     </div>
 </body>
