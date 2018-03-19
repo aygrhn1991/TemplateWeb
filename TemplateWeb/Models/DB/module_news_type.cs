@@ -11,5 +11,11 @@ namespace TemplateWeb.Models.DB
         public int id { get; set; }
 
         public string name { get; set; }
+
+        public bool? enable { get; set; }
+
+        public int? sort { get; set; }
+
+        public DateTime? sys_datetime { get; set; }
     }
 }

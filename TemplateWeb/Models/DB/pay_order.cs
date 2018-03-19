@@ -6,24 +6,22 @@ namespace TemplateWeb.Models.DB
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class module_product
+    public partial class pay_order
     {
         public int id { get; set; }
 
-        public int? type_id { get; set; }
+        public int? product_id { get; set; }
+
+        public int? member_id { get; set; }
 
         [Column(TypeName = "money")]
         public decimal? price { get; set; }
 
-        public string name { get; set; }
+        public int? state { get; set; }
 
-        public string path { get; set; }
+        public DateTime? create_time { get; set; }
 
-        public string description { get; set; }
-
-        public string content { get; set; }
-
-        public bool? top { get; set; }
+        public DateTime? pay_time { get; set; }
 
         public DateTime? sys_datetime { get; set; }
     }

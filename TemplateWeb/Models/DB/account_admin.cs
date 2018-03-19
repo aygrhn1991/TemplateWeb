@@ -14,9 +14,13 @@ namespace TemplateWeb.Models.DB
 
         public string password { get; set; }
 
-        public string admin_name { get; set; }
+        public string real_name { get; set; }
+
+        public string remark { get; set; }
 
         public bool? enable { get; set; }
+
+        public bool? is_super_admin { get; set; }
 
         public DateTime? sys_datetime { get; set; }
     }

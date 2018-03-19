@@ -6,23 +6,21 @@ namespace TemplateWeb.Models.DB
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class lay_banner
+    public partial class account_member
     {
         public int id { get; set; }
 
-        public string title { get; set; }
+        public string phone { get; set; }
 
-        public string path { get; set; }
+        public string password { get; set; }
 
-        public string url { get; set; }
+        public string real_name { get; set; }
 
-        public int? page_id { get; set; }
+        public string idcard_number { get; set; }
 
-        public int? mode { get; set; }
+        public string remark { get; set; }
 
         public bool? enable { get; set; }
-
-        public int? sort { get; set; }
 
         public DateTime? sys_datetime { get; set; }
     }

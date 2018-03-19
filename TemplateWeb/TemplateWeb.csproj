@@ -384,6 +384,7 @@
     </Compile>
     <Compile Include="Models\Account\AdminModel.cs" />
     <Compile Include="Models\DB\account_admin.cs" />
+    <Compile Include="Models\DB\account_member.cs" />
     <Compile Include="Models\DB\EntityDB.cs" />
     <Compile Include="Models\DB\lay_banner.cs" />
     <Compile Include="Models\DB\lay_link_link.cs" />
@@ -401,6 +402,7 @@
     <Compile Include="Models\DB\module_news_type.cs" />
     <Compile Include="Models\DB\module_product.cs" />
     <Compile Include="Models\DB\module_product_type.cs" />
+    <Compile Include="Models\DB\pay_order.cs" />
     <Compile Include="Plugin\easyupload\handler\UploadHandler.ashx.cs">
       <DependentUpon>UploadHandler.ashx</DependentUpon>
     </Compile>
