@@ -3,6 +3,10 @@
     font-family: 'Microsoft YaHei';
 }
 
+* {
+    outline: none !important;
+}
+
 a:hover {
     cursor: pointer;
     text-decoration: none;
