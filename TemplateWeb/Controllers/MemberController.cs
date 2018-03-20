@@ -32,17 +32,8 @@ namespace TemplateWeb.Controllers
             {
                 if (member.enable == true)
                 {
-                    MemberModel model = new MemberModel()
-                    {
-                        phone = member.phone,
-                        password = member.password,
-                        isAuth = true,
-                    };
-                    HttpCookie cookie = new HttpCookie("tpadmin");
-                    string cookieStr = JsonConvert.SerializeObject(model);
-                    cookie.Value = DESTool.Encrypt(cookieStr);
-                    HttpContext.Response.AppendCookie(cookie);
-                    return Json(true, JsonRequestBehavior.AllowGet); ;
+                    HttpContext.Session["tpmember"] = member;
+                    return Json(true, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
@@ -54,10 +45,8 @@ namespace TemplateWeb.Controllers
         [AllowAnonymous]
         public ActionResult Logout()
         {
-            HttpCookie cookie = new HttpCookie("tpadmin");
-            cookie.Expires = DateTime.Now.AddDays(-1);
-            HttpContext.Response.AppendCookie(cookie);
-            return RedirectToAction("Login", "Admin");
+            HttpContext.Session.Remove("tpmember");
+            return RedirectToAction("Index", "Home");
         }
         #endregion
     }

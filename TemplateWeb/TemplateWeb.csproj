@@ -120,6 +120,8 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\home\home-layout.css" />
     <Content Include="Content\home\home-public.css" />
+    <Content Include="Content\member\member-layout.css" />
+    <Content Include="Content\member\member-public.css" />
     <Content Include="Content\mobile\mobile-layout.css" />
     <Content Include="Content\mobile\mobile-public.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -354,6 +356,8 @@
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\member\member-index.js" />
+    <Content Include="Scripts\member\member-public.js" />
     <Content Include="Scripts\home\home-index.js" />
     <Content Include="Scripts\home\home-public.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
@@ -377,6 +381,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Extension\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Extension\MemberManager.cs" />
     <Compile Include="Extension\AdminManager.cs" />
     <Compile Include="Extension\DESTool.cs" />
     <Compile Include="Extension\SysTool.cs" />

@@ -84,6 +84,7 @@ namespace TemplateWeb.Controllers
             {
                 param.Add(item.key, item.value);
             }
+            var member = MemberManager.GetMember();
             return Json(new
             {
                 nav,
@@ -92,6 +93,7 @@ namespace TemplateWeb.Controllers
                 partner,
                 link,
                 param,
+                member,
             }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Index_Get()

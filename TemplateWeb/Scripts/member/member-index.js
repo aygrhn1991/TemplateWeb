@@ -1,5 +1,5 @@
-﻿var app = angular.module('app', ['accountApp']);
-app.controller('layout', function ($scope, $http) {
+﻿var app = angular.module('app', []);
+app.controller('account', function ($scope, $http) {
     $scope.Init = function () {
         $scope.LoadData();
     };
