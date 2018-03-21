@@ -25,13 +25,20 @@
     float: right;
     line-height: 60px;
     font-size: 14px;
-    width: 120px;
-    text-align: center;
+    margin-right: 20px;
 }
 
     .tp-nav-account a {
         color: white;
     }
+
+.tp-nav-in .badge {
+    position: relative;
+    top: -10px;
+    left: -5px;
+    padding: 0 5px 4px 5px;
+    background-color: #ff4c4c;
+}
 
 .tp-nav-nav {
     display: inline-block;

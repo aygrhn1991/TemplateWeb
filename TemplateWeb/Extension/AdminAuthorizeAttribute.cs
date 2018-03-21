@@ -19,7 +19,14 @@ namespace TemplateWeb.Extension
             }
             else
             {
-                return true;
+                if (admin.enable == false)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)

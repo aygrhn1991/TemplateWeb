@@ -1,4 +1,4 @@
-﻿var app = angular.module('app', ['accountApp']);
+﻿var app = angular.module('app', []);
 app.controller('layout', function ($scope, $http) {
     $scope.Init = function () {
         $scope.LoadData();

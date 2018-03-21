@@ -18,6 +18,8 @@ namespace TemplateWeb.Models.DB
 
         public string idcard_number { get; set; }
 
+        public string email { get; set; }
+
         public string remark { get; set; }
 
         public bool? enable { get; set; }

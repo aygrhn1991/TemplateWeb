@@ -391,6 +391,7 @@
     <Compile Include="Models\Account\AdminModel.cs" />
     <Compile Include="Models\Account\MemberModel.cs" />
     <Compile Include="Models\DB\account_admin.cs" />
+    <Compile Include="Models\DB\account_code.cs" />
     <Compile Include="Models\DB\account_member.cs" />
     <Compile Include="Models\DB\EntityDB.cs" />
     <Compile Include="Models\DB\lay_banner.cs" />
@@ -402,6 +403,7 @@
     <Compile Include="Models\DB\lay_page.cs" />
     <Compile Include="Models\DB\lay_partner.cs" />
     <Compile Include="Models\DB\lay_setting.cs" />
+    <Compile Include="Models\DB\member_message.cs" />
     <Compile Include="Models\DB\module_employ.cs" />
     <Compile Include="Models\DB\module_employ_type.cs" />
     <Compile Include="Models\DB\module_messageaboard.cs" />

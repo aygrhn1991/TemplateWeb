@@ -85,6 +85,11 @@ namespace TemplateWeb.Controllers
                 param.Add(item.key, item.value);
             }
             var member = MemberManager.GetMember();
+            var member_messageCount = 0;
+            if (member != null)
+            {
+                member_messageCount = entity.member_message.Count(p => p.member_id == member.id && p.state_read == false);
+            }
             return Json(new
             {
                 nav,
@@ -94,6 +99,7 @@ namespace TemplateWeb.Controllers
                 link,
                 param,
                 member,
+                member_messageCount,
             }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Index_Get()

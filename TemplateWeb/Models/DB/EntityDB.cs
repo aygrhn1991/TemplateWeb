@@ -13,6 +13,7 @@ namespace TemplateWeb.Models.DB
         }
 
         public virtual DbSet<account_admin> account_admin { get; set; }
+        public virtual DbSet<account_code> account_code { get; set; }
         public virtual DbSet<account_member> account_member { get; set; }
         public virtual DbSet<lay_banner> lay_banner { get; set; }
         public virtual DbSet<lay_link_link> lay_link_link { get; set; }
@@ -23,6 +24,7 @@ namespace TemplateWeb.Models.DB
         public virtual DbSet<lay_page> lay_page { get; set; }
         public virtual DbSet<lay_partner> lay_partner { get; set; }
         public virtual DbSet<lay_setting> lay_setting { get; set; }
+        public virtual DbSet<member_message> member_message { get; set; }
         public virtual DbSet<module_employ> module_employ { get; set; }
         public virtual DbSet<module_employ_type> module_employ_type { get; set; }
         public virtual DbSet<module_messageaboard> module_messageaboard { get; set; }
