@@ -357,12 +357,13 @@
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\member\member-index.js" />
+    <Content Include="Scripts\member\member-layout.js" />
     <Content Include="Scripts\member\member-public.js" />
     <Content Include="Scripts\home\home-index.js" />
     <Content Include="Scripts\home\home-public.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\member\member-setting.js" />
     <Content Include="Scripts\mobile\mobile-index.js" />
     <Content Include="Scripts\mobile\mobile-public.js" />
     <Content Include="Web.config" />
@@ -382,6 +383,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Extension\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Extension\MemberAuthorizeAttribute.cs" />
     <Compile Include="Extension\MemberManager.cs" />
     <Compile Include="Extension\AdminManager.cs" />
     <Compile Include="Extension\DESTool.cs" />
@@ -464,6 +466,9 @@
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\Login.cshtml" />
     <Content Include="Views\Admin\MemberList.cshtml" />
+    <Content Include="Views\Shared\_Partial_Member_Sidebar.cshtml" />
+    <Content Include="Views\Member\Welcome.cshtml" />
+    <Content Include="Views\Member\Setting.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

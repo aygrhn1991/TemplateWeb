@@ -10,10 +10,15 @@ using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers
 {
+    [MemberAuthorize]
     public class MemberController : Controller
     {
         EntityDB entity = new EntityDB();
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Welcome()
         {
             return View();
         }
@@ -49,5 +54,9 @@ namespace TemplateWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
         #endregion
+        public ActionResult Setting()
+        {
+            return View();
+        }
     }
 }

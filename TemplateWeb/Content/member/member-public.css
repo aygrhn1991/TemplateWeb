@@ -1,9 +1,36 @@
-﻿a:hover {
-    cursor: pointer;
-    text-decoration: none;
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-a:focus {
+* {
     outline: none !important;
-    text-decoration: none;
+}
+
+a {
+    cursor: pointer;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+th, td {
+    vertical-align: middle !important;
+    font-size: 14px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+table input,
+table textarea {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    resize: none;
 }
