@@ -68,7 +68,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult PageList_Get()
         {
-            var query = entity.lay_page.OrderByDescending(p => p.id);
+            var query = entity.lay_page.OrderBy(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Page_Get(int id)
@@ -850,7 +850,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult EmployTypeList_Get()
         {
-            var query = entity.module_employ_type.OrderByDescending(p => p.id);
+            var query = entity.module_employ_type.OrderBy(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult EmployType_Add_Edit(module_employ_type typeModel)
@@ -890,7 +890,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult EmployList_Get()
         {
-            var query = entity.module_employ.OrderByDescending(p => p.id).Join(entity.module_employ_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.module_employ.OrderBy(p => p.id).Join(entity.module_employ_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.benefit,
                 a.education,
@@ -981,7 +981,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult NewsTypeList_Get()
         {
-            var query = entity.module_news_type.OrderByDescending(p => p.id);
+            var query = entity.module_news_type.OrderBy(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult NewsType_Add_Edit(module_news_type typeModel)
@@ -1034,7 +1034,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult NewsList_Get()
         {
-            var query = entity.module_news.OrderByDescending(p => p.id).ToArray().Join(entity.module_news_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.module_news.OrderBy(p => p.id).ToArray().Join(entity.module_news_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.author,
                 a.content,
@@ -1102,7 +1102,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult ProductTypeList_Get()
         {
-            var query = entity.module_product_type.OrderByDescending(p => p.id);
+            var query = entity.module_product_type.OrderBy(p => p.id);
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ProductType_Add_Edit(module_product_type typeModel)
@@ -1142,7 +1142,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult ProductList_Get()
         {
-            var query = entity.module_product.OrderByDescending(p => p.id).ToArray().Join(entity.module_product_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.module_product.OrderBy(p => p.id).ToArray().Join(entity.module_product_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.content,
                 a.description,
@@ -1194,5 +1194,39 @@ namespace TemplateWeb.Controllers
         #endregion
         #endregion
 
+        #region 会员管理
+        public ActionResult MemberList()
+        {
+            return View();
+        }
+        public ActionResult MemberList_Get()
+        {
+            var query = entity.account_member.OrderByDescending(p => p.id).ToArray().Select(p => new
+            {
+                p.id,
+                p.phone,
+                p.real_name,
+                p.idcard_number,
+                p.email,
+                p.remark,
+                p.enable,
+                sys_datetime = p.sys_datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        [ValidateInput(false)]
+        public ActionResult Member_Add_Edit(account_member memberModel)
+        {
+            var query = entity.account_member.FirstOrDefault(p => p.id == memberModel.id);
+            query.enable = memberModel.enable;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Member_Reset(int id)
+        {
+            var query = entity.account_member.FirstOrDefault(p => p.id == id);
+            query.password = DESTool.Encrypt("1");
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

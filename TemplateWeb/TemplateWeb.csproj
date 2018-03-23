@@ -319,6 +319,7 @@
     <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
+    <Content Include="Scripts\admin\admin-member.js" />
     <Content Include="Scripts\admin\admin-notice.js" />
     <Content Include="Scripts\admin\admin-product.js" />
     <Content Include="Scripts\admin\admin-news.js" />
@@ -462,6 +463,7 @@
     <Content Include="Views\Shared\_Layout_Member.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Admin\MemberList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
