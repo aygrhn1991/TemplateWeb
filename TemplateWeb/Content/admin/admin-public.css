@@ -29,6 +29,7 @@ table input,
 table textarea {
     border-radius: 3px;
     border: 1px solid #ccc;
+    width: 60%;
 }
 
 textarea {
