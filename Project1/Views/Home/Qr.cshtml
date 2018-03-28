@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Qr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="qrcode"></div>
+<script type="text/javascript">
+    $('#qrcode').qrcode(
+        {
+            render: "canvas", // 渲染方式有table方式和canvas方式
+            width: 256,   //默认宽度
+            height: 256, //默认高度
+            text: "@ViewBag.url", //二维码内容
+            typeNumber: -1,   //计算模式一般默认为-1
+            correctLevel: 2, //二维码纠错级别
+            background: "#ffffff",  //背景颜色
+            foreground: "#000000"  //二维码颜色
+        });
+</script>
+
+

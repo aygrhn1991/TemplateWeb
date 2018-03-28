@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <div class="form-group">
+        <label>手机号：</label>
+        <input type="text" class="form-control" id="phone" placeholder="手机号">
+    </div>
+    <div class="form-group">
+        <label>姓名：</label>
+        <input type="text" class="form-control" id="name" placeholder="姓名">
+    </div>
+    <div class="form-group">
+        <label>学校：</label>
+        <input type="text" class="form-control" id="school" placeholder="学校">
+    </div>
+    <div class="form-group">
+        <label>验证码：</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="code" placeholder="验证码">
+            <span class="input-group-btn">
+                <button class="btn btn-default" id="btn" onclick="invokeSettime(this)">获取验证码</button>
+            </span>
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="button" onclick="reg()" class="btn btn-sm btn-success">注册</button>
+    </div>
+</div>
+<script>
+    function invokeSettime(obj) {
+        
+        
+        var countdown = 60;
+        
+        function settime(obj) {
+            if (countdown == 0) {
+                $(obj).attr("disabled", false);
+                $(obj).text("获取验证码");
+                countdown = 60;
+                return;
+            } else {
+                $(obj).attr("disabled", true);
+                $(obj).text("(" + countdown + ") s 重新发送");
+                countdown--;
+            }
+            setTimeout(function () {
+                settime(obj)
+            }
+                , 1000)
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SendCode',
+            data: {
+                phone: $('#phone').val(),
+            },
+            dataType: 'JSON',
+            success: function (d) {
+                if (d == true) {
+                    settime(obj);
+                } else {
+                    alert(d);
+                }
+            },
+        });
+    }
+    function reg() {
+        if ($('#name').val() == null || $('#name').val() == '' ||
+            $('#phone').val() == null || $('#phone').val() == '' ||
+            $('#school').val() == null || $('#school').val() == '') {
+            alert('请填写完整信息');
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/Home/Register',
+            data: {
+                name: $('#name').val(),
+                phone: $('#phone').val(),
+                school: $('#school').val(),
+                code: $('#code').val(),
+            },
+            dataType: 'JSON',
+            success: function (d) {
+                if (d == true) {
+                    window.location.href = '/Home/Video';
+                } else {
+                    alert(d);
+                }
+            },
+        });
+    };
+    //new invokeSettime("#btn");
+</script>
