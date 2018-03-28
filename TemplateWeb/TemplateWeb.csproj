@@ -61,6 +61,7 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -385,6 +386,30 @@
     <Compile Include="Extension\DESTool.cs" />
     <Compile Include="Component\MemberAuthorizeAttribute.cs" />
     <Compile Include="Component\MemberManager.cs" />
+    <Compile Include="Extension\qcloudsms\httpclient\DefaultHTTPClient.cs" />
+    <Compile Include="Extension\qcloudsms\httpclient\HTTPException.cs" />
+    <Compile Include="Extension\qcloudsms\httpclient\HTTPMethod.cs" />
+    <Compile Include="Extension\qcloudsms\httpclient\HTTPRequest.cs" />
+    <Compile Include="Extension\qcloudsms\httpclient\HTTPResponse.cs" />
+    <Compile Include="Extension\qcloudsms\httpclient\IHTTPClient.cs" />
+    <Compile Include="Extension\qcloudsms\httpclient\PoolingHTTPClient.cs" />
+    <Compile Include="Extension\qcloudsms\json\JSONException.cs" />
+    <Compile Include="Extension\qcloudsms\json\JSONObject.cs" />
+    <Compile Include="Extension\qcloudsms\SmsBase.cs" />
+    <Compile Include="Extension\qcloudsms\SmsMobileStatusPuller.cs" />
+    <Compile Include="Extension\qcloudsms\SmsMultiSender.cs" />
+    <Compile Include="Extension\qcloudsms\SmsMultiSenderResult.cs" />
+    <Compile Include="Extension\qcloudsms\SmsResultBase.cs" />
+    <Compile Include="Extension\qcloudsms\SmsSenderUtil.cs" />
+    <Compile Include="Extension\qcloudsms\SmsSingleSender.cs" />
+    <Compile Include="Extension\qcloudsms\SmsSingleSenderResult.cs" />
+    <Compile Include="Extension\qcloudsms\SmsStatusPullCallbackResult.cs" />
+    <Compile Include="Extension\qcloudsms\SmsStatusPuller.cs" />
+    <Compile Include="Extension\qcloudsms\SmsStatusPullReplyResult.cs" />
+    <Compile Include="Extension\qcloudsms\SmsVoicePromptSender.cs" />
+    <Compile Include="Extension\qcloudsms\SmsVoicePromptSenderResult.cs" />
+    <Compile Include="Extension\qcloudsms\SmsVoiceVerifyCodeSender.cs" />
+    <Compile Include="Extension\qcloudsms\SmsVoiceVerifyCodeSenderResult.cs" />
     <Compile Include="Extension\SysTool.cs" />
     <Compile Include="Component\VerificationCodeTool.cs" />
     <Compile Include="Controllers\AdminController.cs" />

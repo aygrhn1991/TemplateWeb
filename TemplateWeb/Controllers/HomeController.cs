@@ -21,6 +21,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Test()
         {
+            VerificationCodeTool.SendCode("");
             return View();
         }
         public ActionResult Layout_Get()
