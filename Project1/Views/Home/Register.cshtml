@@ -3,7 +3,7 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
+<div style="padding:20px;">
     <div class="form-group">
         <label>手机号：</label>
         <input type="text" class="form-control" id="phone" placeholder="手机号">
@@ -31,10 +31,13 @@
 </div>
 <script>
     function invokeSettime(obj) {
-        
-        
+        if ($('#phone').val() == null || $('#phone').val() == '') {
+            alert('请输入手机号');
+            return;
+        }
+
         var countdown = 60;
-        
+
         function settime(obj) {
             if (countdown == 0) {
                 $(obj).attr("disabled", false);

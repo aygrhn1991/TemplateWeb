@@ -1,0 +1,60 @@
+﻿@model List<Project1.Models.DB.user>
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xs-6">
+            <label>视频地址：</label>
+        <div class="input-group">
+            <input type="text" id="url" class="form-control" value="@ViewBag.url">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onclick="save()">保存</button>
+            </span>
+        </div>
+    </div>
+</div>
+<br />
+<script>
+    function save() {
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SetUrl',
+            data: {
+                url: $('#url').val(),
+            },
+            dataType: 'JSON',
+            success: function (d) {
+                if (d == true) {
+                    alert('成功');
+                } else {
+                    alert('错误');
+                }
+            },
+        });
+    };
+</script>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>电话</th>
+            <th>姓名</th>
+            <th>学校</th>
+            <th>注册时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.phone</td>
+                <td>@item.name</td>
+                <td>@item.school</td>
+                <td>@item.sys_datetime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

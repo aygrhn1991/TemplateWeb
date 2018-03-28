@@ -101,5 +101,17 @@ namespace Project1.Controllers
             ViewBag.url = url;
             return View();
         }
+        public ActionResult UserList()
+        {
+            List<user> list = entity.user.ToList();
+            ViewBag.url = entity.setting.FirstOrDefault(p => p.key == "url").value;
+            return View(list);
+        }
+        public ActionResult SetUrl(string url)
+        {
+            setting setting = entity.setting.FirstOrDefault(p => p.key == "url");
+            setting.value = url;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
     }
 }
