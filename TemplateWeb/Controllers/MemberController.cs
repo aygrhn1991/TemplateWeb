@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TemplateWeb.Component;
 using TemplateWeb.Extension;
-using TemplateWeb.Models.Account;
 using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers
@@ -22,6 +22,7 @@ namespace TemplateWeb.Controllers
         {
             return View();
         }
+
         #region 登陆
         [AllowAnonymous]
         public ActionResult Login()
@@ -54,6 +55,46 @@ namespace TemplateWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
         #endregion
+        #region 注册
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Register(string phone, string password,string code)
+        {
+            account_member account_member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+            if (account_member == null)
+            {
+                account_code account_code = entity.account_code.FirstOrDefault(p => p.phone == phone);
+                if (account_code.code == code)
+                {
+
+                }
+                return Json("验证码错误");
+
+
+
+                account_member member = new account_member();
+                member.phone = phone;
+                member.password = DESTool.Encrypt(password);
+                member.enable = true;
+                if (member.enable == true)
+                {
+                    HttpContext.Session["tpmember"] = member;
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json("账号已被停用", JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json("账号已被注册", JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         public ActionResult Setting()
         {
             return View();

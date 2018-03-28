@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TemplateWeb.Extension;
+using TemplateWeb.Component;
 using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers
@@ -141,6 +141,7 @@ namespace TemplateWeb.Controllers
                 news,
             }, JsonRequestBehavior.AllowGet);
         }
+
         #region 单页
         public ActionResult Page()
         {

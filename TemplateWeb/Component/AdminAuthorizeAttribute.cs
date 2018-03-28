@@ -5,20 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using TemplateWeb.Models.DB;
 
-namespace TemplateWeb.Extension
+namespace TemplateWeb.Component
 {
-    public class MemberAuthorizeAttribute : AuthorizeAttribute
+    public class AdminAuthorizeAttribute : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            account_member member = MemberManager.GetMember();
-            if (member == null)
+            account_admin admin = AdminManager.GetAdmin();
+            if (admin == null)
             {
                 return false;
             }
             else
             {
-                if (member.enable == false)
+                if (admin.enable == false)
                 {
                     return false;
                 }
@@ -30,7 +30,7 @@ namespace TemplateWeb.Extension
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new RedirectResult("/Member/Login");
+            filterContext.Result = new RedirectResult("/Admin/Login");
         }
     }
 }

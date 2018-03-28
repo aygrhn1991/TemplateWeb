@@ -3,22 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TemplateWeb.Models.Account;
 using TemplateWeb.Models.DB;
 
-namespace TemplateWeb.Extension
+namespace TemplateWeb.Component
 {
-    public class MemberManager
+    public class AdminManager
     {
         EntityDB entity = new EntityDB();
-        public static account_member GetMember()
+        public static account_admin GetAdmin()
         {
-            var session = HttpContext.Current.Session["tpmember"];
+            var session = HttpContext.Current.Session["tpadmin"];
             if (session == null)
             {
                 return null;
             }
-            return (account_member)session;
+            return (account_admin)session;
         }
     }
 }

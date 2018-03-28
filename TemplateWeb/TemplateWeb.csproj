@@ -319,6 +319,7 @@
     <Content Include="Plugin\summernote\js\lang\summernote-zh-CN.min.js" />
     <Content Include="Plugin\summernote\js\summernote.js" />
     <Content Include="Plugin\summernote\js\summernote.min.js" />
+    <Content Include="Scripts\admin\admin-account.js" />
     <Content Include="Scripts\admin\admin-member.js" />
     <Content Include="Scripts\admin\admin-notice.js" />
     <Content Include="Scripts\admin\admin-product.js" />
@@ -357,6 +358,7 @@
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\member\member-account.js" />
     <Content Include="Scripts\member\member-layout.js" />
     <Content Include="Scripts\member\member-public.js" />
     <Content Include="Scripts\home\home-index.js" />
@@ -378,21 +380,20 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Component\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Component\AdminManager.cs" />
+    <Compile Include="Extension\DESTool.cs" />
+    <Compile Include="Component\MemberAuthorizeAttribute.cs" />
+    <Compile Include="Component\MemberManager.cs" />
+    <Compile Include="Extension\SysTool.cs" />
+    <Compile Include="Component\VerificationCodeTool.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
-    <Compile Include="Extension\AdminAuthorizeAttribute.cs" />
-    <Compile Include="Extension\MemberAuthorizeAttribute.cs" />
-    <Compile Include="Extension\MemberManager.cs" />
-    <Compile Include="Extension\AdminManager.cs" />
-    <Compile Include="Extension\DESTool.cs" />
-    <Compile Include="Extension\SysTool.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account\AdminModel.cs" />
-    <Compile Include="Models\Account\MemberModel.cs" />
     <Compile Include="Models\DB\account_admin.cs" />
     <Compile Include="Models\DB\account_code.cs" />
     <Compile Include="Models\DB\account_member.cs" />
@@ -456,7 +457,6 @@
     <Content Include="Views\Shared\_Layout_Mobile.cshtml" />
     <Content Include="Views\Mobile\Index.cshtml" />
     <Content Include="Views\Shared\_Partial_Mobile_Footer.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
     <Content Include="Views\Home\NewsList.cshtml" />
     <Content Include="Views\Home\NewsDetail.cshtml" />
@@ -469,6 +469,7 @@
     <Content Include="Views\Shared\_Partial_Member_Sidebar.cshtml" />
     <Content Include="Views\Member\Welcome.cshtml" />
     <Content Include="Views\Member\Setting.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
