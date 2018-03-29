@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TemplateWeb.Component;
-using TemplateWeb.Extension;
 using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers
@@ -61,35 +60,43 @@ namespace TemplateWeb.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public ActionResult SendSMSCode(string phone)
+        {
+            SMSTool tool = new SMSTool();
+            string code = tool.CreateCode(phone);
+            string expireTime = tool.expireTime.ToString();
+            bool codeResult = tool.SendCode(phone, 100278, new string[] { code, expireTime });
+            if (codeResult == true)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("验证码发送失败", JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Register(string phone, string password,string code)
+        public ActionResult Register(string phone, string password, string code)
         {
-            account_member account_member = entity.account_member.FirstOrDefault(p => p.phone == phone);
-            if (account_member == null)
+            account_member member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+            if (member == null)
             {
-                account_code account_code = entity.account_code.FirstOrDefault(p => p.phone == phone);
-                if (account_code.code == code)
+                SMSTool tool = new SMSTool();
+                bool codeResult = tool.CheckCode(phone, code);
+                if (codeResult == true)
                 {
-
+                    bool memberResult = MemberManager.CreateMember(phone, password);
+                    if (memberResult == true)
+                    {
+                        account_member new_account_member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+                        HttpContext.Session["tpmember"] = new_account_member;
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    return Json("用户创建失败", JsonRequestBehavior.AllowGet);
                 }
-                return Json("验证码错误");
-
-
-
-                account_member member = new account_member();
-                member.phone = phone;
-                member.password = DESTool.Encrypt(password);
-                member.enable = true;
-                if (member.enable == true)
-                {
-                    HttpContext.Session["tpmember"] = member;
-                    return Json(true, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json("账号已被停用", JsonRequestBehavior.AllowGet);
-                }
+                return Json("验证码无效");
             }
             return Json("账号已被注册", JsonRequestBehavior.AllowGet);
         }

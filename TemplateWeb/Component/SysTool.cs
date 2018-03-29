@@ -5,10 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace TemplateWeb.Extension
+namespace TemplateWeb.Component
 {
     public class SysTool
     {
-        
     }
 }

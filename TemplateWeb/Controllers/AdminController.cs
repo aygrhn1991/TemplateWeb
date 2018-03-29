@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TemplateWeb.Component;
-using TemplateWeb.Extension;
 using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers

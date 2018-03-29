@@ -21,6 +21,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Test()
         {
+            SMSTool tool = new SMSTool();
             return View();
         }
         public ActionResult Layout_Get()

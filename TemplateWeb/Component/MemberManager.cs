@@ -9,7 +9,7 @@ namespace TemplateWeb.Component
 {
     public class MemberManager
     {
-        EntityDB entity = new EntityDB();
+
         public static account_member GetMember()
         {
             var session = HttpContext.Current.Session["tpmember"];
@@ -18,6 +18,19 @@ namespace TemplateWeb.Component
                 return null;
             }
             return (account_member)session;
+        }
+        public static bool CreateMember(string phone, string password)
+        {
+            EntityDB entity = new EntityDB();
+            account_member member = new account_member()
+            {
+                enable = true,
+                password = DESTool.Encrypt(password),
+                phone = phone,
+                sys_datetime = DateTime.Now,
+            };
+            entity.account_member.Add(member);
+            return entity.SaveChanges() > 0;
         }
     }
 }

@@ -9,7 +9,6 @@ namespace TemplateWeb.Component
 {
     public class AdminManager
     {
-        EntityDB entity = new EntityDB();
         public static account_admin GetAdmin()
         {
             var session = HttpContext.Current.Session["tpadmin"];
