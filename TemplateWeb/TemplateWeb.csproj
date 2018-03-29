@@ -493,9 +493,10 @@
     <Content Include="Views\Admin\MemberList.cshtml" />
     <Content Include="Views\Shared\_Partial_Member_Sidebar.cshtml" />
     <Content Include="Views\Member\Welcome.cshtml" />
-    <Content Include="Views\Member\Setting.cshtml" />
+    <Content Include="Views\Member\Info.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Member\Register.cshtml" />
+    <Content Include="Views\Member\Password.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

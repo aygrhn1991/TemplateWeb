@@ -9,6 +9,7 @@ namespace TemplateWeb.Component
 {
     public class AdminManager
     {
+        
         public static account_admin GetAdmin()
         {
             var session = HttpContext.Current.Session["tpadmin"];

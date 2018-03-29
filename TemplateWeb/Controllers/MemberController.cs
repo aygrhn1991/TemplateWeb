@@ -87,10 +87,16 @@ namespace TemplateWeb.Controllers
                 bool codeResult = tool.CheckCode(phone, code);
                 if (codeResult == true)
                 {
-                    bool memberResult = MemberManager.CreateMember(phone, password);
-                    if (memberResult == true)
+                    account_member new_account_member = new account_member()
                     {
-                        account_member new_account_member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+                        enable = true,
+                        password = DESTool.Encrypt(password),
+                        phone = phone,
+                        sys_datetime = DateTime.Now,
+                    };
+                    entity.account_member.Add(new_account_member);
+                    if (entity.SaveChanges() > 0)
+                    {
                         HttpContext.Session["tpmember"] = new_account_member;
                         return Json(true, JsonRequestBehavior.AllowGet);
                     }
@@ -102,9 +108,42 @@ namespace TemplateWeb.Controllers
         }
         #endregion
 
-        public ActionResult Setting()
+        #region 设置
+        #region 个人信息
+        public ActionResult Info()
         {
             return View();
         }
+        public ActionResult Info_Get()
+        {
+            string phone = MemberManager.GetMember().phone;
+            account_member member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+            return Json(member, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Info_Add_Edit(account_member memberModel)
+        {
+            var query = entity.account_member.FirstOrDefault(p => p.id == memberModel.id);
+            query.real_name = memberModel.real_name;
+            query.sex = memberModel.sex;
+            query.idcard_number = memberModel.idcard_number;
+            query.email = memberModel.email;
+            query.remark = memberModel.remark;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 密码管理
+        public ActionResult Password()
+        {
+            return View();
+        }
+        public ActionResult Password_Add_Edit(string password)
+        {
+            string phone = MemberManager.GetMember().phone;
+            account_member member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+            member.password = DESTool.Encrypt(password);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion
     }
 }

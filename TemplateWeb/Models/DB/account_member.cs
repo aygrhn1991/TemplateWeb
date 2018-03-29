@@ -16,6 +16,8 @@ namespace TemplateWeb.Models.DB
 
         public string real_name { get; set; }
 
+        public string sex { get; set; }
+
         public string idcard_number { get; set; }
 
         public string email { get; set; }
