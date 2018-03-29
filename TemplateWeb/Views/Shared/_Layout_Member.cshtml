@@ -21,12 +21,21 @@
 
     <script src="~/Plugin/slimscroll/js/jquery.slimscroll.js"></script>
 
+    @*<link href="~/Plugin/limarquee/css/liMarquee.css" rel="stylesheet" />
+    <script src="~/Plugin/limarquee/js/liMarquee.js"></script>
+
+    <link href="~/Content/home/home-public.css" rel="stylesheet" />
+    <script src="~/Scripts/home/home-public.js"></script>
+    <link href="~/Content/home/home-layout.css" rel="stylesheet" />
+    <script src="~/Scripts/home/home-index.js"></script>*@
+
     <link href="~/Content/member/member-public.css" rel="stylesheet" />
     <script src="~/Scripts/member/member-public.js"></script>
     <link href="~/Content/member/member-layout.css" rel="stylesheet" />
     <script src="~/Scripts/member/member-layout.js"></script>
 </head>
-<body>
+<body @*ng-app="app" ng-controller="layout"*@>
+    @*@Html.Partial("_Partial_Home_Header")*@
     @Html.Partial("_Partial_Member_Sidebar")
     @RenderBody()
 </body>
