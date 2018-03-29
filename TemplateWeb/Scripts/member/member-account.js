@@ -34,7 +34,7 @@ app.controller('register', function ($scope, $http, NgTableParams) {
             code: null,
         };
     };
-    var countDown = 5;
+    var countDown = 60;
     function CountDown() {
         var btn = $('#codeBtn');
         if (countDown == 0) {

@@ -12,7 +12,7 @@
     </ul>
     <div class="tp-nav-account">
         <div class="tp-nav-in" ng-if="param.member!=null">
-            <a class="glyphicon glyphicon-envelope"><span class="badge" ng-bind="param.member_messageCount"></span></a>
+            <a class="glyphicon glyphicon-envelope"><span class="badge" ng-if="param.member_messageCount!=0" ng-bind="param.member_messageCount"></span></a>
             <a href="/Member/Index" ng-bind="(param.member.real_name==null||param.member.real_name=='')?param.member.phone:param.member.real_name"></a>，
             <a href="/Member/Logout">注销</a>
         </div>
