@@ -21,6 +21,20 @@ namespace TemplateWeb.Controllers
         {
             return View();
         }
+        public ActionResult Layout_Get()
+        {
+            var member = MemberManager.GetMember();
+            var member_messageCount = 0;
+            if (member != null)
+            {
+                member_messageCount = entity.member_message.Count(p => p.member_id == member.id && p.state_read == false);
+            }
+            return Json(new
+            {
+                member,
+                member_messageCount,
+            }, JsonRequestBehavior.AllowGet);
+        }
 
         #region 登陆
         [AllowAnonymous]

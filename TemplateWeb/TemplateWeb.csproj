@@ -360,6 +360,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\member\member-account.js" />
+    <Content Include="Scripts\member\member-index.js" />
     <Content Include="Scripts\member\member-layout.js" />
     <Content Include="Scripts\member\member-message.js" />
     <Content Include="Scripts\member\member-public.js" />
