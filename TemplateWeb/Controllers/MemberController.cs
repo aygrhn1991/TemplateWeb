@@ -146,5 +146,36 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #endregion
+        #region 消息
+        public ActionResult MessageList()
+        {
+            return View();
+        }
+        public ActionResult MessageList_Get()
+        {
+            int id = MemberManager.GetMember().id;
+            var query = entity.member_message.Where(p => p.member_id == id).OrderByDescending(p => p.id).ToArray().Select(p => new
+            {
+                p.id,
+                p.content,
+                p.state_read,
+                p.title,
+                sys_datetime = p.sys_datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Message_Add_Edit(member_message messageaModel)
+        {
+            var query = entity.member_message.FirstOrDefault(p => p.id == messageaModel.id);
+            query.state_read = messageaModel.state_read;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Message_Delete(int id)
+        {
+            var query = entity.member_message.FirstOrDefault(p => p.id == id);
+            entity.member_message.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

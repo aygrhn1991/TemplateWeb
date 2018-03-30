@@ -81,3 +81,10 @@
     border-radius: 5px;
     background-color: white;
 }
+.tp-badge-right-top {
+    position: relative;
+    top: -10px;
+    left: -5px;
+    padding: 0 5px 4px 5px;
+    background-color: #ff4c4c;
+}

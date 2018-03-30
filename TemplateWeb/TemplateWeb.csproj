@@ -361,6 +361,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\member\member-account.js" />
     <Content Include="Scripts\member\member-layout.js" />
+    <Content Include="Scripts\member\member-message.js" />
     <Content Include="Scripts\member\member-public.js" />
     <Content Include="Scripts\home\home-index.js" />
     <Content Include="Scripts\home\home-public.js" />
@@ -498,6 +499,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Member\Register.cshtml" />
     <Content Include="Views\Member\Password.cshtml" />
+    <Content Include="Views\Member\MessageList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
