@@ -98,6 +98,7 @@ namespace TemplateWeb.Controllers
                     if (entity.SaveChanges() > 0)
                     {
                         HttpContext.Session["tpmember"] = new_account_member;
+                        MessageTool.SendMessage(new_account_member.id, "系统通知", "恭喜您注册成功！");
                         return Json(true, JsonRequestBehavior.AllowGet);
                     }
                     return Json("用户创建失败", JsonRequestBehavior.AllowGet);
@@ -116,8 +117,8 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Info_Get()
         {
-            string phone = MemberManager.GetMember().phone;
-            account_member member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+            int id = MemberManager.GetMember().id;
+            account_member member = entity.account_member.FirstOrDefault(p => p.id == id);
             return Json(member, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Info_Add_Edit(account_member memberModel)
@@ -138,8 +139,8 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult Password_Add_Edit(string password)
         {
-            string phone = MemberManager.GetMember().phone;
-            account_member member = entity.account_member.FirstOrDefault(p => p.phone == phone);
+            int id = MemberManager.GetMember().id;
+            account_member member = entity.account_member.FirstOrDefault(p => p.id == id);
             member.password = DESTool.Encrypt(password);
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }

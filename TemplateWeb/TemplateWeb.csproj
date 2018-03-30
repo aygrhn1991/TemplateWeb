@@ -386,6 +386,7 @@
     <Compile Include="Component\DESTool.cs" />
     <Compile Include="Component\MemberAuthorizeAttribute.cs" />
     <Compile Include="Component\MemberManager.cs" />
+    <Compile Include="Component\MessageTool.cs" />
     <Compile Include="Component\qcloudsms\httpclient\DefaultHTTPClient.cs" />
     <Compile Include="Component\qcloudsms\httpclient\HTTPException.cs" />
     <Compile Include="Component\qcloudsms\httpclient\HTTPMethod.cs" />
