@@ -5,11 +5,22 @@
 }
 <div class="row">
     <div class="col-xs-6">
-            <label>视频地址：</label>
+        <label>视频地址：</label>
         <div class="input-group">
             <input type="text" id="url" class="form-control" value="@ViewBag.url">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" onclick="save()">保存</button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <label>时间：</label>
+        <div class="input-group">
+            <input type="text" id="time" class="form-control" value="@ViewBag.time">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onclick="savetime()">保存</button>
             </span>
         </div>
     </div>
@@ -22,6 +33,23 @@
             url: '/Home/SetUrl',
             data: {
                 url: $('#url').val(),
+            },
+            dataType: 'JSON',
+            success: function (d) {
+                if (d == true) {
+                    alert('成功');
+                } else {
+                    alert('错误');
+                }
+            },
+        });
+    };
+    function savetime() {
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SetTime',
+            data: {
+                url: $('#time').val(),
             },
             dataType: 'JSON',
             success: function (d) {

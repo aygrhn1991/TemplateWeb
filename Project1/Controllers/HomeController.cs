@@ -13,6 +13,8 @@ namespace Project1.Controllers
         EntityDB entity = new EntityDB();
         public ActionResult Index()
         {
+            string time = entity.setting.FirstOrDefault(p => p.key == "time").value;
+            ViewBag.time = time;
             return View();
         }
         [HttpPost]
@@ -103,6 +105,7 @@ namespace Project1.Controllers
         }
         public ActionResult UserList()
         {
+            ViewBag.time = entity.setting.FirstOrDefault(p => p.key == "time").value; ;
             List<user> list = entity.user.ToList();
             ViewBag.url = entity.setting.FirstOrDefault(p => p.key == "url").value;
             return View(list);
@@ -111,6 +114,12 @@ namespace Project1.Controllers
         {
             setting setting = entity.setting.FirstOrDefault(p => p.key == "url");
             setting.value = url;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult SetTime(string time)
+        {
+            setting setting = entity.setting.FirstOrDefault(p => p.key == "time");
+            setting.value = time;
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
     }

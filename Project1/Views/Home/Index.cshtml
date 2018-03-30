@@ -3,23 +3,82 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    body {
+        background-color: coral;
+        color: white;
+        padding: 10px;
+    }
 
+    .top1 > img {
+        width: 60px;
+    }
+
+    .title {
+        display: inline-block;
+        font-size: 30px;
+        padding-left: 10px;
+        font-weight: bold;
+        position: relative;
+        top: 10px;
+    }
+
+    .top2 {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .top3 {
+        text-align: center;
+        font-size: 16px;
+        margin: 20px 0;
+    }
+
+    .imglist img {
+        width: 100%;
+    }
+</style>
 <div>
-    <div>
-        <br />
-        <br />
-        <br />
-        宣传内容
-        <br />
-        <br />
-        <br />
+    <div class="top1">
+        <img src="~/Image/logo-2018-03-13-20-56-58-645ce7346bc940f8ba94911d5ca2af0c.png" />
+        <div class="title">同歌教育</div>
+    </div>
+    @*<div class="top2">
+            <p style="text-indent:2em;">双师直播免费试听月</p>
+            <p style="text-indent:6em;">把名师送到家门口</p>
+            <p style="text-indent:2em;">手机上课，免费试听</p>
+            <p style="text-indent:6em;">中考成败，在此一举</p>
+        </div>*@
+    <div class="top2">
+        <p>双师直播<span style="font-size:24px;color:red;">免费</span>试听月</p>
+        <p>把名师送到家门口</p>
+        <p>手机上课，免费试听</p>
+        <p>中考成败，在此一举</p>
+    </div>
+    <div class="imglist">
+        <img src="~/Image/微信图片_20180330080855.jpg" />
+    </div>
+    <div class="top3">
+        <p>同歌双师课堂</p>
+        <p>哈尔滨中考冲刺课程</p>
+        <p>4月免费试听</p>
+        <p>上课时间：@ViewBag.time</p>
+    </div>
+    <div class="imglist">
+        <img src="~/Image/微信图片_20180330080913.jpg" />
+        <img src="~/Image/微信图片_20180330080919.jpg" />
+        <img src="~/Image/微信图片_20180330080923.jpg" />
+        <img src="~/Image/微信图片_20180330080938.jpg" />
+        <img src="~/Image/微信图片_20180330080941.jpg" />
     </div>
     <form style="padding:20px;" action="/Home/Index" method="post">
         <div class="form-group">
             <input type="text" class="form-control" name="phone" placeholder="请输入手机号..." />
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-default">立即观看</button>
+            <button style="background-color:#cbe625" type="submit" class="btn btn-default">输入手机号，立即观看</button>
         </div>
     </form>
 </div>
