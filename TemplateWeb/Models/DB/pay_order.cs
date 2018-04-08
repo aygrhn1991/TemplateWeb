@@ -18,9 +18,7 @@ namespace TemplateWeb.Models.DB
         public decimal? price { get; set; }
 
         public int? state { get; set; }
-
-        public DateTime? create_time { get; set; }
-
+        
         public DateTime? pay_time { get; set; }
 
         public DateTime? sys_datetime { get; set; }

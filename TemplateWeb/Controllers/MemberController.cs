@@ -101,18 +101,18 @@ namespace TemplateWeb.Controllers
                 bool codeResult = tool.CheckCode(phone, code);
                 if (codeResult == true)
                 {
-                    account_member new_account_member = new account_member()
+                    account_member new_member = new account_member()
                     {
                         enable = true,
                         password = DESTool.Encrypt(password),
                         phone = phone,
                         sys_datetime = DateTime.Now,
                     };
-                    entity.account_member.Add(new_account_member);
+                    entity.account_member.Add(new_member);
                     if (entity.SaveChanges() > 0)
                     {
-                        HttpContext.Session["tpmember"] = new_account_member;
-                        MessageTool.SendMessage(new_account_member.id, "系统通知", "恭喜您注册成功！");
+                        HttpContext.Session["tpmember"] = new_member;
+                        MessageTool.SendMessage(new_member.id, "系统通知", "恭喜您注册成功！");
                         return Json(true, JsonRequestBehavior.AllowGet);
                     }
                     return Json("用户创建失败", JsonRequestBehavior.AllowGet);
@@ -185,6 +185,44 @@ namespace TemplateWeb.Controllers
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Message_Delete(int id)
+        {
+            var query = entity.member_message.FirstOrDefault(p => p.id == id);
+            entity.member_message.Remove(query);
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 订单
+        public ActionResult OrderList()
+        {
+            return View();
+        }
+        public ActionResult OrderList_Get()
+        {
+            int id = MemberManager.GetMember().id;
+            //var query = entity.pay_order.Where(p => p.member_id == id).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new
+            //{
+            //    a.id,
+            //    a.member_id,
+            //    a.price,
+            //    a.product_id,
+            //    a.state,
+            //    //p.order_number,
+            //    pay_time = a.pay_time.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+            //    sys_datetime = a.sys_datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+            //    product_name = b.name,
+            //    b,
+            //});
+            var query = entity.pay_order.Where(p => p.member_id == id).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id,(a,b)=>new {a,b }).Join(entity.module_product_type,a=>a.b.type_id , b => b.id, (a, b) => new {b.name });
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Order_Add_Edit(member_message messageaModel)
+        {
+            var query = entity.member_message.FirstOrDefault(p => p.id == messageaModel.id);
+            query.state_read = messageaModel.state_read;
+            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Order_Delete(int id)
         {
             var query = entity.member_message.FirstOrDefault(p => p.id == id);
             entity.member_message.Remove(query);
