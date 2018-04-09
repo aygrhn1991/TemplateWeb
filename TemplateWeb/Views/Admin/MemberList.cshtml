@@ -21,9 +21,9 @@
         <tbody>
             <tr ng-repeat="d in $data">
                 <td title="'ID'" sortable="'id'">{{d.id}}</td>
-                <td title="'姓名'" sortable="'real_name'" filter="{type:'text'}">{{d.real_name}}</td>
-                <td title="'电话'" sortable="'phone'" filter="{type:'text'}">{{d.phone}}</td>
-                <td title="'备注'" sortable="'remark'" filter="{name:'text'}">{{d.remark}}</td>
+                <td title="'姓名'" sortable="'real_name'" filter="{real_name:'text'}">{{d.real_name}}</td>
+                <td title="'电话'" sortable="'phone'" filter="{phone:'text'}">{{d.phone}}</td>
+                <td title="'备注'" sortable="'remark'" filter="{remark:'text'}">{{d.remark}}</td>
                 <td title="'状态'" sortable="'enable'">
                     <label class="label label-success" ng-if="d.enable">已启用</label>
                     <label class="label label-danger" ng-if="!d.enable">已停用</label>
