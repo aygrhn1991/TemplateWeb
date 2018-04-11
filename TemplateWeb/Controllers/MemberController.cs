@@ -213,7 +213,7 @@ namespace TemplateWeb.Controllers
             //    product_name = b.name,
             //    b,
             //});
-            var query = entity.pay_order.Where(p => p.member_id == id).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id,(a,b)=>new {a,b }).Join(entity.module_product_type,a=>a.b.type_id , b => b.id, (a, b) => new {b.name });
+            var query = entity.pay_order.Where(p => p.member_id == id && p.delete == false).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new { a, b }).Join(entity.module_product_type, a => a.b.type_id, b => b.id, (a, b) => new { b.name });
             return Json(query, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Order_Add_Edit(member_message messageaModel)
@@ -225,7 +225,7 @@ namespace TemplateWeb.Controllers
         public ActionResult Order_Delete(int id)
         {
             var query = entity.member_message.FirstOrDefault(p => p.id == id);
-            entity.member_message.Remove(query);
+            //query.delete
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion

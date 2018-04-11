@@ -93,6 +93,8 @@ app.controller('productAdd', function ($scope, $http) {
                 description: null,
                 content: null,
                 top: false,
+                price: null,
+                delete: false,
             };
             $('#easyContainer').easyUpload({
                 allowFileTypes: '*.jpg;*.png;*.gif;',

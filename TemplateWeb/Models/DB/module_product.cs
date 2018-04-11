@@ -25,6 +25,8 @@ namespace TemplateWeb.Models.DB
 
         public bool? top { get; set; }
 
+        public bool? delete { get; set; }
+
         public DateTime? sys_datetime { get; set; }
     }
 }

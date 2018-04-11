@@ -1141,7 +1141,7 @@ namespace TemplateWeb.Controllers
         }
         public ActionResult ProductList_Get()
         {
-            var query = entity.module_product.OrderBy(p => p.id).ToArray().Join(entity.module_product_type, a => a.type_id, b => b.id, (a, b) => new
+            var query = entity.module_product.Where(p => p.delete == false).OrderBy(p => p.id).ToArray().Join(entity.module_product_type, a => a.type_id, b => b.id, (a, b) => new
             {
                 a.content,
                 a.description,
@@ -1151,6 +1151,8 @@ namespace TemplateWeb.Controllers
                 a.sys_datetime,
                 a.top,
                 a.type_id,
+                a.price,
+                a.delete,
                 type = b.name,
             });
             return Json(query, JsonRequestBehavior.AllowGet);
@@ -1169,6 +1171,8 @@ namespace TemplateWeb.Controllers
                     top = productModel.top,
                     type_id = productModel.type_id,
                     sys_datetime = DateTime.Now,
+                    delete = productModel.delete,
+                    price = productModel.price,
                 };
                 entity.module_product.Add(product);
             }
@@ -1177,8 +1181,10 @@ namespace TemplateWeb.Controllers
                 var query = entity.module_product.FirstOrDefault(p => p.id == productModel.id);
                 query.name = productModel.name;
                 query.content = productModel.content;
+                query.delete = productModel.delete;
                 query.description = productModel.description;
                 query.path = productModel.path;
+                query.price = productModel.price;
                 query.top = productModel.top;
                 query.type_id = productModel.type_id;
             }
@@ -1187,7 +1193,7 @@ namespace TemplateWeb.Controllers
         public ActionResult Product_Delete(int id)
         {
             var query = entity.module_product.FirstOrDefault(p => p.id == id);
-            entity.module_product.Remove(query);
+            query.delete = true;
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion

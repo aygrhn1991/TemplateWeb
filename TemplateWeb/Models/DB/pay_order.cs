@@ -17,9 +17,17 @@ namespace TemplateWeb.Models.DB
         [Column(TypeName = "money")]
         public decimal? price { get; set; }
 
-        public int? state { get; set; }
-        
         public DateTime? pay_time { get; set; }
+
+        public string pay_method { get; set; }
+
+        public string number { get; set; }
+
+        public string remark { get; set; }
+
+        public bool? state_pay { get; set; }
+
+        public bool? delete { get; set; }
 
         public DateTime? sys_datetime { get; set; }
     }

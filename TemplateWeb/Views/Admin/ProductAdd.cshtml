@@ -43,6 +43,12 @@
                 <input type="text" class="form-control" placeholder="请输入产品名称..." ng-model="productModel.name">
             </div>
         </div>
+        <div class="col-xs-4">
+            <div class="form-group">
+                <label>价格：</label>
+                <input type="text" class="form-control" placeholder="请输入价格..." ng-model="productModel.price">
+            </div>
+        </div>
         <div class="col-xs-12">
             <div class="form-group">
                 <label>图片：<img ng-src="{{productModel.path}}" class="tp-img-small" ng-if="productModel.path!=null" /></label>

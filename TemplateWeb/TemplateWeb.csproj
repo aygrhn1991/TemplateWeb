@@ -54,6 +54,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LitJSON, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.12.0\lib\net45\LitJSON.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -125,6 +128,8 @@
     <Content Include="Content\member\member-public.css" />
     <Content Include="Content\mobile\mobile-layout.css" />
     <Content Include="Content\mobile\mobile-public.css" />
+    <Content Include="Content\pay\pay-layout.css" />
+    <Content Include="Content\pay\pay-public.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -371,6 +376,8 @@
     <Content Include="Scripts\member\member-setting.js" />
     <Content Include="Scripts\mobile\mobile-index.js" />
     <Content Include="Scripts\mobile\mobile-public.js" />
+    <Content Include="Scripts\pay\pay-index.js" />
+    <Content Include="Scripts\pay\pay-public.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Partial_Admin_Sidebar.cshtml" />
     <Content Include="Views\Admin\PageList.cshtml" />
@@ -415,10 +422,27 @@
     <Compile Include="Component\qcloudsms\SmsVoiceVerifyCodeSenderResult.cs" />
     <Compile Include="Component\SysTool.cs" />
     <Compile Include="Component\SMSTool.cs" />
+    <Compile Include="Component\WxPayAPI\business\DownloadBill.cs" />
+    <Compile Include="Component\WxPayAPI\business\JsApiPay.cs" />
+    <Compile Include="Component\WxPayAPI\business\MicroPay.cs" />
+    <Compile Include="Component\WxPayAPI\business\NativeNotify.cs" />
+    <Compile Include="Component\WxPayAPI\business\NativePay.cs" />
+    <Compile Include="Component\WxPayAPI\business\OrderQuery.cs" />
+    <Compile Include="Component\WxPayAPI\business\Refund.cs" />
+    <Compile Include="Component\WxPayAPI\business\RefundQuery.cs" />
+    <Compile Include="Component\WxPayAPI\business\ResultNotify.cs" />
+    <Compile Include="Component\WxPayAPI\lib\Config.cs" />
+    <Compile Include="Component\WxPayAPI\lib\Data.cs" />
+    <Compile Include="Component\WxPayAPI\lib\Exception.cs" />
+    <Compile Include="Component\WxPayAPI\lib\HttpService.cs" />
+    <Compile Include="Component\WxPayAPI\lib\Log.cs" />
+    <Compile Include="Component\WxPayAPI\lib\Notify.cs" />
+    <Compile Include="Component\WxPayAPI\lib\WxPayApi.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -501,6 +525,7 @@
     <Content Include="Views\Member\Register.cshtml" />
     <Content Include="Views\Member\Password.cshtml" />
     <Content Include="Views\Member\MessageList.cshtml" />
+    <Content Include="Views\Pay\PrePay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
