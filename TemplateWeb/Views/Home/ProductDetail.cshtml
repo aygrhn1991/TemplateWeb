@@ -11,9 +11,9 @@
     </div>
     <div class="tp-product-right">
         <div class="tp-product-title-big" ng-bind="product.name"></div>
-        <div class="tp-product-price-big">￥:<span>123.00</span></div>
+        <div class="tp-product-price-big">￥:<span ng-bind="product.price|number:2"></span></div>
         <div class="tp-product-description-big" ng-bind="product.description"></div>
-        <div class="tp-product-buy-btn">立刻购买</div>
+        <a class="tp-product-buy-btn" href="/Pay/PrePay?productId={{product.id}}">立刻购买</a>
     </div>
     <div class="tp-index-title">
         <span>介绍</span>

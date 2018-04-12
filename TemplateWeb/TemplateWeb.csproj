@@ -526,6 +526,7 @@
     <Content Include="Views\Member\Password.cshtml" />
     <Content Include="Views\Member\MessageList.cshtml" />
     <Content Include="Views\Pay\PrePay.cshtml" />
+    <Content Include="Views\Pay\WxPay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
