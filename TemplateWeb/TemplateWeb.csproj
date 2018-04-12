@@ -360,8 +360,6 @@
     <Content Include="Plugin\laydate\theme\default\font\iconfont.eot" />
     <Content Include="Plugin\laydate\theme\default\font\iconfont.ttf" />
     <Content Include="Plugin\laydate\theme\default\font\iconfont.woff" />
-    <Content Include="Component\alipay\Test\aop-sandbox-RSA-private-c#.pem" />
-    <Content Include="Component\alipay\Test\public-key.pem" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -3151,8 +3149,6 @@
     <Compile Include="Component\alipay\Response\ZolozIdentificationUserWebInitializeResponse.cs" />
     <Compile Include="Component\alipay\Response\ZolozIdentificationUserWebQueryResponse.cs" />
     <Compile Include="Component\alipay\SignItem.cs" />
-    <Compile Include="Component\alipay\Test\PublicTest.cs" />
-    <Compile Include="Component\alipay\Test\TestImage.cs" />
     <Compile Include="Component\alipay\Util\AlipayEncrypt.cs" />
     <Compile Include="Component\alipay\Util\AlipaySignature.cs" />
     <Compile Include="Component\alipay\Util\AopUtils.cs" />
