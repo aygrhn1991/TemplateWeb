@@ -16,10 +16,10 @@ namespace WxPayAPI
         * KEY：商户支付密钥，参考开户邮件设置（必须配置）
         * APPSECRET：公众帐号secert（仅JSAPI支付的时候需要配置）
         */
-        public const string APPID = "wx2428e34e0e7dc6ef";
-        public const string MCHID = "1233410002";
-        public const string KEY = "e10adc3849ba56abbe56e056f20f883e";
-        public const string APPSECRET = "51c56b886b5be869567dd389b3e5d1d6";
+        public const string APPID = "wx6f45b83b6fe25fad";
+        public const string MCHID = "1502435191";
+        public const string KEY = "m7UQqwYUMVfmmU8MAmCUiwDybCswmwEz";
+        public const string APPSECRET = "145d0aa1fcf262f61cee89f35d3e21e6";
 
         //=======【证书路径设置】===================================== 
         /* 证书路径,注意应该填写绝对路径（仅退款、撤销订单时需要）
@@ -32,7 +32,7 @@ namespace WxPayAPI
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
-        public const string NOTIFY_URL = "http://paysdk.weixin.qq.com/example/ResultNotifyPage.aspx";
+        public const string NOTIFY_URL = "http://www.tonggeedu.com/Pay/WxPayNotify";
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取
