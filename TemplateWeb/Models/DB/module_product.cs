@@ -19,6 +19,7 @@ namespace TemplateWeb.Models.DB
 
         public string path { get; set; }
 
+        public string attachment { get; set; }
         public string description { get; set; }
 
         public string content { get; set; }

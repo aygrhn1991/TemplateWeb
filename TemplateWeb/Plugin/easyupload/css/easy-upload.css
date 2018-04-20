@@ -23,7 +23,8 @@
   user-select: none; /* Non-prefixed version, currently not supported by any browser */
 }
 .easy_upload-container {
-  width: 600px;
+  width: 50%;
+  min-height:60px;
   border: 1px #dadada solid;
   padding: 10px;
 }

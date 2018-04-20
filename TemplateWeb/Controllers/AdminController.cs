@@ -1173,6 +1173,7 @@ namespace TemplateWeb.Controllers
                     sys_datetime = DateTime.Now,
                     delete = productModel.delete,
                     price = productModel.price,
+                    attachment = productModel.attachment,
                 };
                 entity.module_product.Add(product);
             }
@@ -1187,6 +1188,7 @@ namespace TemplateWeb.Controllers
                 query.price = productModel.price;
                 query.top = productModel.top;
                 query.type_id = productModel.type_id;
+                query.attachment = productModel.attachment;
             }
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }

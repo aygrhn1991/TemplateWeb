@@ -26,7 +26,7 @@ namespace TemplateWeb.Controllers
                 pay_time = null,
                 price = product.price,
                 delete = false,
-                number = id.ToString().PadRight(18, '0') + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                number = id.ToString().PadRight(15, '0') + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
                 pay_method = payMethod,
                 remark = null,
                 state_pay = false,
@@ -49,8 +49,9 @@ namespace TemplateWeb.Controllers
         {
             pay_order order = this.CreateOrder(productId, payMethod);
             module_product product = entity.module_product.FirstOrDefault(p => p.id == order.product_id);
+            lay_setting setting = entity.lay_setting.FirstOrDefault(p => p.key == "sitename");
             WxPayData data = new WxPayData();
-            data.SetValue("body", product.name);//商品描述
+            data.SetValue("body", setting.value + product.name);//商品描述
             data.SetValue("attach", "attach");//附加数据
             data.SetValue("out_trade_no", order.number);//随机字符串
             //data.SetValue("total_fee", (int)Math.Ceiling(order.price.Value * 100));//总金额
@@ -101,10 +102,14 @@ namespace TemplateWeb.Controllers
                 HttpContext.Response.Write(res.ToXml());
                 HttpContext.Response.End();
                 //本地业务处理
-                pay_order order = entity.pay_order.FirstOrDefault(p => p.number == transaction_id);
-                order.pay_time = DateTime.Now;
-                order.state_pay = true;
-                int result = entity.SaveChanges();
+                string number = notifyData.GetValue("out_trade_no").ToString();
+                pay_order order = entity.pay_order.FirstOrDefault(p => p.number == number);
+                if (order.state_pay != true)
+                {
+                    order.pay_time = DateTime.Now;
+                    order.state_pay = true;
+                    int result = entity.SaveChanges();
+                }
             }
             return null;
         }
