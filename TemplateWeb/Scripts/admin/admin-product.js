@@ -178,8 +178,10 @@ app.controller('productAdd', function ($scope, $http) {
             contentType: false,
             processData: false,
             success: function (result) {
-                console.log(result);
+                if (result.code == 200) {
+                    alert('附件上传成功');
                 $scope.productModel.attachment = result.imgUrl;
+                }
             },
         });
     };

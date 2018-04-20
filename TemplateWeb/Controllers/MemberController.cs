@@ -200,7 +200,7 @@ namespace TemplateWeb.Controllers
         public ActionResult OrderList_Get()
         {
             int id = MemberManager.GetMember().id;
-            var query = entity.pay_order.Where(p => p.member_id == id && p.delete == false).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new
+            var query = entity.pay_order.Where(p => p.member_id == id && p.state_pay == true && p.delete == false).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new
             {
                 a.id,
                 a.delete,
@@ -223,6 +223,33 @@ namespace TemplateWeb.Controllers
             var query = entity.pay_order.FirstOrDefault(p => p.id == id);
             query.delete = true;
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #region 产品
+        public ActionResult ProductList()
+        {
+            return View();
+        }
+        public ActionResult ProductList_Get()
+        {
+            int id = MemberManager.GetMember().id;
+            var query = entity.pay_order.Where(p => p.member_id == id && p.state_pay == true).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new
+            {
+                a.id,
+                a.delete,
+                a.member_id,
+                a.number,
+                a.pay_method,
+                pay_time = a.pay_time.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                a.price,
+                a.product_id,
+                a.remark,
+                a.state_pay,
+                sys_datetime = a.sys_datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                b.name,
+                b.attachment,
+            });
+            return Json(query, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }
