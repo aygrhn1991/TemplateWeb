@@ -164,6 +164,25 @@ app.controller('productAdd', function ($scope, $http) {
             }
         }
     });
+
+    ///临时加参，也是因为上传插件bug，不得不这样先顶替着，找到好的插件再说
+    $scope.uploadAtt = function () {
+        var formData = new FormData();
+        formData.append('type', 'product-attachment');
+        formData.append('file', $('#att')[0].files[0]);
+        $.ajax({
+            url: '/Plugin/easyupload/handler/UploadHandler.ashx',
+            type: 'post',
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                console.log(result);
+                $scope.productModel.attachment = result.imgUrl;
+            },
+        });
+    };
 });
 app.controller('productList', function ($scope, $http, NgTableParams) {
     $scope.Init = function () {

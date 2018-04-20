@@ -49,11 +49,16 @@
                 <input type="text" class="form-control" placeholder="请输入价格..." ng-model="productModel.price">
             </div>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             <div class="form-group">
                 <label>图片：<img ng-src="{{productModel.path}}" class="tp-img-small" ng-if="productModel.path!=null" /></label>
                 <div id="easyContainer"></div>
             </div>
+        </div>
+        <div class="col-xs-6">
+            <input type="file" id="att" /><button ng-click="uploadAtt()">上传附件</button>
+        </div>
+        <div class="col-xs-12">
             <div class="form-group">
                 <label>描述：</label>
                 <textarea class="form-control" rows="3" ng-model="productModel.description"></textarea>
