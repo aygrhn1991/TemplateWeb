@@ -1153,6 +1153,7 @@ namespace TemplateWeb.Controllers
                 a.type_id,
                 a.price,
                 a.delete,
+                a.attachment,
                 type = b.name,
             });
             return Json(query, JsonRequestBehavior.AllowGet);

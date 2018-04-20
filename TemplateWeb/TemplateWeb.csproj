@@ -370,6 +370,7 @@
     <Content Include="Scripts\member\member-account.js" />
     <Content Include="Scripts\member\member-index.js" />
     <Content Include="Scripts\member\member-layout.js" />
+    <Content Include="Scripts\member\member-order.js" />
     <Content Include="Scripts\member\member-message.js" />
     <Content Include="Scripts\member\member-public.js" />
     <Content Include="Scripts\home\home-index.js" />
@@ -381,6 +382,7 @@
     <Content Include="Scripts\mobile\mobile-public.js" />
     <Content Include="Scripts\pay\pay-index.js" />
     <Content Include="Scripts\pay\pay-public.js" />
+    <Content Include="study\stydy.txt" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Partial_Admin_Sidebar.cshtml" />
     <Content Include="Views\Admin\PageList.cshtml" />
@@ -531,6 +533,7 @@
     <Content Include="Views\Member\MessageList.cshtml" />
     <Content Include="Views\Pay\PrePay.cshtml" />
     <Content Include="Views\Pay\WxPay.cshtml" />
+    <Content Include="Views\Member\OrderList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

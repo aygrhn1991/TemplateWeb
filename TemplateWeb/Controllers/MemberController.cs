@@ -200,32 +200,28 @@ namespace TemplateWeb.Controllers
         public ActionResult OrderList_Get()
         {
             int id = MemberManager.GetMember().id;
-            //var query = entity.pay_order.Where(p => p.member_id == id).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new
-            //{
-            //    a.id,
-            //    a.member_id,
-            //    a.price,
-            //    a.product_id,
-            //    a.state,
-            //    //p.order_number,
-            //    pay_time = a.pay_time.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-            //    sys_datetime = a.sys_datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-            //    product_name = b.name,
-            //    b,
-            //});
-            var query = entity.pay_order.Where(p => p.member_id == id && p.delete == false).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new { a, b }).Join(entity.module_product_type, a => a.b.type_id, b => b.id, (a, b) => new { b.name });
+            var query = entity.pay_order.Where(p => p.member_id == id && p.delete == false).OrderByDescending(p => p.id).ToArray().Join(entity.module_product, a => a.product_id, b => b.id, (a, b) => new
+            {
+                a.id,
+                a.delete,
+                a.member_id,
+                a.number,
+                a.pay_method,
+                pay_time = a.pay_time.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                a.price,
+                a.product_id,
+                a.remark,
+                a.state_pay,
+                sys_datetime = a.sys_datetime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                b.name,
+                b.attachment,
+            });
             return Json(query, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Order_Add_Edit(member_message messageaModel)
-        {
-            var query = entity.member_message.FirstOrDefault(p => p.id == messageaModel.id);
-            query.state_read = messageaModel.state_read;
-            return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Order_Delete(int id)
         {
-            var query = entity.member_message.FirstOrDefault(p => p.id == id);
-            //query.delete
+            var query = entity.pay_order.FirstOrDefault(p => p.id == id);
+            query.delete = true;
             return Json(entity.SaveChanges() > 0, JsonRequestBehavior.AllowGet);
         }
         #endregion
