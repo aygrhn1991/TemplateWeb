@@ -553,6 +553,7 @@
     <Folder Include="Upload\uploader\banner\" />
     <Folder Include="Upload\uploader\news\" />
     <Folder Include="Upload\uploader\partner\" />
+    <Folder Include="Upload\uploader\product-attachment\" />
     <Folder Include="Upload\uploader\product\" />
   </ItemGroup>
   <PropertyGroup>
