@@ -9,11 +9,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>预支付</title>
+    <link href="~/Content/pay/pay.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        <a href="/Pay/WxPay?productId=@ViewBag.productId&payMethod=微信支付">微信支付</a>
-        <a href="/Pay/WxPay?productId=@ViewBag.productId&payMethod=微信支付">支付宝支付</a>
+    <div class="tp-prepay-header">
+        <a href="/Home/Index" class="tp-prepay-header-logo">
+            <img src="@ViewBag.logo" />
+        </a>
+        <div class="tp-prepay-header-sitename">
+            @ViewBag.sitename 收银台
+        </div>
     </div>
+    <div class="tp-prepay-order">
+        <div class="tp-prepay-order-wrapper">
+            <div class="tp-prepay-order-productname">购买产品：@ViewBag.name</div>
+            <div class="tp-prepay-order-productprice">应付金额：￥@ViewBag.price</div>
+        </div>
+    </div>
+    <div class="tp-prepay-paymethod">
+        <a href="/Pay/WxPay?productId=@ViewBag.productId&payMethod=微信" class="tp-prepay-paymethod-method">
+            <img src="~/Component/PaySource/wxpay/logo.png" />
+        </a>
+        <a href="/Pay/AliPay?productId=@ViewBag.productId&payMethod=支付宝" class="tp-prepay-paymethod-method">
+            <img src="~/Component/PaySource/wxpay/logo.png" />
+        </a>
+    </div>
+    <div class="tp-prepay-footer"></div>
 </body>
 </html>

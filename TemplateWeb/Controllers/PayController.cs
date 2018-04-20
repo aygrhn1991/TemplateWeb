@@ -40,7 +40,13 @@ namespace TemplateWeb.Controllers
         #region 预支付
         public ActionResult PrePay(int productId)
         {
+            module_product product = entity.module_product.FirstOrDefault(p => p.id == productId);
+            var setting = entity.lay_setting;
             ViewBag.productId = productId;
+            ViewBag.name = product.name;
+            ViewBag.price = product.price;
+            ViewBag.logo = setting.FirstOrDefault(p => p.key == "logo").value;
+            ViewBag.sitename = setting.FirstOrDefault(p => p.key == "sitename").value;
             return View();
         }
         #endregion
@@ -49,9 +55,9 @@ namespace TemplateWeb.Controllers
         {
             pay_order order = this.CreateOrder(productId, payMethod);
             module_product product = entity.module_product.FirstOrDefault(p => p.id == order.product_id);
-            lay_setting setting = entity.lay_setting.FirstOrDefault(p => p.key == "sitename");
+            var setting = entity.lay_setting;
             WxPayData data = new WxPayData();
-            data.SetValue("body", setting.value + product.name);//商品描述
+            data.SetValue("body", setting.FirstOrDefault(p => p.key == "sitename").value + product.name);//商品描述
             data.SetValue("attach", "attach");//附加数据
             data.SetValue("out_trade_no", order.number);//随机字符串
             //data.SetValue("total_fee", (int)Math.Ceiling(order.price.Value * 100));//总金额
@@ -110,7 +116,7 @@ namespace TemplateWeb.Controllers
                     order.pay_time = DateTime.Now;
                     order.state_pay = true;
                     int result = entity.SaveChanges();
-                    MessageTool.SendMessage(order.member_id.Value, "支付通知", "您已成功购买【" + product.name + "】！");
+                    MessageTool.SendMessage(order.member_id.Value, "购买通知", "您已成功购买【" + product.name + "】！");
                 }
             }
             return null;
@@ -165,7 +171,7 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #region 支付宝支付
-        public ActionResult Alipay()
+        public ActionResult AliPay()
         {
             return View();
         }

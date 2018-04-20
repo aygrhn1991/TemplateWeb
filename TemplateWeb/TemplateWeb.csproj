@@ -117,6 +117,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Component\PaySource\wxpay\logo.png" />
+    <Content Include="Component\PaySource\wxpay\tip.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -131,8 +133,7 @@
     <Content Include="Content\member\member-public.css" />
     <Content Include="Content\mobile\mobile-layout.css" />
     <Content Include="Content\mobile\mobile-public.css" />
-    <Content Include="Content\pay\pay-layout.css" />
-    <Content Include="Content\pay\pay-public.css" />
+    <Content Include="Content\pay\pay.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -546,6 +547,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Component\alipay\" />
+    <Folder Include="Component\PaySource\alipay\" />
     <Folder Include="Plugin\limarquee\images\" />
     <Folder Include="Plugin\metismenu\images\" />
     <Folder Include="Plugin\ngtable\images\" />
