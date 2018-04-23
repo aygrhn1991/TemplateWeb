@@ -96,3 +96,8 @@
     padding: 3px 5px 2px 4px;
     background-color: #ff4c4c;
 }
+
+.tp-account-login-register {
+    line-height: 30px;
+    float: right;
+}

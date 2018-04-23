@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNet.SignalR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using TemplateWeb.Component;
+using TemplateWeb.Component.WxExtension;
 using TemplateWeb.Models.DB;
 using WxPayAPI;
 
@@ -71,7 +73,6 @@ namespace TemplateWeb.Controllers
             string url = QRTool.CreateQR(result.GetValue("code_url").ToString());//获得统一下单接口返回的二维码链接
             ViewBag.url = url;
             
-            ViewBag.productId = productId;
             ViewBag.name = product.name;
             ViewBag.price = product.price;
             ViewBag.logo = setting.FirstOrDefault(p => p.key == "logo").value;
@@ -123,6 +124,10 @@ namespace TemplateWeb.Controllers
                     order.state_pay = true;
                     int result = entity.SaveChanges();
                     MessageTool.SendMessage(order.member_id.Value, "购买通知", "您已成功购买【" + product.name + "】！");
+                    //页面同步跳转
+                    //var hub = GlobalHost.ConnectionManager.GetHubContext<WxPayHub>().Clients.Client("12");
+                    var hub = GlobalHost.ConnectionManager.GetHubContext<WxPayHub>().Clients;
+                    hub.All.payResult("success");
                 }
             }
             return null;

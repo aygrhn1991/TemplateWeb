@@ -10,6 +10,23 @@
     <meta name="viewport" content="width=device-width" />
     <title>微信支付</title>
     <link href="~/Content/pay/pay.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.2.4.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.3.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var wxPayHub = $.connection.wxPayHub;
+            wxPayHub.client.payResult = function (result) {
+                console.log(result);
+                if (result == 'success') {
+                    location.href = '/Member/Index';
+                } else {
+                    alert('支付过程出现问题，请重新操作！');
+                }
+            };
+            $.connection.hub.start().done(function () { });
+        })
+    </script>
 </head>
 <body>
     <div class="tp-pay-header">
