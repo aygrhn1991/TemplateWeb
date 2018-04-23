@@ -48,7 +48,6 @@ namespace TemplateWeb.Component
         {
             SmsSingleSender ssender = new SmsSingleSender(this.appId, this.appKey);
             var result = ssender.sendWithParam("86", phone, templateId, paramters, null, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
-            Console.WriteLine(result);
             return result.result == 0;
         }
         public bool CheckCode(string phone, string code)

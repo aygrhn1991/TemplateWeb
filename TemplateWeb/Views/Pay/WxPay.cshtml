@@ -17,7 +17,6 @@
         $(function () {
             var wxPayHub = $.connection.wxPayHub;
             wxPayHub.client.payResult = function (result) {
-                console.log(result);
                 if (result == 'success') {
                     location.href = '/Member/Index';
                 } else {

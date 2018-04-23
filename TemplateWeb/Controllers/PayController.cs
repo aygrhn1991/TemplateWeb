@@ -125,7 +125,7 @@ namespace TemplateWeb.Controllers
                     int result = entity.SaveChanges();
                     MessageTool.SendMessage(order.member_id.Value, "购买通知", "您已成功购买【" + product.name + "】！");
                     //页面同步跳转
-                    //var hub = GlobalHost.ConnectionManager.GetHubContext<WxPayHub>().Clients.Client("12");
+                    //var hub = GlobalHost.ConnectionManager.GetHubContext<WxPayHub>().Clients.Client("12");//此处需要找到一种方法进行一对一通讯，暂时没想到办法
                     var hub = GlobalHost.ConnectionManager.GetHubContext<WxPayHub>().Clients;
                     hub.All.payResult("success");
                 }
