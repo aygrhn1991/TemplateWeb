@@ -503,6 +503,7 @@
 }
 
 .tp-product-buy-btn {
+    display: block;
     margin-top: 20px;
     width: 150px;
     height: 40px;
@@ -512,3 +513,8 @@
     background-color: #ff4c4c;
     cursor: pointer;
 }
+
+    .tp-product-buy-btn:hover {
+        color: white;
+        text-decoration: none;
+    }

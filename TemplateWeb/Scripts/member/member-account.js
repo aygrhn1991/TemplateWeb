@@ -13,7 +13,12 @@ app.controller('login', function ($scope, $http, NgTableParams) {
             password: $scope.account.password,
         }).success(function (d) {
             if (d == true) {
-                window.location.href = '/Member/Index';
+                var redirectUrl = GetUrlParam('redirectUrl');
+                if (redirectUrl == null || redirectUrl == '' || redirectUrl == undefined) {
+                    window.location.href = '/Member/Index';
+                } else {
+                    window.location.href = redirectUrl;
+                }
             } else {
                 alert(d);
             }

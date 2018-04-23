@@ -9,10 +9,34 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>微信支付</title>
+    <link href="~/Content/pay/pay.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        <img src="@ViewBag.url" />
+    <div class="tp-pay-header">
+        <a href="/Home/Index" class="tp-pay-header-logo">
+            <img src="@ViewBag.logo" />
+        </a>
+        <div class="tp-pay-header-sitename">
+            @ViewBag.sitename 收银台
+        </div>
     </div>
+    <div class="tp-pay-order">
+        <div class="tp-pay-order-wrapper">
+            <div class="tp-pay-order-productname">购买产品：@ViewBag.name</div>
+            <div class="tp-pay-order-productprice">应付金额：￥@ViewBag.price</div>
+        </div>
+    </div>
+    <div class="tp-pay-wxpay">
+        <div class="tp-pay-wxpay-logo">
+            <img src="~/Component/PayLogo/wxpay/logo.png" />
+        </div>
+        <div class="tp-pay-wxpay-qr">
+            <img src="@ViewBag.url" />
+        </div>
+        <div class="tp-pay-wxpay-tip">
+            <img src="~/Component/PayLogo/wxpay/tip.png" />
+        </div>
+    </div>
+    <div class="tp-pay-footer"></div>
 </body>
 </html>

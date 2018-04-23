@@ -70,10 +70,16 @@ namespace TemplateWeb.Controllers
             WxPayData result = WxPayApi.UnifiedOrder(data);//调用统一下单接口
             string url = QRTool.CreateQR(result.GetValue("code_url").ToString());//获得统一下单接口返回的二维码链接
             ViewBag.url = url;
+            
+            ViewBag.productId = productId;
+            ViewBag.name = product.name;
+            ViewBag.price = product.price;
+            ViewBag.logo = setting.FirstOrDefault(p => p.key == "logo").value;
+            ViewBag.sitename = setting.FirstOrDefault(p => p.key == "sitename").value;
             return View();
         }
         #endregion
-        #region 微信支付回调
+        #region 微信支付结果通知
         [AllowAnonymous]
         public ActionResult WxPayNotify()
         {

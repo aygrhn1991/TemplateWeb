@@ -38,7 +38,7 @@ namespace TemplateWeb.Controllers
 
         #region 登陆
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult Login(string redirectUrl)
         {
             return View();
         }

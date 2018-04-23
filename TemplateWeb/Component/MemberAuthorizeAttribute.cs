@@ -30,7 +30,7 @@ namespace TemplateWeb.Component
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new RedirectResult("/Member/Login");
+            filterContext.Result = new RedirectResult("/Member/Login?redirectUrl="+HttpContext.Current.Request.Url.PathAndQuery);
         }
     }
 }

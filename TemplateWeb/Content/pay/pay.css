@@ -5,71 +5,102 @@
     font-family: 'Microsoft YaHei';
 }
 
-.tp-prepay-header {
+.tp-pay-header {
     width: 1000px;
     margin: 0 auto;
 }
 
-.tp-prepay-header-logo {
+.tp-pay-header-logo {
     display: inline-block;
     float: left;
 }
 
-    .tp-prepay-header-logo img {
+    .tp-pay-header-logo img {
         height: 60px;
     }
 
-.tp-prepay-header-sitename {
+.tp-pay-header-sitename {
     display: inline-block;
     font-weight: bold;
     font-size: 20px;
     line-height: 60px;
 }
 
-.tp-prepay-order {
+.tp-pay-order {
     background-color: #f2f2f2;
 }
 
-.tp-prepay-order-wrapper {
+.tp-pay-order-wrapper {
     width: 1000px;
     margin: 0 auto;
 }
 
-.tp-prepay-order-productname {
+.tp-pay-order-productname {
     display: inline-block;
     line-height: 100px;
 }
 
-.tp-prepay-order-productprice {
+.tp-pay-order-productprice {
     display: inline-block;
+    margin-right: 60px;
     line-height: 100px;
     float: right;
 }
 
-.tp-prepay-paymethod {
-    width: 800px;
+.tp-pay-paymethod {
+    width: 1000px;
     margin: 0 auto;
-    padding: 20px 100px;
+    padding: 20px;
 }
 
-.tp-prepay-paymethod-method {
+.tp-pay-paymethod-method {
     display: block;
-    border: 2px solid transparent;
+    margin: 0 100px;
+    border: 3px solid transparent;
+    border-radius: 3px;
     padding: 10px;
 }
 
-    .tp-prepay-paymethod-method:hover {
-        border: 2px solid #ff6600;
+    .tp-pay-paymethod-method:hover {
+        border: 3px solid #ff6600;
+        border-radius: 3px;
     }
 
-    .tp-prepay-paymethod-method img {
+    .tp-pay-paymethod-method img {
         height: 40px;
     }
 
-.tp-prepay-footer {
+.tp-pay-footer {
     position: fixed;
-    top: 340px;
+    top: 500px;
     width: 100%;
     height: 100%;
     background-color: #f2f2f2;
 }
+
+.tp-pay-wxpay {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tp-pay-wxpay-logo {
+    padding: 10px;
+}
+
+    .tp-pay-wxpay-logo img {
+        height: 40px;
+    }
+
+.tp-pay-wxpay-qr img {
+    width: 200px;
+    height: 200px;
+}
+
+.tp-pay-wxpay-tip {
+    padding: 10px;
+}
+
+    .tp-pay-wxpay-tip img {
+        height: 50px;
+    }
