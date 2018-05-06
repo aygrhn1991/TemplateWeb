@@ -30,7 +30,8 @@
         <a href="/Pay/WxPay?productId=@ViewBag.productId&payMethod=微信" class="tp-pay-paymethod-method">
             <img src="~/Component/PayLogo/wxpay/logo.png" />
         </a>
-        <a @*href="/Pay/AliPay?productId=@ViewBag.productId&payMethod=支付宝"*@ class="tp-pay-paymethod-method" onclick="alert('支付宝支付功能暂未开通！');">
+        <a href="/Pay/AliPay?productId=@ViewBag.productId&payMethod=支付宝" class="tp-pay-paymethod-method">
+            @*<a class="tp-pay-paymethod-method" onclick="alert('支付宝支付功能暂未开通！');">*@
             <img src="~/Component/PayLogo/alipay/logo.png" />
         </a>
     </div>

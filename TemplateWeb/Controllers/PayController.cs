@@ -1,6 +1,12 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using Aop.Api;
+using Aop.Api.Domain;
+using Aop.Api.Request;
+using Aop.Api.Response;
+using Aop.Api.Util;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -58,12 +64,13 @@ namespace TemplateWeb.Controllers
             pay_order order = this.CreateOrder(productId, payMethod);
             module_product product = entity.module_product.FirstOrDefault(p => p.id == order.product_id);
             var setting = entity.lay_setting;
+
             WxPayData data = new WxPayData();
             data.SetValue("body", setting.FirstOrDefault(p => p.key == "sitename").value + product.name);//商品描述
             data.SetValue("attach", "attach");//附加数据
             data.SetValue("out_trade_no", order.number);//随机字符串
-            //data.SetValue("total_fee", (int)Math.Ceiling(order.price.Value * 100));//总金额
-            data.SetValue("total_fee", 1);//总金额
+            data.SetValue("total_fee", (int)Math.Ceiling(order.price.Value * 100));//总金额
+            //data.SetValue("total_fee", 1);//总金额
             data.SetValue("time_start", DateTime.Now.ToString("yyyyMMddHHmmss"));//交易起始时间
             data.SetValue("time_expire", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss"));//交易结束时间
             data.SetValue("goods_tag", "goods_tag");//商品标记
@@ -72,7 +79,7 @@ namespace TemplateWeb.Controllers
             WxPayData result = WxPayApi.UnifiedOrder(data);//调用统一下单接口
             string url = QRTool.CreateQR(result.GetValue("code_url").ToString());//获得统一下单接口返回的二维码链接
             ViewBag.url = url;
-            
+
             ViewBag.name = product.name;
             ViewBag.price = product.price;
             ViewBag.logo = setting.FirstOrDefault(p => p.key == "logo").value;
@@ -182,10 +189,96 @@ namespace TemplateWeb.Controllers
         }
         #endregion
         #region 支付宝支付
-        public ActionResult AliPay()
+        public ActionResult AliPay(int productId, string payMethod)
         {
-            return View();
+            pay_order order = this.CreateOrder(productId, payMethod);
+            module_product product = entity.module_product.FirstOrDefault(p => p.id == order.product_id);
+            var setting = entity.lay_setting;
+
+            DefaultAopClient client = new DefaultAopClient(Config.gatewayUrl, Config.app_id, Config.private_key, "json", "1.0", Config.sign_type, Config.alipay_public_key, Config.charset, false);
+            // 外部订单号，商户网站订单系统中唯一的订单号
+            string out_trade_no = order.number;
+            // 订单名称
+            string subject = setting.FirstOrDefault(p => p.key == "sitename").value + product.name;
+            // 付款金额
+            string total_amout = Math.Ceiling(order.price.Value * 100).ToString();
+            // 商品描述
+            string body = setting.FirstOrDefault(p => p.key == "sitename").value + product.name;
+            // 组装业务参数model
+            AlipayTradePagePayModel model = new AlipayTradePagePayModel();
+            model.Body = body;
+            model.Subject = subject;
+            model.TotalAmount = total_amout;
+            model.OutTradeNo = out_trade_no;
+            model.ProductCode = "FAST_INSTANT_TRADE_PAY";
+            AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
+            // 设置同步回调地址
+            request.SetReturnUrl(HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Host + "/Pay/AliPayNotify");
+            // 设置异步通知接收地址
+            request.SetNotifyUrl(HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Host + "/Pay/AliPayNotify");
+            // 将业务model载入到request
+            request.SetBizModel(model);
+            AlipayTradePagePayResponse response = null;
+            try
+            {
+                response = client.pageExecute(request, null, "post");
+                Response.Write(response.Body);
+            }
+            catch (Exception exp)
+            {
+                throw exp;
+            }
+            return null;
         }
         #endregion
+        [AllowAnonymous]
+        public ActionResult AliPayNotify()
+        {
+            /* 实际验证过程建议商户添加以下校验。
+        1、商户需要验证该通知数据中的out_trade_no是否为商户系统中创建的订单号，
+        2、判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额），
+        3、校验通知中的seller_id（或者seller_email) 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）
+        4、验证app_id是否为该商户本身。
+        */
+            Dictionary<string, string> sArray = GetRequestPost();
+            if (sArray.Count != 0)
+            {
+                bool flag = AlipaySignature.RSACheckV1(sArray, Config.alipay_public_key, Config.charset, Config.sign_type, false);
+                if (flag)
+                {
+                    //交易状态
+                    //判断该笔订单是否在商户网站中已经做过处理
+                    //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+                    //请务必判断请求时的total_amount与通知时获取的total_fee为一致的
+                    //如果有做过处理，不执行商户的业务程序
+
+                    //注意：
+                    //退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
+                    string trade_status = Request.Form["trade_status"];
+
+                    Response.Write("success");
+                }
+                else
+                {
+                    Response.Write("fail");
+                }
+            }
+            return null;
+        }
+        private Dictionary<string, string> GetRequestPost()
+        {
+            int i = 0;
+            Dictionary<string, string> sArray = new Dictionary<string, string>();
+            NameValueCollection coll;
+            //coll = Request.Form;
+            coll = Request.Form;
+            String[] requestItem = coll.AllKeys;
+            for (i = 0; i < requestItem.Length; i++)
+            {
+                sArray.Add(requestItem[i], Request.Form[requestItem[i]]);
+            }
+            return sArray;
+
+        }
     }
 }
