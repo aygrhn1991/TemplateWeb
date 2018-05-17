@@ -257,6 +257,17 @@ namespace TemplateWeb.Controllers
                     string trade_status = Request.Form["trade_status"];
 
                     Response.Write("success");
+                    //本地业务处理
+                    string number = Request.Form["out_trade_no"];
+                    pay_order order = entity.pay_order.FirstOrDefault(p => p.number == number);
+                    module_product product = entity.module_product.FirstOrDefault(p => p.id == order.product_id);
+                    if (order.state_pay != true)
+                    {
+                        order.pay_time = DateTime.Now;
+                        order.state_pay = true;
+                        int result = entity.SaveChanges();
+                        MessageTool.SendMessage(order.member_id.Value, "购买通知", "您已成功购买【" + product.name + "】！");                        
+                    }
                 }
                 else
                 {
