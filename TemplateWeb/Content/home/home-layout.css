@@ -123,20 +123,20 @@
 .tp-partner {
     width: 1000px;
     margin: 20px auto;
-    height: 130px !important;
+    height: 90px !important;
     background-color: #f3f3f3;
 }
 
 .tp-partner-item {
     display: inline-block;
-    width: 180px;
+    width: 90px;
     margin: 0 10px;
 }
 
     .tp-partner-item > img {
         border: 1px solid #b3b3b3;
         width: 100%;
-        height: 90px;
+        height: 45px;
     }
 
     .tp-partner-item > div {

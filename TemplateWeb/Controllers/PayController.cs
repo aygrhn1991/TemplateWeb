@@ -201,7 +201,8 @@ namespace TemplateWeb.Controllers
             // 订单名称
             string subject = setting.FirstOrDefault(p => p.key == "sitename").value + product.name;
             // 付款金额
-            string total_amout = Math.Ceiling(order.price.Value * 100).ToString();
+            //string total_amout = Math.Ceiling(order.price.Value * 100).ToString();
+            string total_amout = 1.ToString();
             // 商品描述
             string body = setting.FirstOrDefault(p => p.key == "sitename").value + product.name;
             // 组装业务参数model
@@ -213,7 +214,7 @@ namespace TemplateWeb.Controllers
             model.ProductCode = "FAST_INSTANT_TRADE_PAY";
             AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
             // 设置同步回调地址
-            request.SetReturnUrl(HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Host + "/Pay/AliPayNotify");
+            request.SetReturnUrl(HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Host + "/Member/Index");
             // 设置异步通知接收地址
             request.SetNotifyUrl(HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Host + "/Pay/AliPayNotify");
             // 将业务model载入到request
@@ -255,7 +256,17 @@ namespace TemplateWeb.Controllers
                     //注意：
                     //退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
                     string trade_status = Request.Form["trade_status"];
-
+                    //本地业务处理
+                    string number = sArray["out_trade_no"];
+                    pay_order order = entity.pay_order.FirstOrDefault(p => p.number == number);
+                    module_product product = entity.module_product.FirstOrDefault(p => p.id == order.product_id);
+                    if (order.state_pay != true)
+                    {
+                        order.pay_time = DateTime.Now;
+                        order.state_pay = true;
+                        int result = entity.SaveChanges();
+                        MessageTool.SendMessage(order.member_id.Value, "购买通知", "您已成功购买【" + product.name + "】！");
+                    }
                     Response.Write("success");
                 }
                 else
