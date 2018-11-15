@@ -1,12 +1,13 @@
 ﻿.tp-sidebar-wrapper {
     position: fixed;
-    width: 220px !important;
+    /*width: 220px !important;*/
     height: 100%;
 }
 
 .tp-content-wrapper {
     height: 100%;
-    margin: 0 0 0 220px;
+    /*margin: 0 0 0 220px;*/
+    margin: 0 0 0 100px;
 }
 
 .tp-iframe {
