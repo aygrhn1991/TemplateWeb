@@ -3,6 +3,25 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_Home.cshtml";
 }
+@*<style>
+    @@media screen and (max-width: 450px) {
+        body {
+            min-width: 100%;
+        }
+
+        .tp-partner, .tp-index, .tp-footer-wrapper {
+            width: 100%;
+        }
+
+        .tp-product > li {
+            width: 50%;
+        }
+
+        .tp-news > li {
+            width: 100%;
+        }
+    }
+</style>*@
 <marquee class="tp-notice" direction="left" ng-if="param.notice.length!=0">通知：<span ng-repeat="n in param.notice" ng-bind="($index+1)+'.'+n.content+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></span></marquee>
 <div id="tp-banner" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
