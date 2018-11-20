@@ -1,9 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using TemplateWeb.Component;
+using TemplateWeb.Models;
 using TemplateWeb.Models.DB;
 
 namespace TemplateWeb.Controllers
@@ -238,6 +244,84 @@ namespace TemplateWeb.Controllers
         {
             var query = entity.module_product.FirstOrDefault(p => p.id == id);
             return Json(query, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        public ActionResult jssdkconfig(string url)
+        {
+            //if (Request.Browser.IsMobileDevice)
+            //{
+            //    return RedirectToAction("Index", "Mobile");
+            //}
+            return Json(GetJSSDKConfig(url), JsonRequestBehavior.AllowGet);
+        }
+        #region JS-SDK
+        public JSSDKConfig GetJSSDKConfig(string url)
+        {
+            JSSDKConfig jssdkconfig = new JSSDKConfig();
+            jssdkconfig.appId = "wx6f45b83b6fe25fad";
+            jssdkconfig.nonceStr = GetNonceStr();
+            jssdkconfig.timestamp = GetTimeStamp(DateTime.Now).ToString();
+            jssdkconfig.signature = GetJSSDKSignature(jssdkconfig.nonceStr, jssdkconfig.timestamp, url);
+            return jssdkconfig;
+        }
+        private string GetJSSDKSignature(string nonceStr, string timeStamp, string url)
+        {
+            string ticket = RequestJSApiTicket();
+            string[] array = { "noncestr=" + nonceStr, "jsapi_ticket=" + ticket, "timestamp=" + timeStamp, "url=" + url };
+            Array.Sort(array);
+            string str = string.Join("&", array);
+            SHA1 sha1 = SHA1.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(str);
+            bytes = sha1.ComputeHash(bytes);
+            sha1.Clear();
+            string signature = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+            return signature;
+        }
+        private string RequestJSApiTicket()
+        {
+            string accesstoken = RequestAccessToken();
+            string url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + accesstoken + "&type=jsapi";
+            string response = HttpHelper(url, "GET");
+            JSApiTicket ticket = (JSApiTicket)JsonConvert.DeserializeObject<JSApiTicket>(response);
+            return ticket.ticket;
+        }
+        private string GetNonceStr(int length = 30)
+        {
+            string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            string nonceStr = "";
+            for (int i = 0; i < length; i++)
+            {
+                nonceStr += chars.Substring(random.Next(0, chars.Length - 1), 1);
+            }
+            return nonceStr;
+        }
+        private int GetTimeStamp(DateTime time)
+        {
+            return (int)((time - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds);
+        }
+        private string RequestAccessToken()
+        {
+            string url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6f45b83b6fe25fad&secret=d7fce1e61737ce7d5746d7ae0e742d85";
+            string response = HttpHelper(url, "GET");
+            AccessToken accessToken = (AccessToken)JsonConvert.DeserializeObject<AccessToken>(response);
+            return accessToken.access_token;
+        }
+        private string HttpHelper(string url, string requestMethod)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = requestMethod.ToString();
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using (Stream responseStream = response.GetResponseStream())
+            {
+                using (StreamReader streamReader = new StreamReader(responseStream))
+                {
+                    string responseString = streamReader.ReadToEnd();
+                    return responseString;
+                }
+            }
         }
         #endregion
     }
